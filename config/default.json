@@ -1,0 +1,4 @@
+{
+   "mongooseURI" : "mongodb+srv://raluca:parola@cluster0-pp0fc.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtSecret": "sl_myJwtSecret"
+}
