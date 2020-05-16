@@ -12,9 +12,9 @@ import './assets/style/_index.scss';
 
 
 class App extends Component {
-  componentDidMount() {
-    store.dispatch(loadUser());
-  }
+  // componentDidMount() {
+  //   store.dispatch(loadUser());
+  // }
 
   render() {
     return (

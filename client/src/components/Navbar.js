@@ -51,7 +51,7 @@ class Navbar extends Component {
             <a className="navbar-brand js-scroll-trigger" href="#page-top">
               Blood Donation
           </a>
-            <NavbarToggler className="navbar-toggler navbar-toggler-right" onClick={this.toggle}
+            {/* <NavbarToggler className="navbar-toggler navbar-toggler-right" onClick={this.toggle}
               // type="button"
               data-toggle="collapse"
               data-target="#navbarResponsive"
@@ -59,7 +59,7 @@ class Navbar extends Component {
               aria-expanded="false"
               aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
-            </NavbarToggler>
+            </NavbarToggler> */}
             <div className="collapse navbar-collapse" id="navbarResponsive">
               <ul className="navbar-nav ml-auto my-2 my-lg-0">
                 <li className="nav-item"><a className="nav-link js-scroll-trigger" href="#about">About</a></li>

@@ -31,6 +31,7 @@ mongoose
 //      });
 // });
 
+app.use('/api/donors', require('./routes/api/donors'));
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 

@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { returnErrors } from './errorActions';
 // import { mainAPI } from '../config';
-
 import {
   USER_LOADED,
   USER_LOADING,
@@ -11,7 +10,9 @@ import {
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
   REGISTER_FAIL
+
 } from './types';
+
 
 // Check token & load user
 export const loadUser = () => (dispatch, getState) => {
@@ -47,7 +48,7 @@ export const register = ({ name, email, password }) => dispatch => {
   // Request body
   const body = JSON.stringify({ name, email, password });
 
-   axios
+  axios
     .post('/api/users', body, config)
     .then(res =>
       dispatch({
@@ -98,10 +99,11 @@ export const login = ({ email, password }) => dispatch => {
 
 // Logout User
 export const logout = () => {
-    return {
-        type: LOGOUT_SUCCESS
-    };
+  return {
+    type: LOGOUT_SUCCESS
+  };
 };
+
 
 
 // Setup config/headers and token
