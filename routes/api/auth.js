@@ -8,6 +8,8 @@ const auth = require('../../middleware/auth');
 
 //User Model
 const User = require('../../models/User');
+const Donor = require('../../models/Donor');
+
 
 //@routes POST api/auth
 //@desc Autentification user
@@ -28,26 +30,27 @@ router.post('/', (req, res) => {
 
             //Validate password
             bcrypt.compare(password, user.password)
-            .then(isMatch => {
-                if(!isMatch) return res.status(400).json({ msg: 'Invalid credentioals'});
+                .then(isMatch => {
+                    if (!isMatch) return res.status(400).json({ msg: 'Invalid credentioals' });
 
-                jwt.sign(
-                    { id: user.id },
-                    config.get('jwtSecret'),
-                    { expiresIn: 3600 },
-                    (err, token) => {
-                        if(err) throw err;
-                        res.json({
-                            token,
-                            user: {
-                                id: user.id,
-                                name: user.name,
-                                email: user.email
-                            }
-                        });
-                    }
-                )
-            })
+                    jwt.sign(
+                        { id: user.id },
+                        config.get('jwtSecret'),
+                        { expiresIn: 3600 },
+                        (err, token) => {
+                            if (err) throw err;
+                            res.json({
+                                token,
+                                user: {
+                                    id: user.id,
+                                    name: user.name,
+                                    email: user.email,
+                                    donors_list: user.donors_list
+                                }
+                            });
+                        }
+                    )
+                })
         })
 });
 
@@ -56,8 +59,8 @@ router.post('/', (req, res) => {
 //@acceSs Private
 router.get('/user', (req, res) => {
     User.findById(req.user.id)
-    .select('-password')
-    .then(user => res.json(user));
+        .select('-password')
+        .then(user => res.json(user));
 });
 
 

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_DONORS, ADD_DONORS, DELETE_DONORS, DONORS_LOADING, EDIT_DONOR, SET_CURRENT_DONOR, CHANGE_CURRENT_DONOR_INFO } from './types';
+import { GET_DONORS, ADD_DONORS, DELETE_DONORS, DONORS_LOADING, SET_CURRENT_DONOR, CHANGE_CURRENT_DONOR_INFO } from './types';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
 // import { mainAPI } from '../config';
@@ -36,12 +36,12 @@ export const updateDonorInfo = (id, currentDonor) => dispatch => {
                 type: CHANGE_CURRENT_DONOR_INFO,
                 payload: { name: "isSuccessUpdate", value: true }
             })
-            window.setTimeout(()=>{
+            window.setTimeout(() => {
                 dispatch({
                     type: CHANGE_CURRENT_DONOR_INFO,
                     payload: { name: "isSuccessUpdate", value: false }
                 })
-              },2000)
+            }, 2000)
         })
         .catch(err =>
             dispatch(returnErrors(err.response.data, err.response.status)));
@@ -62,6 +62,7 @@ export const getCurrentDonorById = id => dispatch => {
 
 
 export const addDonor = donor => (dispatch, getState) => {
+
     axios
         .post('/api/donors', donor, tokenConfig(getState))
         .then(res =>
@@ -71,7 +72,6 @@ export const addDonor = donor => (dispatch, getState) => {
             }))
         .catch(err =>
             dispatch(returnErrors(err.response.data, err.response.status)));
-
 };
 
 export const deleteDonor = id => (dispatch, getState) => {

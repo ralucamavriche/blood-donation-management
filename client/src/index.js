@@ -6,14 +6,18 @@ import App from './App';
 import Donors from './Screens/Donors';
 import * as serviceWorker from './serviceWorker';
 import EditDonor from './Screens/EditDonoars';
+import BloodRequest from './components/BloodRequestModal';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Switch>
-        <Route  path='/home' component={App} />
+        <Route exact path='/' component={App} />
         <Route exact path='/donors' component={Donors} />
         <Route exact path="/donors/edit/:id" render={(props) => <EditDonor {...props} />} />
+        <Route exact path="/request"  component={BloodRequest} />
+        <Route component={App} /> 
+        {/* TO DO add 404 page */}
       </Switch>
     </BrowserRouter>
   </React.StrictMode>,

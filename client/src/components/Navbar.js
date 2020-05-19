@@ -6,6 +6,7 @@ import Logout from './auth/Logout';
 
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import BloodRequest from './BloodRequestModal';
 
 
 class Navbar extends Component {
@@ -31,7 +32,7 @@ class Navbar extends Component {
       <Fragment>
         <NavItem>
           <li className="nav-item">
-            <span className="nav-link js-scroll-trigger" >{user ? `Welcom ${user.name}` : ''}</span>
+            <span className="nav-link js-scroll-trigger" >{user  ?`Welcom ${user.name}` : ''}</span>
           </li>
         </NavItem>
         <NavItem><Logout /></NavItem>
@@ -41,6 +42,7 @@ class Navbar extends Component {
       <Fragment>
         <NavItem><RegisterModal /></NavItem>
         <NavItem><LoginModal /></NavItem>
+        <NavItem><BloodRequest /></NavItem>
       </Fragment>
     );
 
@@ -51,7 +53,7 @@ class Navbar extends Component {
             <a className="navbar-brand js-scroll-trigger" href="#page-top">
               Blood Donation
           </a>
-            {/* <NavbarToggler className="navbar-toggler navbar-toggler-right" onClick={this.toggle}
+            <NavbarToggler className="navbar-toggler navbar-toggler-right" onClick={this.toggle}
               // type="button"
               data-toggle="collapse"
               data-target="#navbarResponsive"
@@ -59,13 +61,22 @@ class Navbar extends Component {
               aria-expanded="false"
               aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
-            </NavbarToggler> */}
-            <div className="collapse navbar-collapse" id="navbarResponsive">
+            </NavbarToggler>
+            <Collapse isOpen={this.state.isOpen} className="somesome" navbar>
+              <Nav className="ml-auto" navbar>
+                <li className="nav-item"><a className="nav-link js-scroll-trigger" href="#about">About</a></li>
+                <li className="nav-item"><a className="nav-link js-scroll-trigger" href="#services">Services</a></li>
+                <li className="nav-item"><a className="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+                {isAuthenticated ? authLinks : guestLink}
+
+              </Nav>
+            </Collapse>
+            {/* <div className="collapse navbar-collapse" id="navbarResponsive">
               <ul className="navbar-nav ml-auto my-2 my-lg-0">
                 <li className="nav-item"><a className="nav-link js-scroll-trigger" href="#about">About</a></li>
                 <li className="nav-item"><a className="nav-link js-scroll-trigger" href="#services">Services</a></li>
                 <li className="nav-item"><a className="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
-                <Collapse isOpen={this.state.isOpen} navbar>
+                <Collapse isOpen={false} className="somesome" navbar>
                   <Nav className="ml-auto" navbar>
                     <Nav className="ml-auto" navbar>
                       {isAuthenticated ? authLinks : guestLink}
@@ -73,7 +84,7 @@ class Navbar extends Component {
                   </Nav>
                 </Collapse>
               </ul>
-            </div>
+            </div> */}
           </div>
         </nav>
       </div>

@@ -7,7 +7,7 @@ import store from '../store';
 import { loadUser } from '../actions/authActions';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../assets/style/_index.scss';
+import '../assets/style/_donorsList.scss';
 
 import EditDonor from '../components/donor/EditDonorModal';
 

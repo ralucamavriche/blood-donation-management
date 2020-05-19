@@ -16,10 +16,13 @@ const UserSchema = new Schema({
         type: String,
         required:true
     },
+    donors_list: {
+        type:[]
+    },
     register_date: {
         type: Date,
         default: Date.now
     }
 });
-
+// hospital account collection
 module.exports = User = mongoose.model('user', UserSchema);

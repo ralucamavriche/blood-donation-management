@@ -4,6 +4,8 @@ const auth = require('../../middleware/auth');
 
 //Donor Model
 const Donor = require('../../models/Donor');
+const User = require('../../models/User');
+
 
 //@routes GET api/donors
 //@desc Get All Donors
@@ -38,15 +40,30 @@ router.get('/:id', (req, res) => {
 //@desc Create A Donor
 //@acceSs Private
 router.post('/', (req, res) => {
+    const { name, email, age, weight, phone_number, currentUser } = req.body;
     const newDonor = new Donor({
-        name: req.body.name,
-        email: req.body.email,
-        age: req.body.age,
-        weight: req.body.weight,
-        phone_number: req.body.phone_number
+        name,
+        email,
+        age,
+        weight,
+        phone_number,
+        createdBy: currentUser
     });
+    newDonor.save().then(donor => {
+        const { _id } = donor;
+        User.findOne({ _id: currentUser }).then(user => {
+            if (user) {
+                console.log(user)
+                user.donors_list.push(_id);
+                user.save().then(user => {
+                    res.json(user);
+                }).catch(err => res.json(err))
+            } else {
+                console.log('nu')
+            }
 
-    newDonor.save().then(donor => res.json(donor));
+        })
+    }).catch(err => res.json(err))
 });
 
 //@routes DELETE api/donors

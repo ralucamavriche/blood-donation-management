@@ -7,10 +7,10 @@ import store from '../store';
 import { loadUser } from '../actions/authActions';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../assets/style/_index.scss';
-import { Container } from 'reactstrap';
+import '../assets/style/_donorsList.scss';
 import DonorsList from '../components/donor/DonorsList';
 import DonorModal from '../components/donor/DonorModal';
+import DonorListForHospital from '../components/donor/DonorListForHospital';
 
 
 class Donors extends Component {
@@ -22,10 +22,11 @@ class Donors extends Component {
     return (
       <Provider store={store}>
         <div className="Donors">
-          <Navbar />
+          <Navbar/>
           <div className="donorsList">
           <DonorModal />
           <DonorsList />
+          <DonorListForHospital />
           </div>
           <Footer />
         </div>

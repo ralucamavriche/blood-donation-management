@@ -16,11 +16,11 @@ import PropTypes from 'prop-types';
 class DonorModal extends Component {
     state = {
         modal: false,
-        name: '',
-        email: '',
-        age: '',
-        weight: '',
-        phone_number: ''
+        name: 'Raluca',
+        email: 'raluca@yahoo.com',
+        age: '4',
+        weight: '100',
+        phone_number: '0759123123'
 
     }
 
@@ -46,12 +46,13 @@ class DonorModal extends Component {
             email: this.state.email,
             age: this.state.age,
             weight: this.state.weight,
-            phone_number: this.state.phone_number
+            phone_number: this.state.phone_number,
+            currentUser:this.props.auth.user.id
         }
 
         //Add donor via addDonor action
         this.props.addDonor(newDonor);
-
+        
         //Close modal
         this.toggle();
     }
@@ -86,6 +87,7 @@ class DonorModal extends Component {
                                     input="text"
                                     name="name"
                                     id="donor"
+                                    value={this.state.name}
                                     placeholder="Add Name donor"
                                     onChange={this.onChange}
                                 />
@@ -95,6 +97,7 @@ class DonorModal extends Component {
                                     input="email"
                                     name="email"
                                     id="email"
+                                    value={this.state.email}
                                     placeholder="Add Email"
                                     onChange={this.onChange}
                                 />
@@ -104,6 +107,7 @@ class DonorModal extends Component {
                                     input="text"
                                     name="age"
                                     id="age"
+                                    value={this.state.age}
                                     placeholder="Add Age"
                                     onChange={this.onChange}
                                 />
@@ -113,6 +117,7 @@ class DonorModal extends Component {
                                     input="text"
                                     name="weight"
                                     id="weight"
+                                    value={this.state.weight}
                                     placeholder="Add weight"
                                     onChange={this.onChange}
                                 />
@@ -122,6 +127,7 @@ class DonorModal extends Component {
                                     input="text"
                                     name="phone_number"
                                     id="phone_number"
+                                    value={this.state.phone_number}
                                     placeholder="Add Phone Number"
                                     onChange={this.onChange}
                                 />
@@ -140,6 +146,7 @@ class DonorModal extends Component {
 }
 
 const mapStateToProps = (state) => ({
+    auth:state.auth,
     donor: state.donor,
     isAuthenticated: state.auth.isAuthenticated
 });

@@ -11,7 +11,9 @@ class DonorsList extends Component {
     static propTypes = {
         getDonors: PropTypes.func.isRequired,
         donor: PropTypes.object.isRequired,
-        isAuthenticated: PropTypes.bool
+        isAuthenticated: PropTypes.bool,
+        auth: PropTypes.object.isRequired
+
     };
 
     componentDidMount() {
@@ -25,26 +27,31 @@ class DonorsList extends Component {
     render() {
 
         const { donors } = this.props.donor;
+        const { user } = this.props.auth;
         return (
             <Container>
+                <h5 className="mb-3 ml-4" className="text-center"
+                >{user ? `Lista donatori spital ${user.name}:` : 'Lista donatori spital goala. Va rugam sa va logati.'}</h5>
                 <ListGroup>
                     <TransitionGroup className="donors-list">
-                        {donors.map(({ _id, name }) => (
+
+                        {donors.map(({ _id, name, createdBy }) => (
                             <CSSTransition key={_id} timeout={500} classNames="fade">
                                 <ListGroupItem>
-                                    {this.props.isAuthenticated ? (
+                                    {this.props.isAuthenticated && createdBy === user.id ? (
+
                                         <div>
                                             <Button
                                                 className="edit-btn float-right"
                                                 color="success"
                                                 size="sm"
                                                 onClick={
-
-                                                    event => this.props.history.push(`/donors/edit/${_id}`)
+                                                    this.props.history.push(`/donors/edit/${_id}`)
                                                 }
                                             >
                                                 Edit
                                          </Button>
+
 
                                             <Button
                                                 className="remove-btn float-right"
@@ -52,13 +59,15 @@ class DonorsList extends Component {
                                                 size="sm"
                                                 onClick={this.onDeleteClick.bind(this, _id)}
                                             > Remove
-                                                    &times;
-                                    </Button>
-                                        </div>
-                                    ) : null}
-                                    {name}
+                                                                                    &times;
+                                            </Button>
+                                            {name}
 
+                                        </div>
+
+                                    ) : null}
                                 </ListGroupItem>
+
                             </CSSTransition>
                         ))}
                     </TransitionGroup>
@@ -69,6 +78,7 @@ class DonorsList extends Component {
 }
 
 const mapStateToProps = (state) => ({
+    auth: state.auth,
     donor: state.donor,
     isAuthenticated: state.auth.isAuthenticated
 });

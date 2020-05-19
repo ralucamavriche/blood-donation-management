@@ -24,6 +24,10 @@ const DonorSchema = new Schema({
         type: Number,
         // required: true
     },
+    createdBy:{
+        type:String,
+        required:true
+    },
     date: {
         type: Date,
         default: Date.now

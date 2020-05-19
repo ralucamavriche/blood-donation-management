@@ -47,11 +47,6 @@ export default function (state = initialState, action) {
                 ...state,
                 loading: true
             };
-        case EDIT_DONOR:
-            return {
-                ...state,
-                donors: state.donors.filter(donor => donor._id !== action.payload.id),
-            };
         default:
             return state;
     }
