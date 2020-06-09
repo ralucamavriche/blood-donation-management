@@ -26,7 +26,7 @@ class Donors extends Component {
           <div className="donorsList">
           <DonorModal />
           <DonorsList />
-          <DonorListForHospital />
+          {/* <DonorListForHospital /> */}
           </div>
           <Footer />
         </div>

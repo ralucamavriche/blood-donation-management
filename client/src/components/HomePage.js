@@ -18,8 +18,9 @@ export default function Main() {
                         </div>
                         <div className="col-lg-8 align-self-baseline">
                             <p className="text-white-75 font-weight-light mb-5">
-                                Start Bootstrap can help you build better websites using the Bootstrap framework! Just download a theme and start customizing, no strings attached!
-                         </p>
+                                This app is for Blood Donation Management.
+                                {/* Start Bootstrap can help you build better websites using the Bootstrap framework! Just download a theme and start customizing, no strings attached! */}
+                            </p>
                             <a className="btn btn-primary btn-xl js-scroll-trigger" href="#about">
                                 Find Out More
                         </a>
@@ -56,28 +57,29 @@ export default function Main() {
                             <div className="mt-5">
                                 <FontAwesomeIcon icon={faGem} color="#03A9F4" size="5x" />
                                 <h3 className="h4 mb-2">Free Account</h3>
-                                <p className="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p>
+                                <p className="text-muted mb-0">This app is for Blood Donation Management.
+                                </p>
                             </div>
                         </div>
                         <div className="col-lg-3 col-md-6 text-center">
                             <div className="mt-5">
                                 <FontAwesomeIcon icon={faLaptopCode} color="#03A9F4" size="5x" />
                                 <h3 className="h4 mb-2">Up to Date</h3>
-                                <p className="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>
+                                <p className="text-muted mb-0">This app is for Blood Donation Management.</p>
                             </div>
                         </div>
                         <div className="col-lg-3 col-md-6 text-center">
                             <div className="mt-5">
                                 <FontAwesomeIcon icon={faGlobe} color="#03A9F4" size="5x" />
                                 <h3 className="h4 mb-2">Ready to Publish</h3>
-                                <p className="text-muted mb-0">You can use this design as is, or you can make changes!</p>
+                                <p className="text-muted mb-0">This app is for Blood Donation Management.</p>
                             </div>
                         </div>
                         <div className="col-lg-3 col-md-6 text-center">
                             <div className="mt-5">
                                 <FontAwesomeIcon icon={faHeart} color="#03A9F4" size="5x" />
                                 <h3 className="h4 mb-2">Made with Love</h3>
-                                <p className="text-muted mb-0">Is it really open source if it's not made with love?</p>
+                                <p className="text-muted mb-0">This app is for Blood Donation Management.</p>
                             </div>
                         </div>
                     </div>
@@ -160,7 +162,7 @@ export default function Main() {
                         <div className="col-lg-8 text-center">
                             <h2 className="mt-0">Let's Get In Touch!</h2>
                             <hr className="divider my-4" />
-                            <p className="text-muted mb-5">Ready to start your next project with us? Give us a call or send us an email and we will get back to you as soon as possible!</p>
+                            <p className="text-muted mb-5">This app is for Blood Donation Management.</p>
                         </div>
                     </div>
                     <div className="row">

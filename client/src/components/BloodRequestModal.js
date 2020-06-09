@@ -14,10 +14,10 @@ import {
 class BloodRequest extends Component {
     state = {
         modal: false,
-        title: 'Cerere',
-        author:'Spital nr1',
-        description: 'Este nevoie.',
-        blood_type: 'A+'
+        title: '',
+        author:'',
+        description: '',
+        blood_type: ''
 
     };
 

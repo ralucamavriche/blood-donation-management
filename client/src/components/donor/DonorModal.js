@@ -16,11 +16,11 @@ import PropTypes from 'prop-types';
 class DonorModal extends Component {
     state = {
         modal: false,
-        name: 'Raluca',
-        email: 'raluca@yahoo.com',
-        age: '4',
-        weight: '100',
-        phone_number: '0759123123'
+        name: '',
+        email: '',
+        age: '',
+        weight: '',
+        phone_number: ''
 
     }
 
