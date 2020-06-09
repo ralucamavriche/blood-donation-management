@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { returnErrors } from './errorActions';
+import jwt from 'jwt-decode' 
 // import { mainAPI } from '../config';
 import {
   USER_LOADED,
@@ -19,8 +20,11 @@ export const loadUser = () => (dispatch, getState) => {
   // User loading
   dispatch({ type: USER_LOADING });
 
-  axios
-    .get('/api/auth/user', tokenConfig(getState))
+  const token = localStorage.getItem('token');
+  console.log(token)
+  const idUser = token && jwt(token).id;
+  token && axios
+    .get(`/api/auth/user/${idUser}`, tokenConfig(getState))
     .then(res =>
       dispatch({
         type: USER_LOADED,
@@ -118,6 +122,10 @@ export const tokenConfig = getState => {
   const config = {
     headers: {
       "Content-type": "application/json"
+    },
+    id:"application/json",
+    body:{
+      id:"5ec3c784b54a553d948ff5a2"
     }
   }
 

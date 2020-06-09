@@ -36,7 +36,7 @@ class BloodRequest extends Component {
         e.preventDefault();
         const { title, author, description, blood_type } = this.state;
 
-        //Create reques object
+        // Create reques object
         const newRequest = {
             title,
             author,
@@ -44,7 +44,7 @@ class BloodRequest extends Component {
             blood_type
         };
 
-        // this.props.addRequest(newRequest); 
+        this.props.addRequest(newRequest); 
     };
 
     render() {

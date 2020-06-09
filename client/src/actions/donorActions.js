@@ -62,14 +62,24 @@ export const getCurrentDonorById = id => dispatch => {
 
 
 export const addDonor = donor => (dispatch, getState) => {
-
     axios
         .post('/api/donors', donor, tokenConfig(getState))
-        .then(res =>
-            dispatch({
-                type: ADD_DONORS,
-                payload: res.data
-            }))
+        .then(res => {
+            console.log(res)
+            if (res.data.errors) {
+                console.log(res.data)
+                // dispatch(returnErrors(err.response.data, err.response.status))
+            } else
+            {
+                console.log(res.data)
+                return dispatch({
+                    type: ADD_DONORS,
+                    payload: res.data
+                })
+            }
+                
+        }
+        )
         .catch(err =>
             dispatch(returnErrors(err.response.data, err.response.status)));
 };

@@ -30,8 +30,8 @@ class DonorsList extends Component {
         const { user } = this.props.auth;
         return (
             <Container>
-                <h5 className="mb-3 ml-4" className="text-center"
-                >{user ? `Lista donatori spital ${user.name}:` : 'Lista donatori spital goala. Va rugam sa va logati.'}</h5>
+                <h5 className="mb-3 ml-4 text-center">
+                    {user ? `Lista donatori spital ${user.name}:` : 'Lista donatori spital goala. Va rugam sa va logati.'}</h5>
                 <ListGroup>
                     <TransitionGroup className="donors-list">
 
@@ -59,7 +59,7 @@ class DonorsList extends Component {
                                                 size="sm"
                                                 onClick={this.onDeleteClick.bind(this, _id)}
                                             > Remove
-                                                                                    &times;
+                                                                                        &times;
                                             </Button>
                                             {name}
 

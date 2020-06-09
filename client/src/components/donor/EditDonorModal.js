@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
-import { Link, withRouter, useHistory } from 'react-router-dom';
+import {  withRouter } from 'react-router-dom';
 import { getDonors, getCurrentDonorById, updateDonorInfo, changeCurrentDonorInfo } from '../../actions/donorActions';
 import {
     Button,
@@ -90,7 +89,7 @@ class EditDonor extends Component {
                                 input="text"
                                 name="name"
                                 id="donor"
-                                value={this.props.donor.currentDonor && this.props.donor.currentDonor.name || ''}
+                                value={(this.props.donor.currentDonor && this.props.donor.currentDonor.name) || ''}
                                 placeholder="Add Name donor"
                                 onChange={this.handleInputChange}
                             />

@@ -51,6 +51,7 @@ router.post('/', (req, res) => {
     });
     newDonor.save().then(donor => {
         const { _id } = donor;
+        console.log(currentUser)
         User.findOne({ _id: currentUser }).then(user => {
             if (user) {
                 console.log(user)
@@ -59,7 +60,8 @@ router.post('/', (req, res) => {
                     res.json(user);
                 }).catch(err => res.json(err))
             } else {
-                console.log('nu')
+                console.log()
+                res.json({err:"User not found!"})
             }
 
         })

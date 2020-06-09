@@ -47,8 +47,9 @@ class DonorModal extends Component {
             age: this.state.age,
             weight: this.state.weight,
             phone_number: this.state.phone_number,
-            currentUser:this.props.auth.user.id
+            currentUser:this.props.auth.user._id
         }
+        console.log(this.props)
 
         //Add donor via addDonor action
         this.props.addDonor(newDonor);
@@ -69,8 +70,7 @@ class DonorModal extends Component {
                 </Button>
                 ) : (
                         <h5
-                            className="mb-3 ml-4"
-                            className="text-center"
+                            className="mb-3 ml-4 text-center"
                             style={{ marginBottom: '2rem' }}> Please log in to manage donors</h5>
                     )}
                 <Modal
