@@ -42,7 +42,7 @@
   font-size: 13px;
 }
 .timeline.timeline-icons li {
-  padding-top: 7px;
+  padding-top: 0;
 }
 .timeline.timeline-icons li:after {
   width: 32px;
@@ -68,6 +68,7 @@
 }
 .timeline.timeline-icons.timeline-sm li:after {
   left: -5px;
+  top:5px;
 }
 .timeline.timeline-icons.timeline-sm li .timeline-icon {
   left: 4.5px;
@@ -170,14 +171,23 @@
 ----------------------------------------- */
 .dropdown-menu{
     padding:0 0 0 0;
+    padding: 0 !important;
 }
 a.dropdown-menu-header {
     background: #f7f9fe;
     font-weight: bold;
     border-bottom: 1px solid #e3e3e3;
 }
+a.dropdown-menu-header:hover{
+  text-decoration: none;
+  color: rgb(28, 78, 153);
+}
+.dropdown-menu li {
+  display: block;
+}
 .dropdown-menu > li a {
     padding: 10px 20px;
+    display: block;
 }
 
 /* -----------------------------------------

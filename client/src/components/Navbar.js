@@ -8,13 +8,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import BloodRequest from './BloodRequestModal';
 
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faBell, faFilePdf } from '@fortawesome/free-solid-svg-icons';
-
-import '../assets/style/_ringBell.scss';
-// import 'bootstrap.min.js';
-
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBell } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom'
 class Navbar extends Component {
   state = {
     isOpen: false,
@@ -44,10 +40,17 @@ class Navbar extends Component {
 
     const authLinks = (
       <Fragment>
-        <NavItem>
-          <span className="nav-link js-scroll-trigger" >{user ? `Welcom ${user.name}` : ''}</span>
-        </NavItem>
-        <NavItem><Logout /></NavItem>
+        <li class="nav-item dropdown">
+          <Link class="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {user ? `Welcome ${user.name.charAt(0).toUpperCase() + user.name.slice(1)}` : ''}
+          </Link>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <Link class="dropdown-item" to="#"><i class="fas fa-sliders-h"></i> Settings</Link>
+            <Link class="dropdown-item" to="#"><i class="fas fa-user-circle"></i> Profiles</Link>
+            <div class="dropdown-divider"></div>
+            <Logout/>
+          </div>
+        </li>
       </Fragment>
     );
     const guestLink = (
@@ -62,9 +65,9 @@ class Navbar extends Component {
       <div>
         <nav className="navbar navbar-expand-lg navbar-light fixed-top py-2" id="mainNav">
           <div className="container">
-            <a className="navbar-brand js-scroll-trigger" href="#page-top">
+            <Link className="navbar-brand js-scroll-trigger" to="#page-top">
               Blood Donation
-          </a>
+          </Link>
             <NavbarToggler className="navbar-toggler navbar-toggler-right" onClick={this.toggle}
               // type="button"
               data-toggle="collapse"
@@ -76,54 +79,49 @@ class Navbar extends Component {
             </NavbarToggler>
             <Collapse isOpen={this.state.isOpen} className="somesome" navbar>
               <Nav className="ml-auto" navbar>
-                <li className="nav-item"><a className="nav-link js-scroll-trigger" href="#about">About</a></li>
-                <li className="nav-item"><a className="nav-link js-scroll-trigger" href="#services">Services</a></li>
-                <li className="nav-item"><a className="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+                <li className="nav-item"><Link className="nav-link js-scroll-trigger" to="#about">About</Link></li>
+                <li className="nav-item"><Link className="nav-link js-scroll-trigger" to="#services">Services</Link></li>
+                <li className="nav-item"><Link className="nav-link js-scroll-trigger" to="#contact">Contact</Link></li>
+                <li class="nav-item dropdown" >
+                  <Link class="nav-link " to="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <FontAwesomeIcon icon={faBell} size="1x" float="left" color="white" />
+                  </Link>
+                  <span className="badge badge-danger">6</span>
+
+                  <ul role="menu" className="dropdown-menu dropdown-menu-left pull-right" aria-labelledby="navbarDropdown">
+                    <li role="none">
+                      <Link to="#" className="dropdown-menu-header">Notifications</Link>
+                    </li>
+                    <ul className="timeline timeline-icons timeline-sm" style={{ margin: '10px', width: '210px' }}>
+                      <li>
+                        <p>
+                          First Notification
+                            <span class="timeline-icon"><i class="far fa-file-pdf"></i></span>
+                          <span className="timeline-date">Dec 10, 22:00</span>
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          First Notification
+                            <span className="timeline-date">Dec 10, 22:00</span>
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          First Notification
+                            <span className="timeline-date">Dec 10, 22:00</span>
+                        </p>
+                      </li>
+                    </ul>
+                    <li role="none">
+                      <Link to="#" className="dropdown-menu-header"></Link>
+                    </li>
+                  </ul>
+                </li>
                 {isAuthenticated ? authLinks : guestLink}
 
               </Nav>
             </Collapse>
-
-            {/* Ring Bell Notification */}
-
-            
-            {/* <div className="dropdown" style={{ float: 'right', padding: '13px' }} >
-              <a href="#" onClickNotification={this.state.isOpenNotification} role="button" data-toggle="dropdown" id="dropdownMenu1" data-target="#" style={{ float: 'left' }} aria-expanded="true">
-                <FontAwesomeIcon icon={faBell} size="1x" float="left" color="white" />
-              </a>
-              <span className="badge badge-danger">6</span>
-              <ul role="menu" className="dropdown-menu dropdown-menu-left pull-right"  aria-labelledby="dropdownMenu1">
-                <li role="none">
-                  <a href="#" className="dropdown-menu-header">Notifications</a>
-                </li>
-                <ul className="timeline timeline-icons timeline-sm" style={{ margin: '10px', width: '210px' }}>
-                  <li>
-                    <p>
-                      First Notification
-                      <span className="timeline-date">Dec 10, 22:00</span>
-                    </p>
-                  </li>
-                </ul>
-                <li role="none">
-                  <a href="#" className="dropdown-menu-header"></a>
-                </li>
-              </ul>
-            </div> */}
-
-            {/* <div className="collapse navbar-collapse" id="navbarResponsive">
-              <ul className="navbar-nav ml-auto my-2 my-lg-0">
-                <li className="nav-item"><a className="nav-link js-scroll-trigger" href="#about">About</a></li>
-                <li className="nav-item"><a className="nav-link js-scroll-trigger" href="#services">Services</a></li>
-                <li className="nav-item"><a className="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
-                <Collapse isOpen={false} className="somesome" navbar>
-                  <Nav className="ml-auto" navbar>
-                    <Nav className="ml-auto" navbar>
-                      {isAuthenticated ? authLinks : guestLink}
-                    </Nav>
-                  </Nav>
-                </Collapse>
-              </ul>
-            </div> */}
           </div>
         </nav>
       </div>

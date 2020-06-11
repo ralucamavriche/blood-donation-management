@@ -10,15 +10,12 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { loadUser } from './actions/authActions';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './assets/style/_index.scss';
-
-
 const AppDefault = () => {
   return (<div className="App">
     <Navbar />
     <HomePage />
     <Footer />
+
   </div>)
 }
 

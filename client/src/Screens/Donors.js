@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../assets/style/_donorsList.scss';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import '../assets/style/_donorsList.scss';
 import DonorsList from '../components/donor/DonorsList';
 import DonorModal from '../components/donor/DonorModal';
 
