@@ -10,6 +10,8 @@ import {
     Input,
     NavLink,
 } from 'reactstrap';
+import { connect } from 'react-redux';
+import { addRequest } from '../actions/requestActions';
 
 class BloodRequest extends Component {
     state = {
@@ -34,17 +36,21 @@ class BloodRequest extends Component {
 
     onSubmit = e => {
         e.preventDefault();
-        const { title, author, description, blood_type } = this.state;
 
         // Create reques object
         const newRequest = {
-            title,
-            author,
-            description,
-            blood_type
+            title: this.state.title,
+            author: this.state.author,
+            description: this.state.description,
+            blood_type: this.state.blood_type
         };
+        console.log(this.props)
 
+        //Add request via addRequest action
         this.props.addRequest(newRequest); 
+        
+        //Close modal
+        this.toggle();
     };
 
     render() {
@@ -114,4 +120,8 @@ class BloodRequest extends Component {
     }
 }
 
-export default BloodRequest;
+const mapStateToProps = (state) => ({
+    request: state.request
+});
+
+export default connect(mapStateToProps, { addRequest })(BloodRequest);
