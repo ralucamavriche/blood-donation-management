@@ -25,14 +25,14 @@ class Notification extends Component {
     const countOfNotifications = requests.length;
     return (
       <>
-          <li class="nav-item dropdown">
+          <li className="nav-item dropdown">
           <Link
-            class="nav-link "
-            to="/"
+            className="nav-link"
+            to="#"
             id="navbarDropdown"
             role="button"
             data-toggle="dropdown"
-            aria-haspopup="true"
+            aria-haspopup="false"
             aria-expanded="false"
           >Notifications 
             <FontAwesomeIcon
@@ -63,8 +63,8 @@ class Notification extends Component {
                   <li onClick={() => this.props.history.push(`/notifications/${_id}`)} className="custom_notfication_link">
                     <p>
                     <span className="custom_title">{title}</span>
-                      <span class="timeline-icon">
-                        <i class="far fa-bell"></i>
+                      <span className="timeline-icon">
+                        <i className="far fa-bell"></i>
                       </span>
                       <span className="timeline-date">{date}</span>
                     </p>
@@ -77,8 +77,8 @@ class Notification extends Component {
                     
                     <p>
                     <span className="custom_title"> View all {requests.length} notifications!</span>
-                      <span class="timeline-icon">
-                        <i class="far fa-bell"></i>
+                      <span className="timeline-icon">
+                        <i className="far fa-bell"></i>
                       </span>
                       <span className="timeline-date"></span>
                     </p>

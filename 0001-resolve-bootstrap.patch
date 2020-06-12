@@ -204,14 +204,14 @@ index 75141fc..2bc8289 100644
 -          <span className="nav-link js-scroll-trigger" >{user ? `Welcom ${user.name}` : ''}</span>
 -        </NavItem>
 -        <NavItem><Logout /></NavItem>
-+        <li class="nav-item dropdown">
-+          <Link class="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
++        <li className="nav-item dropdown">
++          <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 +            {user ? `Welcome ${user.name.charAt(0).toUpperCase() + user.name.slice(1)}` : ''}
 +          </Link>
-+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-+            <Link class="dropdown-item" to="#"><i class="fas fa-sliders-h"></i> Settings</Link>
-+            <Link class="dropdown-item" to="#"><i class="fas fa-user-circle"></i> Profiles</Link>
-+            <div class="dropdown-divider"></div>
++          <div className="dropdown-menu" aria-labelledby="navbarDropdown">
++            <Link className="dropdown-item" to="#"><i className="fas fa-sliders-h"></i> Settings</Link>
++            <Link className="dropdown-item" to="#"><i className="fas fa-user-circle"></i> Profiles</Link>
++            <div className="dropdown-divider"></div>
 +            <Logout/>
 +          </div>
 +        </li>
@@ -240,8 +240,8 @@ index 75141fc..2bc8289 100644
 +                <li className="nav-item"><Link className="nav-link js-scroll-trigger" to="#about">About</Link></li>
 +                <li className="nav-item"><Link className="nav-link js-scroll-trigger" to="#services">Services</Link></li>
 +                <li className="nav-item"><Link className="nav-link js-scroll-trigger" to="#contact">Contact</Link></li>
-+                <li class="nav-item dropdown" >
-+                  <Link class="nav-link " to="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
++                <li className="nav-item dropdown" >
++                  <Link className="nav-link " to="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 +                    <FontAwesomeIcon icon={faBell} size="1x" float="left" color="white" />
 +                  </Link>
 +                  <span className="badge badge-danger">6</span>
@@ -254,7 +254,7 @@ index 75141fc..2bc8289 100644
 +                      <li>
 +                        <p>
 +                          First Notification
-+                            <span class="timeline-icon"><i class="far fa-file-pdf"></i></span>
++                            <span className="timeline-icon"><i className="far fa-file-pdf"></i></span>
 +                          <span className="timeline-date">Dec 10, 22:00</span>
 +                        </p>
 +                      </li>
@@ -346,7 +346,7 @@ index 2cd3ba5..84f701b 100644
 -                <NavLink onClick={this.props.logout} href="#">
 -                    Logout
 -                </NavLink>
-+                <Link class="dropdown-item"onClick={this.props.logout} to="/"><i class="fas fa-sign-out-alt"></i> Logout</Link>
++                <Link className="dropdown-item"onClick={this.props.logout} to="/"><i className="fas fa-sign-out-alt"></i> Logout</Link>
              </Fragment>
          );
      }

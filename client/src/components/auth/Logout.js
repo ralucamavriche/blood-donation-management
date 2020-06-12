@@ -12,7 +12,7 @@ export class Logout extends Component {
     render() {
         return (
             <Fragment>
-                <Link class="dropdown-item"onClick={this.props.logout} to="/"><i class="fas fa-sign-out-alt"></i> Logout</Link>
+                <Link className="dropdown-item"onClick={this.props.logout} to="/"><i className="fas fa-sign-out-alt"></i> Logout</Link>
             </Fragment>
         );
     }

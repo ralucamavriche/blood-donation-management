@@ -55,10 +55,10 @@ class BloodRequest extends Component {
 
     render() {
         return (
-            <div>
-                <NavLink onClick={this.toggle} href="#">
+            <>
+                <span className="blondi" onClick={this.toggle} >
                     Cerere Sange
-                </NavLink>
+                </span>
                 <Modal isOpen={this.state.modal} toggle={this.toggle}>
                     <ModalHeader toggle={this.toggle}>Cerere Sange</ModalHeader>
                     <ModalBody>
@@ -115,7 +115,7 @@ class BloodRequest extends Component {
                         </Form>
                     </ModalBody>
                 </Modal >
-            </div>
+            </>
         )
     }
 }

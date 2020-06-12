@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { loadUser } from './actions/authActions';
 import NotificationsPage from './Screens/NotificationsPage';
+import ViewNotification from './Screens/ViewNotification';
 
 const AppDefault = () => {
   return (<div className="App">
@@ -35,7 +36,7 @@ class App extends Component {
             <Route exact path="/donors/edit/:id" render={(props) => <EditDonor {...props} />} />
             <Route exact path="/request" component={BloodRequest} />
             <Route exact path='/notifications' component={NotificationsPage} />
-            <Route exact path="/notifications/:id" component={NotificationsPage}/>
+            <Route exact path="/notifications/:id" component={ViewNotification}/>
             <Route component={AppDefault} />
             {/* TO DO add 404 page */}
           </Switch>

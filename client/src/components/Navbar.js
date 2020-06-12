@@ -31,9 +31,9 @@ class Navbar extends Component {
     const authLinks = (
       <Fragment>
         <Notification />
-        <li class="nav-item dropdown">
+        <li className="nav-item dropdown">
           <Link
-            class="nav-link dropdown-toggle"
+            className="nav-link dropdown-toggle"
             to="#"
             id="navbarDropdown"
             role="button"
@@ -47,14 +47,14 @@ class Navbar extends Component {
                 }`
               : ""}
           </Link>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <Link class="dropdown-item" to="#">
-              <i class="fas fa-sliders-h"></i> Settings
+          <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+            <Link className="dropdown-item" to="#">
+              <i className="fas fa-sliders-h"></i> Settings
             </Link>
-            <Link class="dropdown-item" to="#">
-              <i class="fas fa-user-circle"></i> Profiles
+            <Link className="dropdown-item" to="#">
+              <i className="fas fa-user-circle"></i> Profiles
             </Link>
-            <div class="dropdown-divider"></div>
+            <div className="dropdown-divider"></div>
             <Logout />
           </div>
         </li>
@@ -117,7 +117,7 @@ class Navbar extends Component {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link js-scroll-trigger">
+                  <Link to="#" className="nav-link js-scroll-trigger">
                     <BloodRequest />
                   </Link>
                 </li>
