@@ -35,6 +35,7 @@ class App extends Component {
             <Route exact path="/donors/edit/:id" render={(props) => <EditDonor {...props} />} />
             <Route exact path="/request" component={BloodRequest} />
             <Route exact path='/notifications' component={NotificationsPage} />
+            <Route exact path="/notifications/:id" component={NotificationsPage}/>
             <Route component={AppDefault} />
             {/* TO DO add 404 page */}
           </Switch>

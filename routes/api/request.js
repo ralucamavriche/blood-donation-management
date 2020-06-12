@@ -8,7 +8,7 @@ const BloodRequest = require('../../models/BloodRequest');
 
 //@routes GET api/request
 //@desc Get All blood request
-//@acceSs Public
+//@access Public
 router.get('/', (req, res) => {
     BloodRequest.find()
         .sort({ date: -1 })
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 
 //@routes GET api/request
 //@desc Get Request by ID
-//@acceSs Public
+//@access Public
 router.get('/:id', (req, res) => {
     const id = req.params.id;
     BloodRequest.findById(id)
@@ -37,14 +37,16 @@ router.get('/:id', (req, res) => {
 
 //@routes POST api/donors
 //@desc Create A Donor
-//@acceSs Private
+//@access Private
 router.post('/', (req, res) => {
-    const { title, author, description, blood_type } = req.body;
+    const { title, author, description, blood_type, viewedBy } = req.body;
     const newBloodRequest = new BloodRequest({
         title,
         author,
         description,
-        blood_type
+        blood_type,
+        viewedBy
+
     });
 
     newBloodRequest.save().then(request => res.json(request))
@@ -53,11 +55,20 @@ router.post('/', (req, res) => {
 
 //@routes DELETE api/request
 //@desc Delete A Request
-//@acceSs Private
+//@access Private
 router.delete('/:id', (req, res) => {
     BloodRequest.findById(req.params.id)
         .then(request => request.remove().then(() => res.json({ success: true })))
         .catch(err => res.status(404).json({ success: false }));
+});
+
+//@routes UPDATE api/request
+//@desc Update A Request
+//@access Private
+router.patch('/:id', (req, res) => {
+    BloodRequest.findOneAndUpdate({ _id: req.params.id }, req.body)
+        .then((request) => res.json({ request, success: true }))
+        .catch(err => res.status(404).json({ err, success: false }));
 });
 
 

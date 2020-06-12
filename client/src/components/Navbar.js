@@ -78,7 +78,7 @@ class Navbar extends Component {
           id="mainNav"
         >
           <div className="container">
-            <Link className="navbar-brand js-scroll-trigger" to="#page-top">
+            <Link className="navbar-brand js-scroll-trigger" to="/">
               Blood Donation
             </Link>
             <NavbarToggler
@@ -96,17 +96,23 @@ class Navbar extends Component {
             <Collapse isOpen={this.state.isOpen} className="somesome" navbar>
               <Nav className="ml-auto" navbar>
                 <li className="nav-item">
-                  <Link className="nav-link js-scroll-trigger" to="#about">
+                  <Link
+                    className="nav-link js-scroll-trigger"
+                    to={{
+                      pathname: "/",
+                      hash: "#about",
+                    }}
+                  >
                     About
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link js-scroll-trigger" to="#services">
+                  <Link className="nav-link js-scroll-trigger" to="/#services">
                     Services
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link js-scroll-trigger" to="#contact">
+                  <Link className="nav-link js-scroll-trigger" to="/#contact">
                     Contact
                   </Link>
                 </li>

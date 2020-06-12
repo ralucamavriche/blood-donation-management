@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import { getRequests } from "./../actions/requestActions";
 import { CSSTransition } from "react-transition-group";
 import { ListGroupItem } from "reactstrap";
+import {withRouter} from 'react-router-dom'
 
 class Notification extends Component {
   static propTypes = {
@@ -24,7 +25,7 @@ class Notification extends Component {
     const countOfNotifications = requests.length;
     return (
       <>
-        <li class="nav-item dropdown">
+          <li class="nav-item dropdown">
           <Link
             class="nav-link "
             to="/"
@@ -33,69 +34,14 @@ class Notification extends Component {
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
-          >
+          >Notifications 
             <FontAwesomeIcon
               icon={faBell}
               size="1x"
               float="left"
               color="white"
             />
-          </Link>
-          <span className="badge badge-danger">{countOfNotifications}</span>
-
-          <ul
-            role="menu"
-            className="dropdown-menu dropdown-menu-left pull-right"
-            aria-labelledby="navbarDropdown"
-          >
-            <li role="none">
-              <Link to="#" className="dropdown-menu-header">
-                Notifications
-              </Link>
-            </li>
-
-            {requests.map(({ _id, title, date }) => (
-              <Link
-                className="dropdown-item"
-                // style={{padding:'2rem 1.5rem'}}
-                // style={{ margin: "10px", width: "210px" }}
-                key={_id}
-                to="#"
-              >
-                <span class="timeline-icon">
-                  <i class="fas fa-bell"></i>
-                </span>
-                {title}
-                <span
-                  className="timeline-date"
-                  style={{ display: "flex", color: "black" }}
-                >
-                  {date}
-                </span>
-              </Link>
-            ))}
-            <li role="none">
-              <Link to="#" className="dropdown-menu-header"></Link>
-            </li>
-          </ul>
-        </li>
-
-        <li class="nav-item dropdown">
-          <Link
-            class="nav-link "
-            to="/"
-            id="navbarDropdown"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            <FontAwesomeIcon
-              icon={faBell}
-              size="1x"
-              float="left"
-              color="white"
-            />
+            
           </Link>
           <span className="badge badge-danger">{countOfNotifications}</span>
           <ul
@@ -104,7 +50,7 @@ class Notification extends Component {
             aria-labelledby="navbarDropdown"
           >
             <li role="none">
-              <Link to="#" className="dropdown-menu-header">
+              <Link to="/notifications" className="dropdown-menu-header">
                 Notifications
               </Link>
             </li>
@@ -112,11 +58,11 @@ class Notification extends Component {
               className="timeline timeline-icons timeline-sm"
               style={{ margin: "10px", width: "210px" }}
             >
-              {requests.map(({ _id, title, date }) => (
-                <CSSTransition key={_id} timeout={500} classNames="fade">
-                  <li>
+              {requests.map(({ _id, title, date },index) => (
+               index < 3 && <CSSTransition key={_id} timeout={500} classNames="fade">
+                  <li onClick={() => this.props.history.push(`/notifications/${_id}`)} className="custom_notfication_link">
                     <p>
-                      {title}
+                    <span className="custom_title">{title}</span>
                       <span class="timeline-icon">
                         <i class="far fa-bell"></i>
                       </span>
@@ -125,6 +71,20 @@ class Notification extends Component {
                   </li>
                 </CSSTransition>
               ))}
+              {
+                requests.length >=3 &&(
+                  <li onClick={() => this.props.history.push(`/notifications`)} className="custom_notfication_link">
+                    
+                    <p>
+                    <span className="custom_title"> View all {requests.length} notifications!</span>
+                      <span class="timeline-icon">
+                        <i class="far fa-bell"></i>
+                      </span>
+                      <span className="timeline-date"></span>
+                    </p>
+                  </li>
+                )
+              }
             </ul>
             <li role="none">
               <Link to="#" className="dropdown-menu-header"></Link>
@@ -140,4 +100,4 @@ const mapStateToProps = (state) => ({
   request: state.request,
 });
 
-export default connect(mapStateToProps, { getRequests })(Notification);
+export default withRouter(connect(mapStateToProps, { getRequests })(Notification));

@@ -2,6 +2,22 @@
     // display: none;
   }
   
+  .custom_notfication_link{
+    p{
+      &:hover{
+        color:blue;
+      }
+    }
+    &:hover{
+
+      background: rgba(255, 255, 255, 0.219);
+      cursor: pointer;
+      // &.custom_title{
+      //   color:blue;
+      // }
+    }
+
+  }
 .navbar {
     position: relative;
     display: flex;

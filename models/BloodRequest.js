@@ -21,6 +21,10 @@ const BloodRequestSchema = new Schema({
     date: {
         type: Date,
         default: Date.now
+    },
+    viewedBy: {
+        type:[],
+        default:[]
     }
 });
 
