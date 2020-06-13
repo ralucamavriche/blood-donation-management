@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_REQUESTS, ADD_REQUESTS} from './types';
+import { GET_REQUESTS, ADD_REQUESTS, ADD_COMMENT} from './types';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
 // import { mainAPI } from '../config';
@@ -41,4 +41,14 @@ export const addRequest = request => dispatch=> {
         .catch(err =>
             dispatch(returnErrors(err.response.data, err.response.status)));
 };
+
+export const addComment = (id,comments) => dispatch => {
+   return  axios
+        .patch(`/api/request/${id}`,{comments})
+        .then(res => {
+           console.log('updated')
+        })
+        .catch(err =>
+            dispatch(returnErrors(err.response.data, err.response.status)));
+}
 

@@ -25,6 +25,10 @@ const BloodRequestSchema = new Schema({
     viewedBy: {
         type:[],
         default:[]
+    },
+    comments: {
+        type:[],
+        default:[]
     }
 });
 

@@ -12,8 +12,8 @@ export default class CommentSection extends Component {
         </div>
         <div className="row">
           <section class="col comments">
-            {[0, 1, 2, 2, 2].map((e) => {
-              return <CommentCard />;
+            {this.props.comments.length && this.props.comments.map((e) => {
+              return <CommentCard data={e} />;
             })}
           </section>
         </div>

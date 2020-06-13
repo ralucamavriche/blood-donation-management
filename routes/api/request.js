@@ -39,13 +39,14 @@ router.get('/:id', (req, res) => {
 //@desc Create A Donor
 //@access Private
 router.post('/', (req, res) => {
-    const { title, author, description, blood_type, viewedBy } = req.body;
+    const { title, author, description, blood_type, viewedBy,comments } = req.body;
     const newBloodRequest = new BloodRequest({
         title,
         author,
         description,
         blood_type,
-        viewedBy
+        viewedBy,
+        comments
 
     });
 

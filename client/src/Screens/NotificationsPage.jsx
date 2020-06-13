@@ -33,6 +33,8 @@ class NotificationsPage extends Component {
             this.props.request.requests.map((e) => {
               return <NotificationCardModel request={e} />;
             })}
+
+            
         </div>
       </>
     );
