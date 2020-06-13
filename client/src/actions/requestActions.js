@@ -4,7 +4,16 @@ import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
 // import { mainAPI } from '../config';
 
-
+export const updateViewField = (id_notification, viewedBy) => dispatch => {
+    console.log(id_notification, viewedBy)
+    axios
+        .patch(`/api/request/${id_notification}`,{viewedBy})
+        .then(res => {
+            console.log('updated')
+        })
+        .catch(err =>
+            dispatch(returnErrors(err.response.data, err.response.status)));
+}
 export const getRequests = () => dispatch => {
     axios
         .get('/api/request')

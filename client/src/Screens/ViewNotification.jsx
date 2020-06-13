@@ -13,7 +13,9 @@ import BreadcrumsModel from "./../components/shared/Breadcrum/BreadcrumsModel";
 import Moment from 'react-moment';
 import CommentSection from './../components/shared/CommentSection/CommentSection';
 class ViewNotification extends Component {
+
   render() {
+    
     return (
       <>
         <Navbar />
@@ -58,6 +60,7 @@ class ViewNotification extends Component {
 
 const mapStateToProps = (state) => ({
   request: state.request,
+  auth:state.auth
 });
 
 export default withRouter(connect(mapStateToProps, {})(ViewNotification));

@@ -8,24 +8,53 @@ import PropTypes from "prop-types";
 import { getRequests } from "./../actions/requestActions";
 import { CSSTransition } from "react-transition-group";
 import { ListGroupItem } from "reactstrap";
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
+import {updateViewField} from '../actions/requestActions'
+const checkNewStuff = (notifications, user_id) => {
+  let res = 0;
+  notifications && notifications.map(({viewedBy}) => {
+    if(viewedBy.includes(user_id) === false) res++;
+    
+  })
 
+  return res;
+}
 class Notification extends Component {
   static propTypes = {
     getRequests: PropTypes.func.isRequired,
     request: PropTypes.object.isRequired,
   };
+  constructor(props) {
+    super(props);
+
+  
+    this.state = {
+      countOfNotificationsState: 0,
+    }
+}
 
   componentDidMount() {
     this.props.getRequests();
+    
   }
 
+  handleClickNotifications = (e,_id,viewedBy) => {
+    const user_id = this.props.auth.user._id;
+    if(viewedBy.includes(user_id) ===false){
+      let viewedByTemp = viewedBy;
+      viewedByTemp.push(user_id)
+      this.props.updateViewField(_id,viewedByTemp)
+    }
+    this.props.history.push(`/notifications/${_id}`)
+
+  }
   render() {
     const { requests } = this.props.request;
-    const countOfNotifications = requests.length;
+    const { user } = this.props.auth;
+    const countOfNotifications =  checkNewStuff(requests,user._id);
     return (
       <>
-          <li className="nav-item dropdown">
+        <li className="nav-item dropdown">
           <Link
             className="nav-link"
             to="#"
@@ -34,14 +63,14 @@ class Notification extends Component {
             data-toggle="dropdown"
             aria-haspopup="false"
             aria-expanded="false"
-          >Notifications 
+          >Notifications
             <FontAwesomeIcon
               icon={faBell}
               size="1x"
               float="left"
               color="white"
             />
-            
+
           </Link>
           <span className="badge badge-danger">{countOfNotifications}</span>
           <ul
@@ -58,11 +87,16 @@ class Notification extends Component {
               className="timeline timeline-icons timeline-sm"
               style={{ margin: "10px", width: "210px" }}
             >
-              {requests.map(({ _id, title, date },index) => (
-               index < 3 && <CSSTransition key={_id} timeout={500} classNames="fade">
-                  <li onClick={() => this.props.history.push(`/notifications/${_id}`)} className="custom_notfication_link">
+              {requests.map(({ _id, title, date, viewedBy }, index) => (
+                viewedBy && viewedBy.includes(user._id) === false && <CSSTransition key={_id} timeout={500} classNames="fade">
+                  <li onClick={(e) => this.handleClickNotifications(e,_id,viewedBy)} className="custom_notfication_link">
                     <p>
-                    <span className="custom_title">{title}</span>
+                      <span className="custom_title">{title}
+                        {
+                          viewedBy && viewedBy.includes(user._id) === false && <span class="badge badge-secondary custom_bagde">New</span>
+                        }
+
+                      </span>
                       <span className="timeline-icon">
                         <i className="far fa-bell"></i>
                       </span>
@@ -72,11 +106,11 @@ class Notification extends Component {
                 </CSSTransition>
               ))}
               {
-                requests.length >=3 &&(
+                requests.length >= 3 && (
                   <li onClick={() => this.props.history.push(`/notifications`)} className="custom_notfication_link">
-                    
+
                     <p>
-                    <span className="custom_title"> View all {requests.length} notifications!</span>
+                      <span className="custom_title"> View all {requests.length} notifications!</span>
                       <span className="timeline-icon">
                         <i className="far fa-bell"></i>
                       </span>
@@ -98,6 +132,8 @@ class Notification extends Component {
 
 const mapStateToProps = (state) => ({
   request: state.request,
+  auth: state.auth
+
 });
 
-export default withRouter(connect(mapStateToProps, { getRequests })(Notification));
+export default withRouter(connect(mapStateToProps, { getRequests,updateViewField })(Notification));

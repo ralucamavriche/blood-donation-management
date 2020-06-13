@@ -1,10 +1,16 @@
-span{
-    &.author{
-        color:red;
+span {
+    &.author {
+        color: red;
         font-weight: bold;
     }
-    &.request{
-        color:rgb(24, 20, 20);
+    &.request {
+        color: rgb(24, 20, 20);
         font-weight: bold;
+    }
+
+    &.custom_bagde {
+        position: relative;
+        top: 0;
+        background: #00adff;
     }
 }
