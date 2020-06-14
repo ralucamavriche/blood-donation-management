@@ -10,6 +10,7 @@ import PropTypes from "prop-types";
 import BloodRequest from "./BloodRequestModal";
 
 import { Link } from "react-router-dom";
+import Dashboard from './Dashboard';
 class Navbar extends Component {
   state = {
     isOpen: false,
@@ -51,8 +52,8 @@ class Navbar extends Component {
             <Link className="dropdown-item" to="#">
               <i className="fas fa-sliders-h"></i> Settings
             </Link>
-            <Link className="dropdown-item" to="#">
-              <i className="fas fa-user-circle"></i> Profiles
+            <Link className="dropdown-item" to="/dashboard">
+              <i className="fas fa-user-circle"></i> Dashboard
             </Link>
             <div className="dropdown-divider"></div>
             <Logout />

@@ -11,6 +11,10 @@ import store from './store';
 import { loadUser } from './actions/authActions';
 import NotificationsPage from './Screens/NotificationsPage';
 import ViewNotification from './Screens/ViewNotification';
+import Dashboard from './components/Dashboard';
+import MainDashboard from './components/DashboardComponents/MainDashboard';
+import MedicalHistory from './components/DashboardComponents/MedicalHistory';
+import MedicalFiles from './components/DashboardComponents/MedicalFiles';
 
 const AppDefault = () => {
   return (<div className="App">
@@ -37,6 +41,21 @@ class App extends Component {
             <Route exact path="/request" component={BloodRequest} />
             <Route exact path='/notifications' component={NotificationsPage} />
             <Route exact path="/notifications/:id" component={ViewNotification}/>
+            <Route exact path="/dashboard">
+              <Dashboard>
+                <MainDashboard/>
+              </Dashboard>
+            </Route>
+            <Route exact path="/dashboard/timetable">
+              <Dashboard>
+                <MedicalHistory/>
+              </Dashboard>
+            </Route>
+            <Route exact path="/dashboard/history">
+              <Dashboard>
+                <MedicalFiles/>
+              </Dashboard>
+            </Route>
             <Route component={AppDefault} />
             {/* TO DO add 404 page */}
           </Switch>
