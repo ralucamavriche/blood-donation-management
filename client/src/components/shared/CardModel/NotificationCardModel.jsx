@@ -1,21 +1,32 @@
 import React from "react";
-import Moment from 'react-moment';
-export default function NotificationCardModel({request}) {
-    // const date = new Date(props.date);
-    console.log(request)
-    const date = request.title ? new Date(request.date) : new Date();
- return request.title ? (
-   <div className="row mb-4 ">
-      <div className=" col  card text-center">
-        <div className="card-header">Notifications</div>
+import Moment from "react-moment";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+function NotificationCardModel(props) {
+  // const date = new Date(props.date);
+  const { data } = props;
+  const date = data.title ? new Date(data.date) : new Date();
+  console.log(props);
+  return true ? (
+    <div className="row mb-4 ">
+      <div className=" col  card text-center" style={{padding:"0"}}>
+        {data.viewedBy &&
+        data.viewedBy.includes(props.auth.user._id) === false ? (
+          <div className="card-header custom_header_notification">
+            Notifications{" "}
+            <span class="badge badge-secondary custom_bagde">New</span>
+          </div>
+        ) : (
+          <div className="card-header">Notifications</div>
+        )}
+
         <div className="card-body">
-          <h5 className="card-title">{request.title || 'No title'}</h5>
-          <p className="card-text">
-           {request.description}
-          </p>
-          <a href="#" className="btn btn-primary">
+          <h5 className="card-title">{data.title || "No title"}</h5>
+          <p className="card-text">{data.description}</p>
+          <Link className="btn btn-primary" to={`/notifications/${data._id}`}>
             Vezi Notificare
-          </a>
+          </Link>
         </div>
 
         <div className="card-footer text-muted">
@@ -25,3 +36,10 @@ export default function NotificationCardModel({request}) {
     </div>
   ):null;
 }
+
+const mapStateToProps = (state) => ({
+  request: state.request,
+  auth: state.auth,
+});
+
+export default withRouter(connect(mapStateToProps, {})(NotificationCardModel));

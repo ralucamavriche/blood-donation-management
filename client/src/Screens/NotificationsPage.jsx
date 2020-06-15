@@ -9,21 +9,28 @@ import { getRequests } from "./../actions/requestActions";
 import { CSSTransition } from "react-transition-group";
 import { ListGroupItem } from "reactstrap";
 import { withRouter } from "react-router-dom";
-import BreadcrumsModel from './../components/shared/Breadcrum/BreadcrumsModel';
+import BreadcrumsModel from "./../components/shared/Breadcrum/BreadcrumsModel";
 class NotificationsPage extends Component {
   render() {
     return (
       <>
         <Navbar />
-        <BreadcrumsModel options={[{to:"/",name:"Blood D"}]} currentLink="Notifications" />
+        <BreadcrumsModel
+          options={[{ to: "/", name: "Blood D" }]}
+          currentLink="Notifications"
+        />
         <div className="container">
           <div className="row mt-4">
             <div className="col jumbotron jumbotron-fluid">
               <div className="container">
                 <h1 className="display-4">Fluid jumbotron</h1>
                 <p className="lead">
+<<<<<<< HEAD
                   This is a modified jumbotron that occupies the entire
                   horizontal space of its parent.
+=======
+                  Ceva util horizontal space of its parent.
+>>>>>>> 56cec98... Stylization comments
                 </p>
               </div>
             </div>
@@ -33,8 +40,6 @@ class NotificationsPage extends Component {
             this.props.request.requests.map((e) => {
               return <NotificationCardModel request={e} />;
             })}
-
-            
         </div>
       </>
     );

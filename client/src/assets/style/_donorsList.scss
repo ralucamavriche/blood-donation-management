@@ -1,32 +1,38 @@
-.fixed-top{
-    position: relative;
-  }
+.fixed-top {
+  position: relative;
+}
 .remove-btn {
-    margin-right: 0.5rem;
-  }
-  
-  .fade-enter {
-    opacity: 0.01;
-  
-  }
-  
-  .fade-enter-active{
-    opacity: 1;
-    transition: opacity 1000ms ease-in;
-  
-  }
-  
-  .fade-exit{
-    opacity: 1;
-    
-  }
-  
-  .fade-exit-active{
-    opacity: 0.01;
-    transition: opacity 1000ms ease-in;
-    
-  }
+  margin-right: 0.5rem;
+}
+
+.fade-enter {
+  opacity: 0.01;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0.01;
+  transition: opacity 1000ms ease-in;
+}
 
 .donorsList {
-    margin: 10px;
-  }
+  margin: 10px;
+}
+
+.btn-glyphicon {
+  padding: 8px ! important;
+  background: #ffffff ! important;
+  margin-right: 4px ! important;
+}
+.icon-btn {
+  padding: 1px 15px 3px 2px ! important;
+  border-radius: 50px ! important;
+}

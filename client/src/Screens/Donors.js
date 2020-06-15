@@ -16,13 +16,13 @@ class Donors extends Component {
     return (
       
         <div className="Donors">
-          <Navbar/>
+          {/* <Navbar/> */}
           <div className="donorsList">
           <DonorModal />
           <DonorsList />
           {/* <DonorListForHospital /> */}
           </div>
-          <Footer />
+          {/* <Footer /> */}
         </div>
     );
   }

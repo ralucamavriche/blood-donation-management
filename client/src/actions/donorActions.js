@@ -97,18 +97,6 @@ export const deleteDonor = id => (dispatch, getState) => {
 
 };
 
-// export const editDonor = id => (dispatch, getState) => {
-//     axios
-//         .patch(`/api/donors/${id}`, tokenConfig(getState))
-//         .then(res =>
-//             dispatch({
-//                 type: EDIT_DONOR,
-//                 payload: id
-//             }))
-//         .catch(err =>
-//             dispatch(returnErrors(err.response.data, err.response.status)));
-// };
-
 export const setDonorsLoding = () => {
     return {
         type: DONORS_LOADING

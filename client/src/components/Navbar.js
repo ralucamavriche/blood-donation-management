@@ -85,7 +85,6 @@ class Navbar extends Component {
             <NavbarToggler
               className="navbar-toggler navbar-toggler-right"
               onClick={this.toggle}
-              // type="button"
               data-toggle="collapse"
               data-target="#navbarResponsive"
               aria-controls="navbarResponsive"

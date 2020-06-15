@@ -1,26 +1,32 @@
-import React from 'react';
+import React from "react";
+import Moment from "react-moment";
 
 export default function CommentCard(props) {
-  return props.data && (
-    <>
-    <article class="comment">
-            <a class="comment-img" href="#non">
+  return (
+    props.data && (
+      <>
+       <section class="comments">
+       <article className="comment">
+          <a className="comment-img" href="#non" >
               <img
-                src="https://pbs.twimg.com/profile_images/444197466133385216/UA08zh-B.jpeg"
+                src="https://www.greenhandle.in/images/default_profile_greenhandle.png?%3E"
                 alt=""
                 width="50"
                 height="50"
               />
             </a>
-            <div class="comment-body">
-              <div class="text">
-                <p>{props.data.description || 'no'}</p>
-              </div>
-              <p class="attribution">
-                by <a href="#non">Besnik Hetemi</a> at 14:23pm, 4 Dec 2015
-              </p>
+          <div className="comment-body">
+            <div className="text">
+              <p>{props.data.description || "no"}</p>
             </div>
-          </article>
-    </>
+            <p className="attribution">
+              by <a href="#non">{props.data.author || "anonymus"}</a> at {" "}
+              <Moment>{ props.data.date }</Moment>
+            </p>
+          </div>
+        </article>
+       </section>
+      </>
+    )
   );
 }
