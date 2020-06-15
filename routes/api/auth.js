@@ -45,7 +45,8 @@ router.post('/', (req, res) => {
                                     id: user.id,
                                     name: user.name,
                                     email: user.email,
-                                    donors_list: user.donors_list
+                                    donors_list: user.donors_list,
+                                    role: user.role
                                 }
                             });
                         }

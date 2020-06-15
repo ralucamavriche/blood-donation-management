@@ -53,7 +53,23 @@ class DonorModal extends Component {
 
         //Add donor via addDonor action
         this.props.addDonor(newDonor);
+<<<<<<< HEAD
         
+=======
+        // console.log('cevaa',{...newUser,role:'donor'})
+        // this.props.register({...newUser,role:'donor'},null); 
+        // this.props.getDonors();
+        this.setState({
+            modal: false,
+        name: '',
+        email: '',
+        age: '',
+        weight: '',
+        phone_number: '',
+        cnp:''
+        })
+        this.props.handleSet(newDonor)
+>>>>>>> 33cc6f3... Navbar modif
         //Close modal
         this.toggle();
     }

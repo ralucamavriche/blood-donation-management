@@ -6,6 +6,7 @@ import classNames from "classnames";
 import { withRouter } from "react-router-dom";
 import { getRequests } from "../actions/requestActions";
 import Footer from "./Footer";
+import PropTypes from "prop-types";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -14,8 +15,12 @@ class Dashboard extends Component {
       isOpen: true,
     };
   }
+  static propTypes = {
+    auth: PropTypes.object.isRequired,
+  };
 
   render() {
+    // const { isAuthenticated, user } = this.props.auth;
     return (
       <>
         <Navbar />
@@ -37,29 +42,55 @@ class Dashboard extends Component {
                 </h6>
                 <ul class="nav flex-column">
                   <li class="nav-item">
-                    <Link class="nav-link active" to="/dashboard">
+                    <Link
+                      className={classNames("nav-link", {
+                        active: window.location.pathname === "/dashboard",
+                      })}
+                      to="/dashboard"
+                    >
                       <i class="fab fa-mendeley"></i>{" "}
                       <span className="title">Dashboard</span>
                     </Link>
                   </li>
                   <li class="nav-item">
-                    <Link class="nav-link active" to="/dashboard/history">
+                    <Link
+                      className={classNames("nav-link", {
+                        active:
+                          window.location.pathname === "/dashboard/history",
+                      })}
+                      to="/dashboard/history"
+                    >
                       <i class="fas fa-folder-minus"></i>{" "}
                       <span className="title">History</span>
                     </Link>
                   </li>
                   <li class="nav-item">
-                    <Link class="nav-link active" to="/dashboard/timetable">
+                    <Link
+                      className={classNames("nav-link", {
+                        active:
+                          window.location.pathname === "/dashboard/timetable",
+                      })}
+                      to="/dashboard/timetable"
+                    >
                       <i class="fas fa-users"></i>{" "}
                       <span className="title">Timetable</span>
                     </Link>
                   </li>
-                  <li class="nav-item">
-                    <Link class="nav-link active" to="/dashboard/donors">
-                      <i class="fas fa-users"></i>{" "}
-                      <span className="title">Donors Lists</span>
-                    </Link>
-                  </li>
+                  {this.props.auth.user &&
+                    this.props.auth.user.role === "admin" && (
+                      <li class="nav-item">
+                        <Link
+                          className={classNames("nav-link", {
+                            active:
+                              window.location.pathname === "/dashboard/donors",
+                          })}
+                          to="/dashboard/donors"
+                        >
+                          <i class="fas fa-users"></i>{" "}
+                          <span className="title">Donors Lists</span>
+                        </Link>
+                      </li>
+                    )}
                 </ul>
 
                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">

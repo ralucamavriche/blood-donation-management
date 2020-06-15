@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 import BloodRequest from "./BloodRequestModal";
 
 import { Link } from "react-router-dom";
-import Dashboard from './Dashboard';
+import Dashboard from "./Dashboard";
 class Navbar extends Component {
   state = {
     isOpen: false,
@@ -31,6 +31,13 @@ class Navbar extends Component {
 
     const authLinks = (
       <Fragment>
+        {this.props.auth.user  && (this.props.auth.user.role === "admin" && (
+          <li className="nav-item">
+            <Link to="#" className="nav-link js-scroll-trigger">
+              <BloodRequest />
+            </Link>
+          </li>
+        ))}
         <Notification />
         <li className="nav-item dropdown">
           <Link
@@ -61,6 +68,7 @@ class Navbar extends Component {
         </li>
       </Fragment>
     );
+
     const guestLink = (
       <Fragment>
         <NavItem>
@@ -116,11 +124,7 @@ class Navbar extends Component {
                     Contact
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link to="#" className="nav-link js-scroll-trigger">
-                    <BloodRequest />
-                  </Link>
-                </li>
+
                 {isAuthenticated ? authLinks : guestLink}
               </Nav>
             </Collapse>
