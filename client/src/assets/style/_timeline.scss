@@ -1,0 +1,213 @@
+.main-timeline8 {
+    overflow: hidden;
+    position: relative;
+  
+    &:after {
+      content: "";
+      display: block;
+      width: 100%;
+      clear: both;
+    }
+  
+    &:before {
+      content: "";
+      display: block;
+      width: 100%;
+      clear: both;
+      content: "";
+      width: 3px;
+      height: 100%;
+      background: #d6d5d5;
+      position: absolute;
+      top: 30px;
+      left: 50%;
+    }
+  
+    .timeline {
+      width: 50%;
+      float: left;
+      padding-right: 30px;
+      position: relative;
+    }
+  
+    .timeline-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid #fe6847;
+      position: absolute;
+      top: 5.5%;
+      right: -17.5px;
+    }
+  
+    .year {
+      display: block;
+      padding: 10px;
+      margin: 0;
+      font-size: 30px;
+      color: #fff;
+      border-radius: 0 50px 50px 0;
+      background: #fe6847;
+      text-align: center;
+      position: relative;
+  
+      &:before {
+        content: "";
+        border-top: 35px solid #f59c8b;
+        border-left: 35px solid transparent;
+        position: absolute;
+        bottom: -35px;
+        left: 0;
+      }
+    }
+  
+    .timeline-content {
+      padding: 30px 20px;
+      margin: 0 45px 0 35px;
+      background: #f2f2f2;
+    }
+  
+    .title {
+      font-size: 19px;
+      font-weight: 700;
+      color: #504f54;
+      margin: 0 0 10px;
+    }
+  
+    .description {
+      font-size: 14px;
+      color: #7d7b7b;
+      margin: 0;
+    }
+  
+    .timeline {
+      &:nth-child(2n) {
+        padding: 0 0 0 30px;
+  
+        .timeline-icon {
+          right: auto;
+          left: -14.5px;
+        }
+  
+        .year {
+          border-radius: 50px 0 0 50px;
+          background: #7eda99;
+  
+          &:before {
+            border-left: none;
+            border-right: 35px solid transparent;
+            left: auto;
+            right: 0;
+          }
+        }
+  
+        .timeline-content {
+          text-align: right;
+          margin: 0 35px 0 45px;
+        }
+      }
+  
+      &:nth-child(2) {
+        margin-top: 170px;
+      }
+  
+      &:nth-child(odd) {
+        margin: -175px 0 0;
+      }
+  
+      &:nth-child(even) {
+        margin-bottom: 80px;
+      }
+  
+      &:first-child, &:last-child:nth-child(even) {
+        margin: 0;
+      }
+  
+      &:nth-child(2n) {
+        .timeline-icon {
+          border-color: #7eda99;
+        }
+  
+        .year:before {
+          border-top-color: #92efad;
+        }
+      }
+  
+      &:nth-child(3n) {
+        .timeline-icon {
+          border-color: #8a5ec1;
+        }
+  
+        .year {
+          background: #8a5ec1;
+  
+          &:before {
+            border-top-color: #a381cf;
+          }
+        }
+      }
+  
+      &:nth-child(4n) {
+        .timeline-icon {
+          border-color: #f98d9c;
+        }
+  
+        .year {
+          background: #f98d9c;
+  
+          &:before {
+            border-top-color: #f2aab3;
+          }
+        }
+      }
+    }
+  }
+  
+  @media only screen and (max-width: 767px) {
+    .main-timeline8 {
+      overflow: visible;
+  
+      &:before {
+        top: 0;
+        left: 0;
+      }
+  
+      .timeline {
+        &:nth-child(2), &:nth-child(even), &:nth-child(odd) {
+          margin: 0;
+        }
+  
+        width: 100%;
+        float: none;
+        padding: 0 0 0 30px;
+        margin-bottom: 20px !important;
+  
+        &:last-child {
+          margin: 0 !important;
+        }
+      }
+  
+      .timeline-icon {
+        right: auto;
+        left: -14.5px;
+      }
+  
+      .year {
+        border-radius: 50px 0 0 50px;
+  
+        &:before {
+          border-left: none;
+          border-right: 35px solid transparent;
+          left: auto;
+          right: 0;
+        }
+      }
+  
+      .timeline-content {
+        margin: 0 35px 0 45px;
+      }
+    }
+  }
+
+  

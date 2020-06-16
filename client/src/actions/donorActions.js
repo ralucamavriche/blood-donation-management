@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_DONORS, ADD_DONORS, DELETE_DONORS, DONORS_LOADING, SET_CURRENT_DONOR, CHANGE_CURRENT_DONOR_INFO } from './types';
+import { GET_DONORS, ADD_DONORS, DELETE_DONORS, DONORS_LOADING, SET_CURRENT_DONOR, CHANGE_CURRENT_DONOR_INFO} from './types';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
 // import { mainAPI } from '../config';
@@ -102,3 +102,4 @@ export const setDonorsLoding = () => {
         type: DONORS_LOADING
     };
 };
+

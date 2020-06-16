@@ -30,16 +30,20 @@ class DonorsList extends Component {
             <Container>
                 <ListGroup>
                     <TransitionGroup className="donors-list">
-                        {donors.map(({ _id, name }) => (
-                            <CSSTransition key={_id} timeout={500} classNames="fade">
-                                <ListGroupItem>
-                                    {this.props.isAuthenticated ? (
-                                        <div>
-                                            <Button
-                                                className="edit-btn float-right"
-                                                color="success"
-                                                size="sm"
-                                                onClick={
+                        <ListGroupItem active>
+                            Donors List
+                    </ListGroupItem>
+                        {donors.map(({ _id, name,createdBy }) =>    
+                        this.props.isAuthenticated && createdBy === user.id &&
+                        (
+                            <ListGroupItem>
+                                {this.props.isAuthenticated ? (
+                                    <div>
+                                        <Button
+                                            className="edit-btn float-right"
+                                            color="success"
+                                            size="sm"
+                                            onClick={
 
                                                     event => this.props.history.push(`/donors/edit/${_id}`)
                                                 }
@@ -59,8 +63,7 @@ class DonorsList extends Component {
                                     ) : null}
                                     {name}
 
-                                </ListGroupItem>
-                            </CSSTransition>
+                            </ListGroupItem>
                         ))}
                     </TransitionGroup>
                 </ListGroup>
