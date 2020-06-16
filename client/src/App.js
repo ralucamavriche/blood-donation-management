@@ -16,6 +16,7 @@ import MainDashboard from './components/DashboardComponents/MainDashboard';
 import MedicalHistory from './components/DashboardComponents/MedicalHistory';
 import MedicalFiles from './components/DashboardComponents/MedicalFiles';
 import DonorsList from './components/donor/DonorListForHospital';
+import History from './components/donor/History';
 
 const AppDefault = () => {
   return (<div className="App">
@@ -54,7 +55,8 @@ class App extends Component {
             </Route>
             <Route exact path="/dashboard/history">
               <Dashboard>
-                <MedicalFiles/>
+                {/* <MedicalFiles/> */}
+                <History/>
               </Dashboard>
             </Route>
             <Route exact path="/dashboard/donors">

@@ -59,7 +59,7 @@ class EditDonor extends Component {
         this.props.changeCurrentDonorInfo(payload);
     })
     routeChange() {
-        let path = `/donors/`;
+        let path = `/dashboard/donors`;
         this.props.history.push(path);
       }
 

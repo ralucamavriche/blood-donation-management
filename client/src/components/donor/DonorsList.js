@@ -25,6 +25,7 @@ class DonorsList extends Component {
     render() {
 
         const { donors } = this.props.donor;
+        const { user } = this.props.auth;
         return (
             <Container>
                 <ListGroup>
@@ -70,7 +71,8 @@ class DonorsList extends Component {
 
 const mapStateToProps = (state) => ({
     donor: state.donor,
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    auth: state.auth
 });
 
 export default withRouter(connect(mapStateToProps, { getDonors, deleteDonor })(DonorsList));
