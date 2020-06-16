@@ -1,70 +1,31 @@
 import React from "react";
 
-export default function TimelineDonor() {
+export default function TimelineDonor({ historyData }) {
+  console.log('hiii',historyData)
   return (
     <>
-    <hr></hr>
+      <hr></hr>
       <div className="container">
-      <h3 className="py-4">Timeline: </h3>
+        <h3 className="py-4">Timeline: </h3>
         <div className="row">
           <div className="col-md-12">
             <div className="main-timeline8">
-              <div className="timeline">
-                <span className="timeline-icon"></span>
-                <span className="year">2017</span>
-                <div className="timeline-content">
-                  <h3 className="title">Blood Donation</h3>
-                  <p className="description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vivamus mattis justo id pulvinar suscipit. Pellentesque
-                    rutrum vehicula erat sed dictum. Integer quis turpis magna.
-                    Suspendisse tincidunt elit at erat tincidunt, vel vulputate
-                    arcu dapibus. Etiam accumsan ornare posuere. Nullam est.
-                  </p>
-                </div>
-              </div>
-              <div className="timeline">
-                <span className="timeline-icon"></span>
-                <span className="year">2016</span>
-                <div className="timeline-content">
-                  <h3 className="title">Blood Donation</h3>
-                  <p className="description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vivamus mattis justo id pulvinar suscipit. Pellentesque
-                    rutrum vehicula erat sed dictum. Integer quis turpis magna.
-                    Suspendisse tincidunt elit at erat tincidunt, vel vulputate
-                    arcu dapibus. Etiam accumsan ornare posuere. Nullam est.
-                  </p>
-                </div>
-              </div>
-              <div className="timeline">
-                <span className="timeline-icon"></span>
-                <span className="year">2015</span>
-                <div className="timeline-content">
-                  <h3 className="title">Blood Donation</h3>
-                  <p className="description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vivamus mattis justo id pulvinar suscipit. Pellentesque
-                    rutrum vehicula erat sed dictum. Integer quis turpis magna.
-                    Suspendisse tincidunt elit at erat tincidunt, vel vulputate
-                    arcu dapibus. Etiam accumsan ornare posuere. Nullam est.
-                  </p>
-                </div>
-              </div>
-              <div className="timeline">
-                <span className="timeline-icon"></span>
-                <span className="year">2014</span>
-                <div className="timeline-content">
-                  <h3 className="title">Blood Donation</h3>
-                  <p className="description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vivamus mattis justo id pulvinar suscipit. Pellentesque
-                    rutrum vehicula erat sed dictum. Integer quis turpis magna.
-                    Suspendisse tincidunt elit at erat tincidunt, vel vulputate
-                    arcu dapibus. Etiam accumsan ornare posuere. Nullam est.
-                  </p>
-                </div>
-              </div>
+              {historyData &&
+                historyData.map((e) => {
+                  return (
+                    <div className="timeline">
+                      <span className="timeline-icon"></span>
+                      <span className="year">{e.date}</span>
+                      <div className="timeline-content">
+                        <h3 className="title">Blood Donation</h3>
+                        <p className="description">
+                          {e.specifications}
+                        </p>
+                        <a href={e.url} className="btn btn-success">View Settings</a>
+                      </div>
+                    </div>
+                  );
+                })}
             </div>
           </div>
         </div>

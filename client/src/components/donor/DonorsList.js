@@ -20,54 +20,71 @@ class DonorsList extends Component {
 
     onDeleteClick = id => {
         this.props.deleteDonor(id);
+
+    }
+
+    handleSet = (newDonor) => {
+        this.props.getDonors();
+        this.forceUpdate()
     }
 
     render() {
 
-        const { donors } = this.props.donor;
+        const { donors, loading } = this.props.donor;
         const { user } = this.props.auth;
-        return (
-            <Container>
+        console.log('user',user)
+        if(loading === true)
+        return (<div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>);
+      else
+        return  (
+            <>
+                <DonorModal handleSet={this.handleSet} />
+               
                 <ListGroup>
-                    <TransitionGroup className="donors-list">
-                        <ListGroupItem active>
+                    {/* <div className="donors-list"> */}
+                        <ListGroupItem>
                             Donors List
                     </ListGroupItem>
-                        {donors.map(({ _id, name,createdBy }) =>    
-                        this.props.isAuthenticated && createdBy === user.id &&
-                        (
-                            <ListGroupItem>
-                                {this.props.isAuthenticated ? (
-                                    <div>
-                                        <Button
-                                            className="edit-btn float-right"
-                                            color="success"
-                                            size="sm"
-                                            onClick={
-
-                                                    event => this.props.history.push(`/donors/edit/${_id}`)
-                                                }
-                                            >
-                                                Edit
-                                         </Button>
-
-                                            <Button
-                                                className="remove-btn float-right"
-                                                color="danger"
-                                                size="sm"
-                                                onClick={this.onDeleteClick.bind(this, _id)}
-                                            > Remove
+                        {user && donors.map(({ _id, name,createdBy }) => {
+                            if(user._id ===  createdBy )
+                                return (
+                                    <ListGroupItem>
+                                       <>
+                                       {this.props.isAuthenticated  && (
+                                            <div>
+                                                <Button
+                                                    className="edit-btn float-right"
+                                                    color="success"
+                                                    size="sm"
+                                                    onClick={
+        
+                                                        event => this.props.history.push(`/donors/edit/${_id}`)
+                                                    }
+                                                >
+                                                    Edit 
+                                                 </Button>
+                                                  
+                                                <Button
+                                                    className="remove-btn float-right"
+                                                    color="danger"
+                                                    size="sm"
+                                                    onClick={this.onDeleteClick.bind(this, _id)}
+                                                > Remove
                                                     &times;
-                                    </Button>
-                                        </div>
-                                    ) : null}
-                                    {name}
-
-                            </ListGroupItem>
-                        ))}
-                    </TransitionGroup>
+                                            </Button>
+                                            </div>
+                                        )}
+                                        {name}
+                                                    </>
+                                    </ListGroupItem>
+                                )
+                            // return <h1>Empty</h1>
+                        })}
+                    {/* </div> */}
                 </ListGroup>
-            </Container>
+            </>
         );
     }
 }

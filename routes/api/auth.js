@@ -59,9 +59,18 @@ router.post('/', (req, res) => {
 //@desc Get user data 
 //@acceSs Private
 router.get('/user/:id', (req, res) => {
+
     User.findById(req.params.id)
         .select('-password')
-        .then(user => res.json(user));
+        .then(user => {
+            if(user){
+                res.status(200).json(user)
+            }else{
+                res.status(404).json({
+                    status:'failed'
+                })
+            }
+        });
 });
 
 

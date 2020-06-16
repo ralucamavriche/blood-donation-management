@@ -31,6 +31,10 @@ const DonorSchema = new Schema({
     date: {
         type: Date,
         default: Date.now
+    },
+    history:{
+        type:[],
+        default:[]
     }
 });
 

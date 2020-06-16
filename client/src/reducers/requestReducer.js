@@ -1,7 +1,8 @@
-import { GET_REQUESTS, ADD_REQUESTS, ADD_COMMENT } from "../actions/types";
+import { GET_REQUESTS, ADD_REQUESTS, ADD_COMMENT,GET_APPOINTMENTS } from "../actions/types";
 
 const initialState = {
   requests: [],
+  appointments:[]
 };
 
 export default function (state = initialState, action) {
@@ -10,6 +11,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         requests: action.payload,
+      };
+    case GET_APPOINTMENTS:
+      return {
+        ...state,
+        appointments: action.payload,
         // loading: false
       };
     case ADD_REQUESTS:

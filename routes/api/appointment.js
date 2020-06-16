@@ -40,14 +40,16 @@ router.get('/:id', (req, res) => {
 //@desc Create A Appointments
 //@acceSs Private
 router.post('/', (req, res) => {
-    const { date } = req.body;
+    const { name,email,date,idDonor } = req.body;
     const newAppointment = new Appointment({
-        date
+        name,email,date,idDonor
     });
 
     newAppointment.save().then(appointment => res.json(appointment))
     .catch(err => res.json(err))
 });
+
+
 
 //@routes DELETE api/appointments
 //@desc Delete A Appointments

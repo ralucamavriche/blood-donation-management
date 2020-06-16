@@ -82,7 +82,11 @@ router.delete('/:id', (req, res) => {
 //@acceSs Private
 router.patch('/:id', (req, res) => {
     Donor.findOneAndUpdate({ _id: req.params.id }, req.body)
-        .then((donor) => res.json({ donor, success: true }))
+        .then((donor) =>{
+            
+            console.log(donor)
+            return res.json({ donor, success: true })
+        })
         .catch(err => res.status(404).json({ err, success: false }));
 });
 

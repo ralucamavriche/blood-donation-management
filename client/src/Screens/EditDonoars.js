@@ -20,10 +20,7 @@ class EditDonors extends Component {
         <div className="donorsDetailes">
           <EditDonor />
         </div>
-        <div className="container">
-          <History />
-          <TimelineDonor />
-        </div>
+       
         <Footer />
       </div>
     );

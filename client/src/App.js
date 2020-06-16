@@ -17,15 +17,10 @@ import MedicalHistory from './components/DashboardComponents/MedicalHistory';
 import MedicalFiles from './components/DashboardComponents/MedicalFiles';
 import DonorsList from './components/donor/DonorListForHospital';
 import History from './components/donor/History';
+import Main from './components/Main';
+import MyAppointments from './components/DashboardComponents/MyAppointments';
 
-const AppDefault = () => {
-  return (<div className="App">
-    <Navbar />
-    <HomePage />
-    <Footer />
 
-  </div>)
-}
 
 class App extends Component {
   componentDidMount() {
@@ -37,7 +32,7 @@ class App extends Component {
       <Provider store={store}>
         <BrowserRouter>
           <Switch>
-            <Route exact path='/' component={AppDefault} />
+            <Route exact path='/' component={Main} />
             <Route exact path='/donors' component={Donors} />
             <Route exact path="/donors/edit/:id" render={(props) => <EditDonor {...props} />} />
             <Route exact path="/request" component={BloodRequest} />
@@ -64,7 +59,12 @@ class App extends Component {
                 <Donors/>
               </Dashboard>
             </Route>
-            <Route component={AppDefault} />
+            <Route exact path="/dashboard/appointment">
+              <Dashboard>
+                <MyAppointments/>
+              </Dashboard>
+            </Route>
+            <Route component={Main} />
             {/* TO DO add 404 page */}
           </Switch>
         </BrowserRouter>

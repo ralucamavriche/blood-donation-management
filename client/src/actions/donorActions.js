@@ -31,7 +31,7 @@ export const updateDonorInfo = (id, currentDonor) => dispatch => {
     axios
         .patch(`/api/donors/${id}`, currentDonor)
         .then(res => {
-            console.log(res);
+            
             dispatch({
                 type: CHANGE_CURRENT_DONOR_INFO,
                 payload: { name: "isSuccessUpdate", value: true }
@@ -96,6 +96,8 @@ export const deleteDonor = id => (dispatch, getState) => {
             dispatch(returnErrors(err.response.data, err.response.status)));
 
 };
+
+
 
 export const setDonorsLoding = () => {
     return {

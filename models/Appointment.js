@@ -6,6 +6,22 @@ const AppointmentSchema = new Schema({
     date: {
         type: Date,
         required: true
+    },
+    name:{
+        type:String,
+        required:true
+    },
+    email:{
+        type:String,
+        required:true
+    },
+    idDonor:{
+        type:String,
+        required:true
+    },
+    status:{
+        type:String,
+        default:'pending'
     }
 });
 
