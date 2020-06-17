@@ -22,4 +22,6 @@ export const GET_APPOINTMENTS = 'GET_APPOINTMENTS';
 export const ADD_REQUESTS= 'ADD_REQUESTS';
 export const ADD_COMMENT= 'ADD_COMMENT';
 
+export const GET_FEEDBACKS= 'GET_FEEDBACKS';
+
 

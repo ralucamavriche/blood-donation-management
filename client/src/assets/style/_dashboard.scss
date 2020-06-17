@@ -1,0 +1,15 @@
+.pageOptions{
+    position: fixed;
+    bottom: 1%;
+    right: 1%;
+}
+
+.customDropLeft{
+    position: absolute; will-change: transform; top: -110px !important; left: 0px; transform: translate3d(-2px, 0px, 0px);
+}
+
+.customModalBody{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

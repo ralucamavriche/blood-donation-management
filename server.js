@@ -66,6 +66,8 @@ app.use("/api/users", require("./routes/api/users"));
 app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/request", require("./routes/api/request"));
 app.use("/api/appointment", require("./routes/api/appointment"));
+app.use("/api/feedback", require("./routes/api/feedback"));
+
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server started on port ${port}`));

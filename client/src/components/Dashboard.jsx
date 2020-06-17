@@ -8,6 +8,7 @@ import { getRequests } from "../actions/requestActions";
 import Footer from "./Footer";
 import PropTypes from "prop-types";
 import { getDonors } from './../actions/donorActions';
+import PageOptions from './shared/PageOptions/PageOptions';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -131,6 +132,7 @@ class Dashboard extends Component {
               </main>
             </div>
           </div>
+          <PageOptions/>
           <Footer />
         </>
       );

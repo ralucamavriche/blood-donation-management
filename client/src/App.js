@@ -19,12 +19,15 @@ import DonorsList from './components/donor/DonorListForHospital';
 import History from './components/donor/History';
 import Main from './components/Main';
 import MyAppointments from './components/DashboardComponents/MyAppointments';
+import { getFeedbacks } from './actions/mainActions';
 
 
 
 class App extends Component {
   componentDidMount() {
     store.dispatch(loadUser());
+    store.dispatch(getFeedbacks());
+
   }
 
   render() {
