@@ -1,79 +1,37 @@
 import React from "react";
 import BreadcrumsModel from "../shared/Breadcrum/BreadcrumsModel";
+import TimelineDonor from "./../donor/TimelineDonor";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import * as _ from "lodash";
 
-export default function MedicalHistory() {
-  return (
-    <>
-      <BreadcrumsModel
-        options={[{ to: "/", name: "Blood D" }]}
-        currentLink="Timetable"
-      />
-      <div class="container">
-        <h4 className="p-3 ">Timeline :</h4>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="main-timeline8">
-              <div class="timeline">
-                <span class="timeline-icon"></span>
-                <span class="year">2017</span>
-                <div class="timeline-content">
-                  <h3 class="title">Blood Donation</h3>
-                  <p class="description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vivamus mattis justo id pulvinar suscipit. Pellentesque
-                    rutrum vehicula erat sed dictum. Integer quis turpis magna.
-                    Suspendisse tincidunt elit at erat tincidunt, vel vulputate
-                    arcu dapibus. Etiam accumsan ornare posuere. Nullam est.
-                  </p>
-                </div>
-              </div>
-              <div class="timeline">
-                <span class="timeline-icon"></span>
-                <span class="year">2016</span>
-                <div class="timeline-content">
-                  <h3 class="title">Blood Donation</h3>
-                  <p class="description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vivamus mattis justo id pulvinar suscipit. Pellentesque
-                    rutrum vehicula erat sed dictum. Integer quis turpis magna.
-                    Suspendisse tincidunt elit at erat tincidunt, vel vulputate
-                    arcu dapibus. Etiam accumsan ornare posuere. Nullam est.
-                  </p>
-                </div>
-              </div>
-              <div class="timeline">
-                <span class="timeline-icon"></span>
-                <span class="year">2015</span>
-                <div class="timeline-content">
-                  <h3 class="title">Blood Donation</h3>
-                  <p class="description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vivamus mattis justo id pulvinar suscipit. Pellentesque
-                    rutrum vehicula erat sed dictum. Integer quis turpis magna.
-                    Suspendisse tincidunt elit at erat tincidunt, vel vulputate
-                    arcu dapibus. Etiam accumsan ornare posuere. Nullam est.
-                  </p>
-                </div>
-              </div>
-              <div class="timeline">
-                <span class="timeline-icon"></span>
-                <span class="year">2014</span>
-                <div class="timeline-content">
-                  <h3 class="title">Blood Donation</h3>
-                  <p class="description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vivamus mattis justo id pulvinar suscipit. Pellentesque
-                    rutrum vehicula erat sed dictum. Integer quis turpis magna.
-                    Suspendisse tincidunt elit at erat tincidunt, vel vulputate
-                    arcu dapibus. Etiam accumsan ornare posuere. Nullam est.
-                  </p>
-                </div>
-              </div>
-            </div>
+function MedicalHistory(props) {
+  if (_.isEmpty(props.auth.user)) return <h1>lod</h1>;
+  else
+    return (
+      <>
+        <BreadcrumsModel
+          options={[{ to: "/", name: "Blood D" }]}
+          currentLink="Timetable"
+        />
+        <div class="container">
+          <div class="row">
+            {props.auth && props.auth.user.role === "donor" &&
+              props.donor.donors.map((don) => {
+                if (props.auth.user.email === don.email) {
+                  return <TimelineDonor historyData={don.history} />;
+                } else return null;
+              })}
           </div>
         </div>
-      </div>
-      {/* <hr></hr> */}
-    </>
-  );
+      </>
+    );
 }
+
+const mapStateToProps = (state) => ({
+  donor: state.donor,
+  isAuthenticated: state.auth.isAuthenticated,
+  auth: state.auth,
+});
+
+export default withRouter(connect(mapStateToProps, {})(MedicalHistory));

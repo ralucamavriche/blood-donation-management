@@ -11,6 +11,8 @@ import { getDonors, deleteDonor } from "../../actions/donorActions";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import ConfirmModal from "./ConfirmModal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 class MyAppointments extends Component {
   constructor(props) {
@@ -91,21 +93,38 @@ class MyAppointments extends Component {
       <div>
         {user && user.role === "donor" && (
           <div className="row">
-            <div className="col">
+            <div className="col p-4">
+              {/* <button class="btn icon-btn btn-success float-right btn-lg">
+                <FontAwesomeIcon icon={faPlus} size="1x" />
+                <span class="ml-1 img-circle text-success"></span>
+                Add
+              </button> */}
+              {/* <Button
+                className="appointment-btn float-right "
+                color="info"
+                size="sm"
+                onClick={this.toggle}
+              >
+                Add appointment
+              </Button> */}
+            </div>
+          </div>
+        )}
+
+        <ListGroup>
+          <ListGroupItem active>
+            My Appointments
+            {user && user.role === "donor" && (
               <Button
-                className="appointment-btn float-right"
+                className="appointment-btn float-right "
                 color="info"
                 size="sm"
                 onClick={this.toggle}
               >
                 Add appointment
               </Button>
-            </div>
-          </div>
-        )}
-
-        <ListGroup>
-          <ListGroupItem active>My Appointments</ListGroupItem>
+            )}
+          </ListGroupItem>
           {user &&
             user.role === "donor" &&
             this.props.request.appointments &&
@@ -118,7 +137,6 @@ class MyAppointments extends Component {
                     </>
                   </ListGroupItem>
                 );
-              //   return <h1>Empty</h1>;
             })}
         </ListGroup>
 

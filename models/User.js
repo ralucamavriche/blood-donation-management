@@ -22,6 +22,14 @@ const UserSchema = new Schema({
     register_date: {
         type: Date,
         default: Date.now
+    },
+    role:{
+        type:String,
+        default:'admin'
+    },
+    idDonatorRole:{
+        type:String,
+        default:null
     }
 });
 // hospital account collection

@@ -53,12 +53,9 @@ class DonorModal extends Component {
 
         //Add donor via addDonor action
         this.props.addDonor(newDonor);
-<<<<<<< HEAD
-        
-=======
-        // console.log('cevaa',{...newUser,role:'donor'})
-        // this.props.register({...newUser,role:'donor'},null); 
-        // this.props.getDonors();
+
+        const readyForAccount = {...newDonor,password:tempPass,role:'donor'};
+        this.props.register(readyForAccount,null); 
         this.setState({
             modal: false,
         name: '',
@@ -69,7 +66,6 @@ class DonorModal extends Component {
         cnp:''
         })
         this.props.handleSet(newDonor)
->>>>>>> 33cc6f3... Navbar modif
         //Close modal
         this.toggle();
     }

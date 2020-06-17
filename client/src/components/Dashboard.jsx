@@ -7,6 +7,7 @@ import { withRouter } from "react-router-dom";
 import { getRequests } from "../actions/requestActions";
 import Footer from "./Footer";
 import PropTypes from "prop-types";
+import { getDonors } from './../actions/donorActions';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -14,6 +15,9 @@ class Dashboard extends Component {
     this.state = {
       isOpen: true,
     };
+  }
+  componentDidMount() {
+    this.props.getDonors()
   }
   static propTypes = {
     auth: PropTypes.object.isRequired,
@@ -144,4 +148,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default withRouter(connect(mapStateToProps, { getRequests })(Dashboard));
+export default withRouter(connect(mapStateToProps, { getRequests, getDonors })(Dashboard));

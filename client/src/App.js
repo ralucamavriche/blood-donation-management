@@ -52,6 +52,7 @@ class App extends Component {
               <Dashboard>
                 {/* <MedicalFiles/> */}
                 <History/>
+
               </Dashboard>
             </Route>
             <Route exact path="/dashboard/donors">

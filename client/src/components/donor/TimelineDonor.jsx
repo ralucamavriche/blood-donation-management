@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function TimelineDonor({ historyData }) {
-  console.log('hiii',historyData)
   return (
     <>
       <hr></hr>
