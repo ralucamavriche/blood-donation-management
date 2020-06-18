@@ -27,14 +27,14 @@ router.post('/', (req, res) => {
     User.findOne({ email })
         .then(user => {
             if (!user) return res.status(400).json({ msg: 'User Does not exists ' });
-
+            console.log(user)
             //Validate password
             bcrypt.compare(password, user.password)
                 .then(isMatch => {
                     if (!isMatch) return res.status(400).json({ msg: 'Invalid credentioals' });
 
                     jwt.sign(
-                        { id: user.id },
+                        { _id: user._id },
                         config.get('jwtSecret'),
                         { expiresIn: 3600 },
                         (err, token) => {
@@ -42,7 +42,7 @@ router.post('/', (req, res) => {
                             res.json({
                                 token,
                                 user: {
-                                    id: user.id,
+                                    _id: user._id,
                                     name: user.name,
                                     email: user.email,
                                     donors_list: user.donors_list,

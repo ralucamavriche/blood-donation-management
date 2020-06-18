@@ -21,12 +21,12 @@ const sendMail = (transporter, options, res) => {
     transporter.sendMail(options, (err, data) => {
         if (err) {
             res.status(500).json({
-                status: "Imposible To Send Email",
+                status: "failed404",
                 err: { errors: err, options },
             });
         } else {
             res.status(200).json({
-                status: "Mail Send Successfully",
+                status: "success",
             });
         }
     });

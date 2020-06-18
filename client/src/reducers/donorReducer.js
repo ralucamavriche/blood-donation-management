@@ -58,10 +58,3 @@ export default function (state = initialState, action) {
       return state;
   }
 }
-
-// progrsmsre
-// edit l MY APIIMENT
-// CRUD OPERATION
-// DATA BASE 
-// TRIMITE MAIL
-// SPITSL VEDE PROGRSMSRILE PT DONATORII RESPECTIVI

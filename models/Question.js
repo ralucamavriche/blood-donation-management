@@ -2,23 +2,31 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 //Create Schema
-const FeedbackSchema = new Schema({
-  rating: {
+const QuestionSchema = new Schema({
+  author: {
     type: String,
     required: true,
   },
-  typeOfFeedback: {
+  email: {
     type: String,
     required: true,
   },
-  description: {
+  question: {
     type: String,
     required: true,
+  },
+  date: {
+    type: Date,
+    default: Date.now,
   },
   status: {
     type: String,
     default: "pending",
+  },
+  answer: {
+    type: String,
+    default: ""
   }
 });
 
-module.exports = Feedback = mongoose.model("feedback", FeedbackSchema);
+module.exports = Question = mongoose.model("question", QuestionSchema);

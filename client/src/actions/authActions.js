@@ -1,5 +1,5 @@
 import axios from "axios";
-import { returnErrors } from "./errorActions";
+import {returnAlert } from "./errorActions";
 import jwt from "jwt-decode";
 // import { mainAPI } from '../config';
 import {
@@ -19,16 +19,13 @@ export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
 
   const token = localStorage.getItem("token");
-  const idUser = token && jwt(token).id;
+  const idUser = token && jwt(token)._id;
   token &&
     axios
       .get(`/api/auth/user/${idUser}`, tokenConfig(getState))
       .then((res) => {
         if (res.data.status === "failed") {
-          alert("failed");
-          return dispatch({
-            type: AUTH_ERROR,
-          });
+          dispatch(returnAlert("Error at load user!", "danger"));
         } else
           return dispatch({
             type: USER_LOADED,
@@ -36,11 +33,14 @@ export const loadUser = () => (dispatch, getState) => {
           });
       })
       .catch((err) => {
-        // dispatch(returnErrors(err.response.data, err.response.status));
-        alert("err load user");
-        dispatch({
-          type: AUTH_ERROR,
-        });
+        dispatch(
+          returnAlert(
+            `[${err.response.status}] : ${
+              err.response.data + ": Error load User"
+            }`,
+            "danger"
+          )
+        );
       });
 };
 
@@ -64,23 +64,38 @@ export const register = ({ name, email, password, role }, history) => (
       axios
         .post("/api/email", { name, email, linkTo })
         .then((res) => {
-          console.log(res.data);
+          if (res.data.status !== "failed")
+            return dispatch(returnAlert("Email sent Successfully!", "success"));
+          else return dispatch(returnAlert("Email not sent!", "danger"));
         })
         .catch((err) => {
-          returnErrors(err.response.data);
+          return dispatch(
+            returnAlert(
+              `[${err.response.status}] : ${
+                err.response.data + ": Error load User"
+              }`,
+              "danger"
+            )
+          );
         });
       if (role !== "donor") {
         dispatch({
           type: REGISTER_SUCCESS,
           payload: res.data,
         });
+        dispatch(returnAlert("Account created Successfully", "success"));
       }
       if (history !== null) return history.push("/login");
       else return null;
     })
     .catch((err) => {
       dispatch(
-        returnErrors(err.response.data, err.response.status, "REGISTER_FAIL")
+        returnAlert(
+          `[${err.response.status}] : ${
+            err.response.data + ": Error Register User"
+          }`,
+          "danger"
+        )
       );
       dispatch({
         type: REGISTER_FAIL,
@@ -103,7 +118,6 @@ export const login = ({ email, password }) => (dispatch) => {
   axios
     .post("/api/auth", body, config)
     .then((res) => {
-      console.log(res.data.token);
       localStorage.setItem("token", res.data.token);
       dispatch({
         type: LOGIN_SUCCESS,
@@ -112,7 +126,12 @@ export const login = ({ email, password }) => (dispatch) => {
     })
     .catch((err) => {
       dispatch(
-        returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
+        returnAlert(
+          `[${err.response.status}] : ${
+            err.response.data + ": Error Register User"
+          }`,
+          "danger"
+        )
       );
       dispatch({
         type: LOGIN_FAIL,

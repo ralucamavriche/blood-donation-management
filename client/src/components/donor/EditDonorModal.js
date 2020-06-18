@@ -9,10 +9,12 @@ import {
 } from "../../actions/donorActions";
 import History from "./History";
 import TimelineDonor from "./TimelineDonor";
+import Alert from './../shared/Alert/Alert';
+
 import {
   Button,
   Form,
-  Alert,
+  // Alert,
   FormGroup,
   Label,
   Input,
@@ -76,9 +78,9 @@ class EditDonor extends Component {
     return (
       <>
         <div>
-          <Alert color="info" className="text-center" isOpen={isSuccessUpdate}>
+          {/* <Alert color="info" className="text-center" isOpen={isSuccessUpdate}>
             Donor information has been updated!
-          </Alert>
+          </Alert> */}
           <Container style={{ paddingTop: "30px", paddingBottom: "30px" }}>
             <Button outline color="secondary" onClick={this.routeChange}>
               Back
@@ -157,6 +159,11 @@ class EditDonor extends Component {
             />
           )}
         </div>
+        {
+            this.props.main.isOpenAlert === true && (
+              <Alert text={this.props.main.text} style={this.props.main.style} handleClose={this.props.closeAlert}/>  
+            )
+          }
       </>
     );
   }
@@ -164,6 +171,7 @@ class EditDonor extends Component {
 
 const mapStateToProps = (state) => ({
   donor: state.donor,
+  main:state.main
 });
 
 export default withRouter(

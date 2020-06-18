@@ -38,7 +38,7 @@ class DonorsList extends Component {
                         {donors.map(({ _id, name, createdBy }) => (
                             <CSSTransition key={_id} timeout={500} classNames="fade">
                                 <ListGroupItem>
-                                    {this.props.isAuthenticated && createdBy === user.id ? (
+                                    {this.props.isAuthenticated && createdBy === user._id ? (
 
                                         <div>
                                             <Button

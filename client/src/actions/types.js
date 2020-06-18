@@ -23,5 +23,10 @@ export const ADD_REQUESTS= 'ADD_REQUESTS';
 export const ADD_COMMENT= 'ADD_COMMENT';
 
 export const GET_FEEDBACKS= 'GET_FEEDBACKS';
+export const OPEN_ALERT= 'OPEN_ALERT';
+export const CLOSE_ALERT= 'CLOSE_ALERT';
+
+export const GET_QUESTIONS= 'GET_QUESTIONS';
+
 
 

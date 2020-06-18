@@ -7,8 +7,11 @@ import { withRouter } from "react-router-dom";
 import { getRequests } from "../actions/requestActions";
 import Footer from "./Footer";
 import PropTypes from "prop-types";
-import { getDonors } from './../actions/donorActions';
-import PageOptions from './shared/PageOptions/PageOptions';
+import { getDonors } from "./../actions/donorActions";
+import PageOptions from "./shared/PageOptions/PageOptions";
+import Alert from "./shared/Alert/Alert";
+import { closeAlert } from "../actions/mainActions";
+import Spinner from "./shared/Spinner";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -18,7 +21,7 @@ class Dashboard extends Component {
     };
   }
   componentDidMount() {
-    this.props.getDonors()
+    this.props.getDonors();
   }
   static propTypes = {
     auth: PropTypes.object.isRequired,
@@ -64,19 +67,8 @@ class Dashboard extends Component {
                       <Link
                         className={classNames("nav-link", {
                           active:
-                            window.location.pathname === "/dashboard/history",
-                        })}
-                        to="/dashboard/history"
-                      >
-                        <i class="fas fa-folder-minus"></i>{" "}
-                        <span className="title">History</span>
-                      </Link>
-                    </li>
-                    <li class="nav-item">
-                      <Link
-                        className={classNames("nav-link", {
-                          active:
-                            window.location.pathname === "/dashboard/appointment",
+                            window.location.pathname ===
+                            "/dashboard/appointment",
                         })}
                         to="/dashboard/appointment"
                       >
@@ -97,23 +89,37 @@ class Dashboard extends Component {
                       </Link>
                     </li>
 
-
-                    
                     {this.props.auth.user &&
                       this.props.auth.user.role === "admin" && (
-                        <li class="nav-item">
-                          <Link
-                            className={classNames("nav-link", {
-                              active:
-                                window.location.pathname ===
-                                "/dashboard/donors",
-                            })}
-                            to="/dashboard/donors"
-                          >
-                            <i class="fas fa-users"></i>{" "}
-                            <span className="title">Donors Lists</span>
-                          </Link>
-                        </li>
+                        <>
+                          <li class="nav-item">
+                            <Link
+                              className={classNames("nav-link", {
+                                active:
+                                  window.location.pathname ===
+                                  "/dashboard/questions",
+                              })}
+                              to="/dashboard/questions"
+                            >
+                              <i class="fas fa-folder-minus"></i>{" "}
+                              <span className="title">Questions</span>
+                            </Link>
+                          </li>
+
+                          <li class="nav-item">
+                            <Link
+                              className={classNames("nav-link", {
+                                active:
+                                  window.location.pathname ===
+                                  "/dashboard/donors",
+                              })}
+                              to="/dashboard/donors"
+                            >
+                              <i class="fas fa-users"></i>{" "}
+                              <span className="title">Donors Lists</span>
+                            </Link>
+                          </li>
+                        </>
                       )}
                   </ul>
 
@@ -132,22 +138,27 @@ class Dashboard extends Component {
               </main>
             </div>
           </div>
-          <PageOptions/>
+          <PageOptions />
+          {this.props.main.isOpenAlert === true && (
+            <Alert
+              text={this.props.main.text}
+              style={this.props.main.style}
+              handleClose={this.props.closeAlert}
+            />
+          )}
           <Footer />
         </>
       );
-    else
-      return (
-        <div class="spinner-border" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-      );
+    else return <Spinner />;
   }
 }
 
 const mapStateToProps = (state) => ({
   request: state.request,
   auth: state.auth,
+  main: state.main,
 });
 
-export default withRouter(connect(mapStateToProps, { getRequests, getDonors })(Dashboard));
+export default withRouter(
+  connect(mapStateToProps, { getRequests, getDonors, closeAlert })(Dashboard)
+);

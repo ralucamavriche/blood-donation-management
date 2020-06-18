@@ -3,6 +3,7 @@ import Moment from "react-moment";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+
 function NotificationCardModel(props) {
   // const date = new Date(props.date);
   const { data } = props;
@@ -24,7 +25,7 @@ function NotificationCardModel(props) {
         <div className="card-body">
           <h5 className="card-title">{data.title || "No title"}</h5>
           <p className="card-text">{data.description}</p>
-          <Link className="btn btn-primary" to={`/notifications/${data._id}`}>
+          <Link className="btn btn-primary"to={`/notifications/${data._id}`}>
             Vezi Notificare
           </Link>
         </div>

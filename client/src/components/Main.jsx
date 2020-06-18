@@ -4,6 +4,7 @@ import Footer from './Footer';
 import HomePage from './HomePage';
 import { connect } from 'react-redux';
 import {  withRouter } from 'react-router-dom';
+import Alert from './shared/Alert/Alert';
 
 class Main extends Component {
     constructor(props){
@@ -18,6 +19,11 @@ class Main extends Component {
       <Navbar />
       <HomePage />
       <Footer />
+      {
+            this.props.main.isOpenAlert === true && (
+              <Alert text={this.props.main.text} style={this.props.main.style} handleClose={this.props.closeAlert}/>  
+            )
+          }
     </div>
     )
   }
@@ -26,6 +32,7 @@ class Main extends Component {
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  main:state.main
 });
 
 export default withRouter(connect(mapStateToProps, {})(Main));

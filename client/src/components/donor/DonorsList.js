@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 import { getDonors, deleteDonor } from '../../actions/donorActions';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import DonorModal from './DonorModal';
+import Spinner from './../shared/Spinner';
+import Alert from './../shared/Alert/Alert';
 
 class DonorsList extends Component {
 
@@ -32,22 +35,18 @@ class DonorsList extends Component {
 
         const { donors, loading } = this.props.donor;
         const { user } = this.props.auth;
-        console.log('user',user)
         if(loading === true)
-        return (<div class="spinner-border" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>);
+        return (<Spinner/>);
       else
         return  (
             <>
                 <DonorModal handleSet={this.handleSet} />
-               
                 <ListGroup>
-                    {/* <div className="donors-list"> */}
                         <ListGroupItem>
                             Donors List
                     </ListGroupItem>
                         {user && donors.map(({ _id, name,createdBy }) => {
+                            
                             if(user._id ===  createdBy )
                                 return (
                                     <ListGroupItem>
@@ -84,6 +83,11 @@ class DonorsList extends Component {
                         })}
                     {/* </div> */}
                 </ListGroup>
+                {
+            this.props.main.isOpenAlert === true && (
+              <Alert text={this.props.main.text} style={this.props.main.style} handleClose={this.props.closeAlert}/>  
+            )
+          }
             </>
         );
     }
@@ -92,7 +96,8 @@ class DonorsList extends Component {
 const mapStateToProps = (state) => ({
     donor: state.donor,
     isAuthenticated: state.auth.isAuthenticated,
-    auth: state.auth
+    auth: state.auth,
+    main:state.main
 });
 
 export default withRouter(connect(mapStateToProps, { getDonors, deleteDonor })(DonorsList));

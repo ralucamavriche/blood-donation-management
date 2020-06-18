@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import '../assets/style/_donorsList.scss';
 
 import EditDonor from "../components/donor/EditDonorModal";
 import TimelineDonor from "../components/donor/TimelineDonor";

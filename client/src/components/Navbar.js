@@ -38,7 +38,10 @@ class Navbar extends Component {
             </Link>
           </li>
         ))}
-        <Notification />
+        {
+          this.props.auth.user !== null &&  <Notification />
+        }
+       
         <li className="nav-item dropdown">
           <Link
             className="nav-link dropdown-toggle"

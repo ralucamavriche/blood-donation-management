@@ -1,7 +1,14 @@
 import axios from "axios";
-import { GET_REQUESTS, ADD_REQUESTS, ADD_COMMENT,GET_APPOINTMENTS } from "./types";
+import {
+  GET_REQUESTS,
+  ADD_REQUESTS,
+  ADD_COMMENT,
+  GET_APPOINTMENTS,
+  OPEN_ALERT,
+  CLOSE_ALERT,
+} from "./types";
 import { tokenConfig } from "./authActions";
-import { returnErrors } from "./errorActions";
+import { returnAlert } from "./errorActions";
 // import { mainAPI } from '../config';
 
 export const updateViewField = (id_notification, viewedBy) => (dispatch) => {
@@ -9,22 +16,37 @@ export const updateViewField = (id_notification, viewedBy) => (dispatch) => {
   axios
     .patch(`/api/request/${id_notification}`, { viewedBy })
     .then((res) => {
-      console.log("updated");
+      dispatch(returnAlert("Notification Viewed", "success"));
+      return null;
     })
     .catch((err) =>
-      dispatch(returnErrors(err.response.data, err.response.status))
+    dispatch(
+      returnAlert(
+        `[${err.response.status}] : ${
+          err.response.data + ": :Update Notification Failed"
+        }`,
+        "danger"
+      )
+    )
     );
 };
 export const updateAppointment = (id_app, status) => (dispatch) => {
-    axios
-      .patch(`/api/appointment/${id_app}`, { status })
-      .then((res) => {
-        console.log('add message')
-      })
-      .catch((err) =>
-        dispatch(returnErrors(err.response.data, err.response.status))
-      );
-  };
+  axios
+    .patch(`/api/appointment/${id_app}`, { status })
+    .then((res) => {
+      dispatch(returnAlert("Appointment Updated Successfully", "success"));
+    })
+    .catch((err) =>
+    dispatch(
+      returnAlert(
+        `[${err.response.status}] : ${
+          err.response.data + ": :Update Appointment Failed"
+        }`,
+        "danger"
+      )
+    )
+    );
+};
 export const getRequests = () => (dispatch) => {
   axios
     .get("/api/request")
@@ -35,32 +57,46 @@ export const getRequests = () => (dispatch) => {
       });
     })
     .catch((err) =>
-      dispatch(returnErrors(err.response.data, err.response.status))
+    dispatch(
+      returnAlert(
+        `[${err.response.status}] : ${
+          err.response.data + ": :GET Request Failed"
+        }`,
+        "danger"
+      )
+    )
     );
 };
 
 export const getAppointment = () => (dispatch) => {
-    axios
-      .get("/api/appointment")
-      .then((res) => {
-        dispatch({
-          type: GET_APPOINTMENTS,
-          payload: res.data,
-        });
-      })
-      .catch((err) =>
-        dispatch(returnErrors(err.response.data, err.response.status))
-      );
-  };
+  axios
+    .get("/api/appointment")
+    .then((res) => {
+      dispatch({
+        type: GET_APPOINTMENTS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+    dispatch(
+      returnAlert(
+        `[${err.response.status}] : ${
+          err.response.data + ": :GET  Appointments Failed"
+        }`,
+        "danger"
+      )
+    )
+    );
+};
 export const addRequest = (request) => (dispatch) => {
   axios
     .post("/api/request", request)
     .then((res) => {
-      console.log(res);
       if (res.data.errors) {
         console.log(res.data);
+        alert('Avem errori addrequest')
       } else {
-        console.log(res.data);
+        dispatch(returnAlert("Notification Added Successfully", "success"));
         return dispatch({
           type: ADD_REQUESTS,
           payload: res.data,
@@ -68,7 +104,14 @@ export const addRequest = (request) => (dispatch) => {
       }
     })
     .catch((err) =>
-      dispatch(returnErrors(err.response.data, err.response.status))
+    dispatch(
+      returnAlert(
+        `[${err.response.status}] : ${
+          err.response.data + ": :Add Notification Failed"
+        }`,
+        "danger"
+      )
+    )
     );
 };
 export const addAppointment = (request) => (dispatch) => {
@@ -79,15 +122,18 @@ export const addAppointment = (request) => (dispatch) => {
       if (res.data.errors) {
         return console.log(res.data);
       } else {
-       alert('Thank you for your appointment')
-        // return dispatch({
-        //     type: ADD_REQUESTS,
-        //     payload: res.data
-        // })
+        dispatch(returnAlert("Add Appointment Successfully", "success"));
       }
     })
     .catch((err) =>
-      dispatch(returnErrors(err.response.data, err.response.status))
+    dispatch(
+      returnAlert(
+        `[${err.response.status}] : ${
+          err.response.data + ": :Add Appointment Failed"
+        }`,
+        "danger"
+      )
+    )
     );
 };
 
@@ -95,9 +141,16 @@ export const addComment = (id, comments) => (dispatch) => {
   return axios
     .patch(`/api/request/${id}`, { comments })
     .then((res) => {
-      console.log("updated");
+      dispatch(returnAlert("Add Comment Successfully", "success"));
     })
     .catch((err) =>
-      dispatch(returnErrors(err.response.data, err.response.status))
+    dispatch(
+      returnAlert(
+        `[${err.response.status}] : ${
+          err.response.data + ": :Add Comment Failed"
+        }`,
+        "danger"
+      )
+    )
     );
 };

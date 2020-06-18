@@ -19,12 +19,30 @@ import { withRouter } from "react-router-dom";
 import BreadcrumsModel from "./../components/shared/Breadcrum/BreadcrumsModel";
 import Moment from "react-moment";
 import CommentSection from "./../components/shared/CommentSection/CommentSection";
-import { addComment, getRequests } from "../actions/requestActions";
+import { addComment, getRequests,updateViewField } from "../actions/requestActions";
+import Alert from './../components/shared/Alert/Alert';
 
 class ViewNotification extends Component {
   componentDidMount() {
     this.props.getRequests();
+
+    if(this.props.auth.user !== null) {
+      const user_id = this.props.auth.user._id;
+      if(this.props.request.requests){
+          this.props.request.requests.map((notification,index) =>{
+            if (notification._id === this.props.match.params.id){
+              const viewedByTemp = notification.viewedBy;
+              if(viewedByTemp.includes(user_id) === false){
+                viewedByTemp.push(user_id);
+                this.props.updateViewField(notification._id, viewedByTemp);
+              }
+            }
+          })
+      }
+    }
+    
   }
+  
   state = {
     comments: "",
   };
@@ -130,6 +148,11 @@ class ViewNotification extends Component {
 
                     <CommentSection comments={e.comments} />
                   </div>
+                  {
+            this.props.main.isOpenAlert === true && (
+              <Alert text={this.props.main.text} style={this.props.main.style} handleClose={this.props.closeAlert}/>  
+            )
+          }
                 </>
               );
           })}
@@ -141,8 +164,9 @@ class ViewNotification extends Component {
 const mapStateToProps = (state) => ({
   request: state.request,
   auth: state.auth,
+  main:state.main
 });
 
 export default withRouter(
-  connect(mapStateToProps, { addComment, getRequests })(ViewNotification)
+  connect(mapStateToProps, { addComment, getRequests,updateViewField })(ViewNotification)
 );

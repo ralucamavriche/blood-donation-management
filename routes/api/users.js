@@ -45,6 +45,7 @@ router.post('/', (req, res) => {
                     if (err) throw err;
                     newUser.password = hash;
                     newUser.save().then(user => {
+<<<<<<< HEAD
                         jtw.sign(
                             { id: user.id },
                             config.get('jwtSecret'),
@@ -60,6 +61,14 @@ router.post('/', (req, res) => {
                                         donors_list: user.donors_list
                                     }
                                 })
+=======
+                        res.json({
+                            user: {
+                                _id: user._id,
+                                name: user.name,
+                                email: user.email,
+                                donors_list: user.donors_list
+>>>>>>> 6f58ac4... Add Questions
                             }
                         )
                     });

@@ -13,9 +13,11 @@ import { Container, ListGroup, ListGroupItem, Button } from "reactstrap";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import Spinner from './shared/Spinner';
+import Alert from './shared/Alert/Alert';
 
 function HomePage(props) {
-  if (props.main.feedbacks.length === 0) return <h1>lof</h1>;
+  if (props.main.feedbacks.length === 0) return <Spinner/>
   else
     return (
       <>
@@ -318,6 +320,8 @@ function HomePage(props) {
             </div>
           </div>
         </section>
+
+        <Alert data={"Mesaj din home page"}/>
       </>
     );
 }
