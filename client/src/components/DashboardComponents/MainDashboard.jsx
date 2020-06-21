@@ -161,7 +161,7 @@ class MainDashboard extends Component {
                   <th scope="col">Type OF</th>
                   <th scope="col">Description</th>
                   <th scope="col">Status</th>
-                  <th scope="col">Actions</th>
+                  <th className="text-center" scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -179,7 +179,7 @@ class MainDashboard extends Component {
                             <td>{typeOfFeedback}</td>
                             <td>{description}</td>
                             <td>{status.toUpperCase()}</td>
-                            <td>
+                            <td className="text-center" >
                               <button
                                 title="Accepted"
                                 onClick={() =>
@@ -191,9 +191,9 @@ class MainDashboard extends Component {
                                     status: "Accepted",
                                   })
                                 }
-                                className="btn btn-success"
+                                className="btn btn-success mx-2"
                               >
-                                +
+                               Accepted
                               </button>
                               <button
                                 title="Denied"
@@ -208,7 +208,7 @@ class MainDashboard extends Component {
                                 }
                                 className="btn btn-danger"
                               >
-                                -
+                               Denied
                               </button>
                             </td>
                           </tr>

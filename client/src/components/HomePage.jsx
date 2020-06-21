@@ -168,7 +168,7 @@ function HomePage(props) {
         </section>
 
         {/* <!-- Portfolio--> */}
-        <section id="portfolio">
+        {/* <section id="portfolio">
           <div className="container-fluid p-0">
             <div className="row no-gutters">
               <div className="col-lg-4 col-sm-6">
@@ -281,7 +281,7 @@ function HomePage(props) {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* <section className="page-section bg-dark text-white">
           <div className="container text-center">

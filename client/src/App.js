@@ -21,6 +21,7 @@ import Main from "./components/Main";
 import MyAppointments from "./components/DashboardComponents/MyAppointments";
 import { getFeedbacks } from "./actions/mainActions";
 import Questions from "./components/DashboardComponents/Questions";
+import TimelineDonor2 from './components/donor/TimelineDonor2';
 
 class App extends Component {
   componentDidMount() {
@@ -47,6 +48,11 @@ class App extends Component {
               path="/notifications/:id"
               component={ViewNotification}
             />
+            {/* <Route
+              exact
+              path="/timeline"
+              component={TimelineDonor2}
+            /> */}
             <Route exact path="/dashboard">
               <Dashboard>
                 <MainDashboard />

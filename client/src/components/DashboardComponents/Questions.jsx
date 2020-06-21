@@ -163,7 +163,7 @@ class Questions extends Component {
                   <th scope="col">Question</th>
                   <th scope="col">Answer</th>
                   <th scope="col">Status</th>
-                  <th scope="col">Actions</th>
+                  <th  className="text-center" scope="col">Actions</th>
                   
                 </tr>
               </thead>
@@ -185,7 +185,7 @@ class Questions extends Component {
                                 this.handleResponseAnswer(e,_id)
                             }}>{answer}</td>
                             <td>{status.toUpperCase()}</td>
-                            <td>
+                            <td className="text-center">
                               <button
                                 title="Accepted"
                                 onClick={() =>
@@ -197,10 +197,11 @@ class Questions extends Component {
                                     status: "Accepted",
                                   })
                                 }
-                                className="btn btn-success"
+                                className="btn btn-success mx-2"
                               >
-                                +
+                               Accepted
                               </button>
+                              
                               <button
                                 title="Denied"
                                 onClick={() =>
@@ -212,9 +213,9 @@ class Questions extends Component {
                                     status: "Denied",
                                   })
                                 }
-                                className="btn btn-danger"
+                                className=" btn btn-danger"
                               >
-                                -
+                                Denied
                               </button>
                             </td>
                           </tr>

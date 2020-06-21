@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import Navbar from "../Navbar";
-// import NotificationCardModel from "../components/shared/CardModel/NotificationCardModel";
 import { connect } from "react-redux";
 import {
   Button,
@@ -16,7 +14,6 @@ import {
 } from "reactstrap";
 
 import { withRouter } from "react-router-dom";
-import BreadcrumsModel from "../shared/Breadcrum/BreadcrumsModel";
 
 class History extends Component {
   state = {
@@ -65,7 +62,7 @@ class History extends Component {
                       id="date"
                       value={this.state.date}
                       onChange={this.onChange}
-                      placeholder="date placeholder"
+                      placeholder="Date placeholder"
                     />
                   </FormGroup>
                   <FormGroup>
@@ -76,11 +73,11 @@ class History extends Component {
                       value={this.state.url}
                       onChange={this.onChange}
                       id="url"
-                      placeholder="url placeholder"
+                      placeholder="Url placeholder"
                     />
                   </FormGroup>
                   <FormGroup>
-                    <Label for="exampleText">Other specifications</Label>
+                    <Label for="specifications">Other specifications</Label>
                     <Input
                       value={this.state.specifications}
                       onChange={this.onChange}

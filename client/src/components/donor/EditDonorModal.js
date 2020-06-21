@@ -11,6 +11,8 @@ import History from "./History";
 import TimelineDonor from "./TimelineDonor";
 import Alert from './../shared/Alert/Alert';
 
+import TimelineDonor2 from "./TimelineDonor2";
+
 import {
   Button,
   Form,
@@ -155,6 +157,11 @@ class EditDonor extends Component {
           )}
           {this.props.donor.currentDonor && (
             <TimelineDonor
+              historyData={this.props.donor.currentDonor.history}
+            />
+          )}
+          {this.props.donor.currentDonor && (
+            <TimelineDonor2
               historyData={this.props.donor.currentDonor.history}
             />
           )}

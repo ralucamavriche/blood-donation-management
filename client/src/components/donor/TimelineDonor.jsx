@@ -16,11 +16,14 @@ export default function TimelineDonor({ historyData }) {
                       <span className="timeline-icon"></span>
                       <span className="year">{e.date}</span>
                       <div className="timeline-content">
-                        <h3 className="title">Blood Donation</h3>
-                        <p className="description">
-                          {e.specifications}
-                        </p>
-                        <a href={e.url} className="btn btn-success">View Settings</a>
+                        <h2 className="title">Specifications:</h2>
+                        <p className="pb-3 description">{e.specifications}</p>
+                        <a href={e.url} className="btn btn-outline-dark">
+                          View Medical File
+                        </a>
+                        {/* <a href={e.url} className=" ml-3 btn btn-outline-danger">
+                          Delete
+                        </a> */}
                       </div>
                     </div>
                   );

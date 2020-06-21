@@ -13,6 +13,7 @@ import PropTypes from "prop-types";
 import ConfirmModal from "./ConfirmModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import Moment from "react-moment";
 
 class MyAppointments extends Component {
   constructor(props) {
@@ -117,7 +118,7 @@ class MyAppointments extends Component {
             {user && user.role === "donor" && (
               <Button
                 className="appointment-btn float-right "
-                color="info"
+                color="warning"
                 size="sm"
                 onClick={this.toggle}
               >
@@ -133,7 +134,7 @@ class MyAppointments extends Component {
                 return (
                   <ListGroupItem>
                     <>
-                      {name} - {date}
+                      {name} - <Moment format="DD/MM/YYYY">{date}</Moment>
                     </>
                   </ListGroupItem>
                 );
@@ -212,7 +213,9 @@ class MyAppointments extends Component {
                   <th scope="col">Email</th>
                   <th scope="col">Date</th>
                   <th scope="col">Status</th>
-                  <th scope="col">Actions</th>
+                  <th className="text-center" scope="col">
+                    Actions
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -228,9 +231,12 @@ class MyAppointments extends Component {
                             <th scope="row">{index + 1}</th>
                             <td>{name}</td>
                             <td>{email}</td>
-                            <td>{date}</td>
-                            <td>{status.toUpperCase()}</td>
                             <td>
+                              {" "}
+                              <Moment format="DD/MM/YYYY">{date}</Moment>
+                            </td>
+                            <td>{status.toUpperCase()}</td>
+                            <td className="text-center">
                               <button
                                 title="Accepted"
                                 // onClick={(e) => this.handleStatus(_id, "Accepted")}
@@ -243,9 +249,9 @@ class MyAppointments extends Component {
                                     status: "Accepted",
                                   })
                                 }
-                                className="btn btn-success"
+                                className="btn btn-success mx-2"
                               >
-                                +
+                                Accepted
                               </button>
                               <button
                                 title="Denied"
@@ -261,7 +267,7 @@ class MyAppointments extends Component {
                                 }
                                 className="btn btn-danger"
                               >
-                                -
+                                Denied
                               </button>
                             </td>
                           </tr>
