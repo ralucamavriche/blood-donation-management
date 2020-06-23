@@ -5,10 +5,7 @@ import {
   ModalHeader,
   ModalBody,
   Form,
-  FormGroup,
-  Label,
-  Input,
-  NavLink,
+  FormGroup
 } from "reactstrap";
 import { connect } from "react-redux";
 import classNames from 'classnames'

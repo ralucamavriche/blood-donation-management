@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Navbar from "../components/Navbar";
-import NotificationCardModel from "../components/shared/CardModel/NotificationCardModel";
 import { connect } from "react-redux";
 import {
   Button,
@@ -51,17 +50,15 @@ class ViewNotification extends Component {
   };
 
   onSubmit = (e) => {
-    alert("d");
     e.preventDefault();
     const id_notification = this.props.match.params.id;
-    alert(id_notification);
     this.props.request.requests &&
       this.props.request.requests.map((e, index) => {
         if (e._id === id_notification) {
           let comments = e.comments;
           const comment = {
-            author: "Spital 5",
-            author_id: "12313213",
+            author: "Spital 7",
+            author_id: "",
             description: this.state.comments,
           };
           comments.push(comment);

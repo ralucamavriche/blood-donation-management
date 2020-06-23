@@ -16,7 +16,6 @@ import TimelineDonor2 from "./TimelineDonor2";
 import {
   Button,
   Form,
-  // Alert,
   FormGroup,
   Label,
   Input,
@@ -160,11 +159,11 @@ class EditDonor extends Component {
               historyData={this.props.donor.currentDonor.history}
             />
           )}
-          {this.props.donor.currentDonor && (
+          {/* {this.props.donor.currentDonor && (
             <TimelineDonor2
               historyData={this.props.donor.currentDonor.history}
             />
-          )}
+          )} */}
         </div>
         {
             this.props.main.isOpenAlert === true && (

@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 
 import { getQuestions, updateQuestions } from "../../actions/mainActions";
-import { Container, ListGroup, ListGroupItem, Button } from "reactstrap";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { connect } from "react-redux";
-import { getDonors, deleteDonor } from "../../actions/donorActions";
 import { withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
 import ConfirmModal from "./ConfirmModal";
 
 class Questions extends Component {
@@ -40,7 +36,7 @@ class Questions extends Component {
   };
 
   handleStatus = async (idDonor, status) => {
-    this.props.updateQuestions(idDonor, {status});
+    this.props.updateQuestions(idDonor, { status });
     await this.props.getQuestions();
   };
   handleAnswer = async (answer) => {
@@ -50,21 +46,25 @@ class Questions extends Component {
         questionConfirm: "",
       });
     } else if (answer === "continue") {
-      this.props.updateQuestions(this.state.idQuestion,{status: this.state.status});
+      this.props.updateQuestions(this.state.idQuestion, {
+        status: this.state.status,
+      });
       await this.props.getQuestions();
     }
   };
 
-  handleResponseAnswer = async(event, id) => {
-     await this.props.updateQuestions(id,{answer:event.currentTarget.textContent})
-  }
+  handleResponseAnswer = async (event, id) => {
+    await this.props.updateQuestions(id, {
+      answer: event.currentTarget.textContent,
+    });
+  };
 
   filterData = (author, email, status) => {
     if (
       this.state.searchText === "" ||
-      author && author.includes(this.state.searchText) ||
-      email && email.includes(this.state.searchText) ||
-      status && status.includes(this.state.searchText)
+      (author && author.includes(this.state.searchText)) ||
+      (email && email.includes(this.state.searchText)) ||
+      (status && status.includes(this.state.searchText))
     ) {
       if (
         status.toLowerCase() === "pending" &&
@@ -163,15 +163,23 @@ class Questions extends Component {
                   <th scope="col">Question</th>
                   <th scope="col">Answer</th>
                   <th scope="col">Status</th>
-                  <th  className="text-center" scope="col">Actions</th>
-                  
+                  <th className="text-center" scope="col">
+                    Actions
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {this.props.main.questions &&
                   this.props.main.questions.map(
                     (
-                      { _id, author, email, question, answer, status = "pending" },
+                      {
+                        _id,
+                        author,
+                        email,
+                        question,
+                        answer,
+                        status = "pending",
+                      },
                       index
                     ) => {
                       if (this.filterData(author, email, status) === true)
@@ -181,9 +189,14 @@ class Questions extends Component {
                             <td>{author}</td>
                             <td>{email}</td>
                             <td>{question}</td>
-                            <td contentEditable={true} onInput={(e)=>{
-                                this.handleResponseAnswer(e,_id)
-                            }}>{answer}</td>
+                            <td
+                              contentEditable={true}
+                              onInput={(e) => {
+                                this.handleResponseAnswer(e, _id);
+                              }}
+                            >
+                              {answer}
+                            </td>
                             <td>{status.toUpperCase()}</td>
                             <td className="text-center">
                               <button
@@ -199,9 +212,9 @@ class Questions extends Component {
                                 }
                                 className="btn btn-success mx-2"
                               >
-                               Accepted
+                                Accepted
                               </button>
-                              
+
                               <button
                                 title="Denied"
                                 onClick={() =>
@@ -220,6 +233,7 @@ class Questions extends Component {
                             </td>
                           </tr>
                         );
+                        return null;
                     }
                   )}
               </tbody>

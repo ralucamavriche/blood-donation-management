@@ -4,15 +4,10 @@ import {
   getAppointment,
   updateAppointment,
 } from "./../../actions/requestActions";
-import { Container, ListGroup, ListGroupItem, Button } from "reactstrap";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { ListGroup, ListGroupItem, Button } from "reactstrap";
 import { connect } from "react-redux";
-import { getDonors, deleteDonor } from "../../actions/donorActions";
 import { withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
 import ConfirmModal from "./ConfirmModal";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Moment from "react-moment";
 
 class MyAppointments extends Component {

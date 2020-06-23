@@ -49,7 +49,6 @@ class Notification extends Component {
   render() {
     const { requests } = this.props.request;
     const { user } = this.props.auth;
-    // alert(JSON.stringify(user))
     const countOfNotifications = user !== null ?checkNewStuff(requests, user._id) : 0;
     if(this.props.auth.user !==null)
     return (

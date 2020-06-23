@@ -1,13 +1,8 @@
 import React, { Component } from "react";
 import Navbar from "../components/Navbar";
-import { Button, Grid, Row, Col, Alert } from "bootstrap";
+import { Button } from "bootstrap";
 import NotificationCardModel from "../components/shared/CardModel/NotificationCardModel";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { getRequests } from "./../actions/requestActions";
-import { CSSTransition } from "react-transition-group";
-import { ListGroupItem } from "reactstrap";
 import { withRouter } from "react-router-dom";
 import BreadcrumsModel from "./../components/shared/Breadcrum/BreadcrumsModel";
 class NotificationsPage extends Component {
@@ -25,12 +20,7 @@ class NotificationsPage extends Component {
               <div className="container">
                 <h1 className="display-4">Fluid jumbotron</h1>
                 <p className="lead">
-<<<<<<< HEAD
-                  This is a modified jumbotron that occupies the entire
-                  horizontal space of its parent.
-=======
                   Ceva util horizontal space of its parent.
->>>>>>> 56cec98... Stylization comments
                 </p>
               </div>
             </div>

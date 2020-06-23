@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Container, ListGroup, ListGroupItem, Button } from "reactstrap";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { ListGroup, ListGroupItem, Button } from "reactstrap";
 import { connect } from "react-redux";
 import { getDonors, deleteDonor } from "../../actions/donorActions";
 import { withRouter } from "react-router-dom";

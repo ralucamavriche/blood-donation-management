@@ -57,10 +57,10 @@ class BloodRequest extends Component {
         return (
             <>
                 <span className="blondi" onClick={this.toggle} >
-                    Cerere Sange
+                    Request
                 </span>
                 <Modal isOpen={this.state.modal} toggle={this.toggle}>
-                    <ModalHeader toggle={this.toggle}>Cerere Sange</ModalHeader>
+                    <ModalHeader toggle={this.toggle}>Request</ModalHeader>
                     <ModalBody>
                         <Form onSubmit={this.onSubmit}>
                             <FormGroup>

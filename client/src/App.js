@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import HomePage from "./components/HomePage";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Donors from "./Screens/Donors";
 import EditDonor from "./Screens/EditDonoars";
@@ -14,14 +11,10 @@ import ViewNotification from "./Screens/ViewNotification";
 import Dashboard from "./components/Dashboard";
 import MainDashboard from "./components/DashboardComponents/MainDashboard";
 import MedicalHistory from "./components/DashboardComponents/MedicalHistory";
-import MedicalFiles from "./components/DashboardComponents/MedicalFiles";
-import DonorsList from "./components/donor/DonorListForHospital";
-import History from "./components/donor/History";
 import Main from "./components/Main";
 import MyAppointments from "./components/DashboardComponents/MyAppointments";
 import { getFeedbacks } from "./actions/mainActions";
 import Questions from "./components/DashboardComponents/Questions";
-import TimelineDonor2 from './components/donor/TimelineDonor2';
 
 class App extends Component {
   componentDidMount() {

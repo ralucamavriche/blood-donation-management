@@ -2,15 +2,9 @@ import React, { Component } from 'react'
 import {
   getFeedbacks, updateFeedback
 } from "./../../actions/mainActions";
-import { Container, ListGroup, ListGroupItem, Button } from "reactstrap";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { connect } from "react-redux";
-import { getDonors, deleteDonor } from "../../actions/donorActions";
 import { withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
 import ConfirmModal from "./ConfirmModal";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 class MainDashboard extends Component {
   constructor(props) {
