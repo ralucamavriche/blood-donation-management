@@ -93,8 +93,9 @@ export const addRequest = (request) => (dispatch) => {
     .post("/api/request", request)
     .then((res) => {
       if (res.data.errors) {
-        console.log(res.data);
-        alert('Avem errori addrequest')
+
+        // alert('Avem errori addrequest')
+        dispatch(returnAlert("Input invalid.Incercati din nou.", "danger"));
       } else {
         dispatch(returnAlert("Notification Added Successfully", "success"));
         return dispatch({

@@ -47,7 +47,7 @@ class FeedbackModal extends Component {
     return (
       <>
         <Modal isOpen={this.props.isOpen} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>Feedback</ModalHeader>
+          <ModalHeader   >Feedback</ModalHeader>
           <ModalBody>
             <Form>
               <FormGroup>
@@ -136,6 +136,7 @@ class FeedbackModal extends Component {
                     Please tell us something.
                   </label>
                   <textarea
+               
                     value={this.state.description}
                     onChange={(e) =>
                       this.setState({ description: e.target.value })
@@ -143,6 +144,7 @@ class FeedbackModal extends Component {
                     className="form-control"
                     id="exampleFormControlTextarea1"
                     rows="3"
+                    required
                   ></textarea>
                 </div>
                 <Button

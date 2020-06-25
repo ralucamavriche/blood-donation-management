@@ -59,6 +59,7 @@ class QuestionModal extends Component {
                   name="author"
                   id="author"
                   value={this.state.author}
+                  // disabled
                   placeholder="Add Your Name"
                   onChange={this.onChange}
                 />

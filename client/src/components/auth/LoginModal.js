@@ -19,8 +19,8 @@ import { clearErrors } from '../../actions/errorActions';
 class LoginModal extends Component {
   state = {
     modal: false,
-    email: 'raluca@yahoo.com',
-    password: '1',
+    email: '',
+    password: '',
     msg: null
   };
 

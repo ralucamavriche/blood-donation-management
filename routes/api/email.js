@@ -43,8 +43,37 @@ const setAccount = (account) => {
     });
 }
 
+// router.post("/", (req, res) => {
+//     const { name = 'Raluca', email = 'ralucamavriche@gmail.com', linkTo = 'www.google.com',message="Thank you for registering!"  } = req.body;
+//     const templateToUse = "welcome"
+//     const accountInfo = {
+//         email: 'blood.donation.free@gmail.com',
+//         password: 'Blood.donation20'
+//     }
+//     let transporter = setAccount(accountInfo)
+
+//     const useTemplate = fs.readFileSync(path.join(__dirname, `../../views/${templateToUse}.hbs`), "utf8");
+
+//     const template = Handlebars.compile(useTemplate);
+
+//     let mailOptions = {
+//         from: "blood.donation.free@gmail.com",
+//         to: email,
+//         subject: message.title || "Welcome Email",
+//         html: template({
+//             title: `Hi, ${name}`,
+//             message: message.details || "Thank you for registering!",
+//             secondMessage: "Please click on the below link to activate your account.",
+//             linkName: "Activate Account",
+//             linkTo: linkTo,
+//         }),
+//     };
+//     sendMail(transporter, mailOptions, res);
+// });
+
+
 router.post("/", (req, res) => {
-    const { name = 'Raluca', email = 'ralucamavriche@gmail.com', linkTo = 'www.google.com'  } = req.body;
+    const { name = 'Raluca', email = 'gliga_dumitru@yahoo.com', linkTo = 'www.google.com'  } = req.body;
     const templateToUse = "welcome"
     const accountInfo = {
         email: 'blood.donation.free@gmail.com',
@@ -62,7 +91,7 @@ router.post("/", (req, res) => {
         subject: "Welcome Email",
         html: template({
             title: `Hi, ${name}`,
-            message: "Thank you for registering!",
+            message: "Thank you for being a valued customer.",
             secondMessage: "Please click on the below link to activate your account.",
             linkName: "Activate Account",
             linkTo: linkTo,
@@ -70,34 +99,5 @@ router.post("/", (req, res) => {
     };
     sendMail(transporter, mailOptions, res);
 });
-
-
-// router.post("/", (req, res) => {
-//     const { name = 'Raluca', email = 'gliga_dumitru@yahoo.com', linkTo = 'www.google.com'  } = req.body;
-//     const templateToUse = "welcome"
-//     const accountInfo = {
-//         email: 'blood.donation.free@gmail.com',
-//         password: 'Blood.donation20'
-//     }
-//     let transporter = setAccount(accountInfo)
-
-//     const useTemplate = fs.readFileSync(path.join(__dirname, `../../views/${templateToUse}.hbs`), "utf8");
-
-//     const template = Handlebars.compile(useTemplate);
-
-//     let mailOptions = {
-//         from: "blood.donation.free@gmail.com",
-//         to: email,
-//         subject: "Welcome Email",
-//         html: template({
-//             title: `Hi, ${name}`,
-//             message: "Thank you for being a valued customer.",
-//             secondMessage: "Please click on the below link to activate your account.",
-//             linkName: "Activate Account",
-//             linkTo: linkTo,
-//         }),
-//     };
-//     sendMail(transporter, mailOptions, res);
-// });
 
 module.exports = router;

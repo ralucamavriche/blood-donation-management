@@ -14,8 +14,8 @@ function NotificationCardModel(props) {
       <div className=" col  card text-center" style={{padding:"0"}}>
         {data.viewedBy &&
         data.viewedBy.includes(props.auth.user._id) === false ? (
-          <div className="card-header custom_header_notification">
-           <h3>Notifications</h3> {" "}
+          <div className="card-header custom_header_notification" style={{color:"#B22222"}}>
+           <h5>Notifications</h5> {" "}
             <span className="badge badge-secondary custom_bagde">New</span>
           </div>
         ) : (

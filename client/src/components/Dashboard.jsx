@@ -28,7 +28,6 @@ class Dashboard extends Component {
   };
 
   render() {
-    // const { isAuthenticated, user } = this.props.auth;
     if (this.props.auth.isLoading === false)
       return (
         <>
@@ -76,18 +75,22 @@ class Dashboard extends Component {
                         <span className="title">My appointments</span>
                       </Link>
                     </li>
-                    <li class="nav-item">
-                      <Link
-                        className={classNames("nav-link", {
-                          active:
-                            window.location.pathname === "/dashboard/timetable",
-                        })}
-                        to="/dashboard/timetable"
-                      >
-                        <i class="fas fa-users"></i>{" "}
-                        <span className="title">Timetable</span>
-                      </Link>
-                    </li>
+                    {this.props.auth.user &&
+                      this.props.auth.user.role === "donor" && (
+                        <li className="nav-item">
+                          <Link
+                            className={classNames("nav-link", {
+                              active:
+                                window.location.pathname ===
+                                "/dashboard/timetable",
+                            })}
+                            to="/dashboard/timetable"
+                          >
+                            <i className="fas fa-users"></i>{" "}
+                            <span className="title">Timetable</span>
+                          </Link>
+                        </li>
+                      )}
 
                     {this.props.auth.user &&
                       this.props.auth.user.role === "admin" && (

@@ -1,5 +1,5 @@
 import axios from "axios";
-import {returnAlert } from "./errorActions";
+import { returnAlert } from "./errorActions";
 import jwt from "jwt-decode";
 // import { mainAPI } from '../config';
 import {
@@ -17,31 +17,36 @@ import {
 export const loadUser = () => (dispatch, getState) => {
   // User loading
   dispatch({ type: USER_LOADING });
+  // localStorage.clear()
 
   const token = localStorage.getItem("token");
-  const idUser = token && jwt(token)._id;
-  token &&
-    axios
-      .get(`/api/auth/user/${idUser}`, tokenConfig(getState))
-      .then((res) => {
-        if (res.data.status === "failed") {
-          dispatch(returnAlert("Error at load user!", "danger"));
-        } else
-          return dispatch({
-            type: USER_LOADED,
-            payload: res.data,
-          });
-      })
-      .catch((err) => {
-        dispatch(
-          returnAlert(
-            `[${err.response.status}] : ${
-              err.response.data + ": Error load User"
-            }`,
-            "danger"
-          )
-        );
-      });
+  if (token === null || token === "undefind" || token.length < 20) {
+    localStorage.clear();
+  } else {
+    const idUser = token && jwt(token)._id;
+    token &&
+      axios
+        .get(`/api/auth/user/${idUser}`, tokenConfig(getState))
+        .then((res) => {
+          if (res.data.status === "failed") {
+            dispatch(returnAlert("Error at load user!", "danger"));
+          } else
+            return dispatch({
+              type: USER_LOADED,
+              payload: res.data,
+            });
+        })
+        .catch((err) => {
+          dispatch(
+            returnAlert(
+              `[${err.response.status}] : ${
+                err.response.data + ": Error load User"
+              }`,
+              "danger"
+            )
+          );
+        });
+  }
 };
 
 // Register User
@@ -65,7 +70,7 @@ export const register = ({ name, email, password, role }, history) => (
         .post("/api/email", { name, email, linkTo })
         .then((res) => {
           if (res.data.status !== "failed")
-            return dispatch(returnAlert("Email sent Successfully!", "success"));
+            return dispatch(returnAlert("Email sent Successfully!", "info"));
           else return dispatch(returnAlert("Email not sent!", "danger"));
         })
         .catch((err) => {

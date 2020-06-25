@@ -5,7 +5,7 @@ export default class CommentSection extends Component {
   render() {
     return (
       <>
-        <div className="container py-3">
+        <div className=" py-3 shadow-sm p-3 mb-5 bg-white rounded">
           <div className="row">
             <div className="card" style={{width:"100%"}}>
               <div className="card-header" style={{background: '#03A9F4'}}>

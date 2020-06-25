@@ -1,7 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faGem,
   faLaptopCode,
   faUserCircle,
   faHeart,
@@ -18,7 +17,7 @@ import Spinner from "./shared/Spinner";
 import Alert from "./shared/Alert/Alert";
 
 function HomePage(props) {
-  if (props.main.feedbacks.length === 0) return <Spinner />;
+  if (props.main.feedbacks.length === 0) return null;
   else
     return (
       <>
@@ -27,7 +26,7 @@ function HomePage(props) {
             <div className="row h-100 align-items-center justify-content-center text-center">
               <div className="col-lg-10 align-self-end">
                 <h1 className="text-uppercase text-white font-weight-bold">
-                  Blood donation has never been easier.
+                  Blood donation has never been easier
                 </h1>
                 <hr className="divider my-4" />
               </div>
@@ -144,11 +143,31 @@ function HomePage(props) {
                             </>
                           )}
                           {feedback.rating === "4" && (
-                            <FontAwesomeIcon
-                              icon={faGem}
-                              color="#03A9F4"
-                              size="5x"
-                            />
+                           <>
+                           <i className="far fa-star"></i>
+                           <i className="far fa-star"></i>
+                           <i className="far fa-star"></i>
+                           <i className="far fa-star"></i>
+                         </>
+                          )}
+                           {feedback.rating === "3" && (
+                           <>
+                           <i className="far fa-star"></i>
+                           <i className="far fa-star"></i>
+                           <i className="far fa-star"></i>
+                         </>
+                          )}
+                           {feedback.rating === "2" && (
+                           <>
+                           <i className="far fa-star"></i>
+                           <i className="far fa-star"></i>
+
+                         </>
+                          )}
+                           {feedback.rating === "1" && (
+                           <>
+                           <i className="far fa-star"></i>
+                         </>
                           )}
                           <h3 className="h4 mb-2">
                             {feedback.typeOfFeedback.toUpperCase()}

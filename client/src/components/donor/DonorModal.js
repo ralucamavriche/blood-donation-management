@@ -18,10 +18,12 @@ class DonorModal extends Component {
     state = {
         modal: false,
         name: '',
+        // email: (''+Math.random()).substr(2)+'blondi@yahoo.com',
         email: '',
         age: '',
         weight: '',
-        phone_number: ''
+        phone_number: '',
+        cnp:''
 
     }
 
@@ -67,6 +69,7 @@ class DonorModal extends Component {
         cnp:''
         })
         this.props.handleSet(newDonor)
+        
         //Close modal
         this.toggle();
     }

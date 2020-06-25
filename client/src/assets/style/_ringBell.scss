@@ -1,24 +1,8 @@
-/* -----------------------------------------
-   Timeline
------------------------------------------ */
 .timeline {
   list-style: none;
   padding-left: 0;
   position: relative;
 }
-// Important =================> Linia de la notifications
-
-// .timeline:after {
-//   content: "";
-//   height: auto;
-//   width: 1px;
-//   background: #e3e3e3;
-//   position: absolute;
-//   top: 5px;
-//   left: 30px;
-//   bottom: 25px;
-// }
-
 .timeline.timeline-sm:after {
   left: 12px;
 }

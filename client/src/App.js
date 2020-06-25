@@ -41,11 +41,11 @@ class App extends Component {
               path="/notifications/:id"
               component={ViewNotification}
             />
-            {/* <Route
-              exact
-              path="/timeline"
-              component={TimelineDonor2}
-            /> */}
+            <Route exact path="/dashboard/settings">
+              <Dashboard>
+                <Settings />
+              </Dashboard>
+            </Route>
             <Route exact path="/dashboard">
               <Dashboard>
                 <MainDashboard />
@@ -72,7 +72,6 @@ class App extends Component {
               </Dashboard>
             </Route>
             <Route component={Main} />
-            {/* TO DO add 404 page */}
           </Switch>
         </BrowserRouter>
       </Provider>

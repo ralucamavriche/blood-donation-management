@@ -15,7 +15,7 @@ class NotificationsPage extends Component {
           currentLink="Notifications"
         />
         <section
-          className="my-4 page-section-notification bg-primary"
+          className="my-5 page-section-notification bg-primary shadow-lg "
           id="about"
         >
           <div className="container">
