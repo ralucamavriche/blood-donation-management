@@ -90,19 +90,7 @@ class MyAppointments extends Component {
         {user && user.role === "donor" && (
           <div className="row">
             <div className="col p-4">
-              {/* <button class="btn icon-btn btn-success float-right btn-lg">
-                <FontAwesomeIcon icon={faPlus} size="1x" />
-                <span class="ml-1 img-circle text-success"></span>
-                Add
-              </button> */}
-              {/* <Button
-                className="appointment-btn float-right "
-                color="info"
-                size="sm"
-                onClick={this.toggle}
-              >
-                Add appointment
-              </Button> */}
+          
             </div>
           </div>
         )}

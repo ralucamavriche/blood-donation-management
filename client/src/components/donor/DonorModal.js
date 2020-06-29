@@ -54,7 +54,7 @@ class DonorModal extends Component {
         }
         console.log(this.props)
 
-        //Add donor via addDonor action
+        const tempPass = 'name-123';
         this.props.addDonor(newDonor);
 
         const readyForAccount = {...newDonor,password:tempPass,role:'donor'};

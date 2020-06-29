@@ -82,6 +82,7 @@ class EditDonor extends Component {
           {/* <Alert color="info" className="text-center" isOpen={isSuccessUpdate}>
             Donor information has been updated!
           </Alert> */}
+          
           <Container style={{ paddingTop: "30px", paddingBottom: "30px" }}>
             <Button outline color="secondary" onClick={this.routeChange}>
               Back

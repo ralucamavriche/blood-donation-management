@@ -17,7 +17,7 @@ import Spinner from "./shared/Spinner";
 import Alert from "./shared/Alert/Alert";
 
 function HomePage(props) {
-  if (props.main.feedbacks.length === 0) return null;
+  if (props.main.feedbacks.length === 0) return <Spinner/>;
   else
     return (
       <>
@@ -183,134 +183,6 @@ function HomePage(props) {
             </div>
           </div>
         </section>
-
-        {/* <!-- Portfolio--> */}
-        {/* <section id="portfolio">
-          <div className="container-fluid p-0">
-            <div className="row no-gutters">
-              <div className="col-lg-4 col-sm-6">
-                <a
-                  className="portfolio-box"
-                  href="https://via.placeholder.com/500x500"
-                >
-                  <img
-                    className="img-fluid"
-                    src="https://images8.alphacoders.com/842/thumb-1920-842245.jpg"
-                    alt=""
-                  />
-                  <div className="portfolio-box-caption">
-                    <div className="project-category text-white-50">
-                      Category
-                    </div>
-                    <div className="project-name">Project Name</div>
-                  </div>
-                </a>
-              </div>
-              <div className="col-lg-4 col-sm-6">
-                <a
-                  className="portfolio-box"
-                  href="https://via.placeholder.com/500x500"
-                >
-                  <img
-                    className="img-fluid"
-                    src="https://images8.alphacoders.com/842/thumb-1920-842245.jpg"
-                    alt=""
-                  />
-                  <div className="portfolio-box-caption">
-                    <div className="project-category text-white-50">
-                      Category
-                    </div>
-                    <div className="project-name">Project Name</div>
-                  </div>
-                </a>
-              </div>
-              <div className="col-lg-4 col-sm-6">
-                <a
-                  className="portfolio-box"
-                  href="https://via.placeholder.com/500x500"
-                >
-                  <img
-                    className="img-fluid"
-                    src="https://images8.alphacoders.com/842/thumb-1920-842245.jpg"
-                    alt=""
-                  />
-                  <div className="portfolio-box-caption">
-                    <div className="project-category text-white-50">
-                      Category
-                    </div>
-                    <div className="project-name">Project Name</div>
-                  </div>
-                </a>
-              </div>
-              <div className="col-lg-4 col-sm-6">
-                <a
-                  className="portfolio-box"
-                  href="https://via.placeholder.com/500x500"
-                >
-                  <img
-                    className="img-fluid"
-                    src="https://images8.alphacoders.com/842/thumb-1920-842245.jpg"
-                    alt=""
-                  />
-                  <div className="portfolio-box-caption">
-                    <div className="project-category text-white-50">
-                      Category
-                    </div>
-                    <div className="project-name">Project Name</div>
-                  </div>
-                </a>
-              </div>
-              <div className="col-lg-4 col-sm-6">
-                <a
-                  className="portfolio-box"
-                  href="https://via.placeholder.com/500x500"
-                >
-                  <img
-                    className="img-fluid"
-                    src="https://images8.alphacoders.com/842/thumb-1920-842245.jpg"
-                    alt=""
-                  />
-                  <div className="portfolio-box-caption">
-                    <div className="project-category text-white-50">
-                      Category
-                    </div>
-                    <div className="project-name">Project Name</div>
-                  </div>
-                </a>
-              </div>
-              <div className="col-lg-4 col-sm-6">
-                <a
-                  className="portfolio-box"
-                  href="https://via.placeholder.com/500x500"
-                >
-                  <img
-                    className="img-fluid"
-                    src="https://images8.alphacoders.com/842/thumb-1920-842245.jpg"
-                    alt=""
-                  />
-                  <div className="portfolio-box-caption p-3">
-                    <div className="project-category text-white-50">
-                      Category
-                    </div>
-                    <div className="project-name">Project Name</div>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </section> */}
-
-        {/* <section className="page-section bg-dark text-white">
-          <div className="container text-center">
-            <h2 className="mb-4">Free Download at Start Bootstrap!</h2>
-            <a
-              className="btn btn-light btn-xl"
-              href="https://startbootstrap.com/themes/creative/"
-            >
-              Download Now!
-            </a>
-          </div>
-        </section> */}
 
         <section className="page-section" id="contact">
           <div className="container">

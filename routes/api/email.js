@@ -21,7 +21,7 @@ const sendMail = (transporter, options, res) => {
     transporter.sendMail(options, (err, data) => {
         if (err) {
             res.status(500).json({
-                status: "failed404",
+                status: "Failed To Send Email",
                 err: { errors: err, options },
             });
         } else {
@@ -43,8 +43,34 @@ const setAccount = (account) => {
     });
 }
 
+router.post("/", (req, res) => {
+    const { name = 'Raluca', email = 'ralucamavriche@gmail.com', linkTo = 'www.google.com',message  } = req.body;
+    const templateToUse = "welcome"
+    const accountInfo = {
+        email: 'blood.donation.free@gmail.com',
+        password: 'Blood.donation20'
+    }
+    let transporter = setAccount(accountInfo)
+
+    const useTemplate = fs.readFileSync(path.join(__dirname, `../../views/${templateToUse}.hbs`), "utf8");
+
+    const template = Handlebars.compile(useTemplate);
+
+    let mailOptions = {
+        from: "blood.donation.free@gmail.com",
+        to: 'ralucamavriche@gmail.com',
+        subject: "Welcome Email",
+        html: template({
+            title: `Hi`,
+            message: "Thank you for registering!"
+        }),
+    };
+    sendMail(transporter, mailOptions, res);
+});
+
+
 // router.post("/", (req, res) => {
-//     const { name = 'Raluca', email = 'ralucamavriche@gmail.com', linkTo = 'www.google.com',message="Thank you for registering!"  } = req.body;
+//     const { name = 'Raluca', email = 'gliga_dumitru@yahoo.com', linkTo = 'www.google.com'  } = req.body;
 //     const templateToUse = "welcome"
 //     const accountInfo = {
 //         email: 'blood.donation.free@gmail.com',
@@ -59,10 +85,10 @@ const setAccount = (account) => {
 //     let mailOptions = {
 //         from: "blood.donation.free@gmail.com",
 //         to: email,
-//         subject: message.title || "Welcome Email",
+//         subject: "Welcome Email",
 //         html: template({
 //             title: `Hi, ${name}`,
-//             message: message.details || "Thank you for registering!",
+//             message: "Thank you for being a valued customer.",
 //             secondMessage: "Please click on the below link to activate your account.",
 //             linkName: "Activate Account",
 //             linkTo: linkTo,
@@ -70,34 +96,5 @@ const setAccount = (account) => {
 //     };
 //     sendMail(transporter, mailOptions, res);
 // });
-
-
-router.post("/", (req, res) => {
-    const { name = 'Raluca', email = 'gliga_dumitru@yahoo.com', linkTo = 'www.google.com'  } = req.body;
-    const templateToUse = "welcome"
-    const accountInfo = {
-        email: 'blood.donation.free@gmail.com',
-        password: 'Blood.donation20'
-    }
-    let transporter = setAccount(accountInfo)
-
-    const useTemplate = fs.readFileSync(path.join(__dirname, `../../views/${templateToUse}.hbs`), "utf8");
-
-    const template = Handlebars.compile(useTemplate);
-
-    let mailOptions = {
-        from: "blood.donation.free@gmail.com",
-        to: email,
-        subject: "Welcome Email",
-        html: template({
-            title: `Hi, ${name}`,
-            message: "Thank you for being a valued customer.",
-            secondMessage: "Please click on the below link to activate your account.",
-            linkName: "Activate Account",
-            linkTo: linkTo,
-        }),
-    };
-    sendMail(transporter, mailOptions, res);
-});
 
 module.exports = router;

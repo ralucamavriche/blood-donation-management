@@ -35,6 +35,34 @@ export const updateAppointment = (id_app, status) => (dispatch) => {
     .patch(`/api/appointment/${id_app}`, { status })
     .then((res) => {
       dispatch(returnAlert("Appointment Updated Successfully", "success"));
+      let message = {}
+      const messageAccept = {
+        title:'Thank you for your appointment!',
+        details:`The donation center: ${hospitalName}, is waiting for you on ${appointmentDate}. Take care of you!`
+      }
+      const messageDenied = {
+        title:'About your appointment!',
+        details:`The donation center: ${hospitalName}, has canceled your appointment. Please make another appointment!`
+      }
+      message = status === 'Accepted' ? messageAccept : messageDenied
+      axios
+        .post("/api/email", { name, email,message, linkTo })
+        .then((res) => {
+          if (res.data.status !== "failed")
+            return dispatch(returnAlert("Email sent Successfully!", "info"));
+            else return dispatch(returnAlert("Email not sent!", "danger"));
+        })
+        .catch((err) => {
+          // return dispatch(
+          //   returnAlert(
+          //     `[${err.response.status}] : ${
+          //       err.response.data + ": Error load User"
+          //     }`,
+          //     "danger"
+          //   )
+          // );
+          return console.log('email not send')
+        });
     })
     .catch((err) =>
     dispatch(

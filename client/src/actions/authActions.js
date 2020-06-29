@@ -74,14 +74,15 @@ export const register = ({ name, email, password, role }, history) => (
           else return dispatch(returnAlert("Email not sent!", "danger"));
         })
         .catch((err) => {
-          return dispatch(
-            returnAlert(
-              `[${err.response.status}] : ${
-                err.response.data + ": Error load User"
-              }`,
-              "danger"
-            )
-          );
+          // return dispatch(
+          //   returnAlert(
+          //     `[${err.response.status}] : ${
+          //       err.response.data + ": Email not sent!"
+          //     }`,
+          //     "danger"
+          //   )
+          // );
+      return console.log('Email not sent!');
         });
       if (role !== "donor") {
         dispatch({
@@ -94,17 +95,22 @@ export const register = ({ name, email, password, role }, history) => (
       else return null;
     })
     .catch((err) => {
-      dispatch(
-        returnAlert(
-          `[${err.response.status}] : ${
-            err.response.data + ": Error Register User"
-          }`,
-          "danger"
-        )
-      );
-      dispatch({
-        type: REGISTER_FAIL,
-      });
+      if(role === 'donor'){
+      console.log('Email already exist')
+      }else{
+        dispatch(
+          returnAlert(
+            `[${err.response.status}] : ${
+              err.response.data + ": Error Register User"
+            }`,
+            "danger"
+          )
+        );
+        dispatch({
+          type: REGISTER_FAIL,
+        });
+      }
+      
     });
 };
 

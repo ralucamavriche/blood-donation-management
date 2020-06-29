@@ -21,9 +21,7 @@ export default function TimelineDonor({ historyData }) {
                         <a href={e.url} className="btn btn-outline-dark">
                           View Medical File
                         </a>
-                        {/* <a href={e.url} className=" ml-3 btn btn-outline-danger">
-                          Delete
-                        </a> */}
+                    
                       </div>
                     </div>
                   );
