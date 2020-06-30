@@ -15,8 +15,8 @@ function NotificationCardModel(props) {
         {data.viewedBy &&
         data.viewedBy.includes(props.auth.user._id) === false ? (
           <div className="card-header custom_header_notification">
-            Notifications{" "}
-            <span class="badge badge-secondary custom_bagde">New</span>
+           <h3>Notifications</h3> {" "}
+            <span className="badge badge-secondary custom_bagde">New</span>
           </div>
         ) : (
           <div className="card-header">Notifications</div>
@@ -25,8 +25,9 @@ function NotificationCardModel(props) {
         <div className="card-body">
           <h5 className="card-title">{data.title || "No title"}</h5>
           <p className="card-text">{data.description}</p>
-          <Link className="btn btn-primary"to={`/notifications/${data._id}`}>
-            Vezi Notificare
+    
+          <Link  className="btn btn-primary btn-xl js-scroll-trigger" to={`/notifications/${data._id}`}>
+          View notification
           </Link>
         </div>
 

@@ -14,7 +14,7 @@ function PageOptions(props) {
         <div class="btn-group dropleft">
           <button
             type="button"
-            class="btn btn-secondary dropdown-toggle btn-circle"
+            className="btn btn-danger dropdown-toggle btn-lg btn-circle"
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"

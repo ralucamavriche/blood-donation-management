@@ -14,18 +14,21 @@ class NotificationsPage extends Component {
           options={[{ to: "/", name: "Blood D" }]}
           currentLink="Notifications"
         />
-        <div className="container">
-          <div className="row mt-4">
-            <div className="col jumbotron jumbotron-fluid">
-              <div className="container">
-                <h1 className="display-4">Fluid jumbotron</h1>
-                <p className="lead">
-                  Ceva util horizontal space of its parent.
-                </p>
+        <section
+          className="my-4 page-section-notification bg-primary"
+          id="about"
+        >
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-lg-8 text-center">
+                <h2 className="text-white mt-0"> View all notifications</h2>
+                <hr className="divider light my-4" />
               </div>
             </div>
           </div>
+        </section>
 
+        <div className="container">
           {this.props.request.requests &&
             this.props.request.requests.map((e) => {
               return <NotificationCardModel request={e} />;

@@ -91,8 +91,9 @@ class ViewNotification extends Component {
                   <div className="container">
                     <div className="row mt-4">
                       <>
-                        <div class="col jumbotron">
-                          <h1 class="display-4">Notificare</h1>
+                      {/* Notificareeeeeeeeeeee trebuie schimbata */}
+                        <div className="col jumbotron">
+                          <h1 className="display-4">Notificare</h1>
                           <h3>{e.title}</h3>
                           <p class="lead">{e.description}</p>
                           <hr class="my-4"></hr>

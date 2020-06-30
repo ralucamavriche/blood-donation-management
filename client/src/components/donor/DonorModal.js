@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import { addDonor } from '../../actions/donorActions';
 import PropTypes from 'prop-types';
 
+
 class DonorModal extends Component {
     state = {
         modal: false,

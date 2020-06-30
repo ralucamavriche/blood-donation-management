@@ -17,8 +17,8 @@ class QuestionModal extends Component {
     super(props);
     this.state = {
       author: "",
-      email:"",
-      question: ""
+      email: "",
+      question: "",
     };
   }
 
@@ -37,7 +37,7 @@ class QuestionModal extends Component {
         email: this.state.email,
         question: this.state.question,
       };
-      this.props.addQuestion(newQuestion)
+      this.props.addQuestion(newQuestion);
     }
 
     this.props.handleClose(false);
@@ -50,7 +50,7 @@ class QuestionModal extends Component {
           <ModalBody>
             <Form>
               <FormGroup>
-                <h4>Ask a question.</h4>
+                <h3>Ask a question.</h3>
                 <h6>Please contact us for specific reasons</h6>
                 <Label for="author">Name</Label>
                 <Input
@@ -84,7 +84,7 @@ class QuestionModal extends Component {
                 />
                 <Button
                   onClick={this.onSubmit}
-                  color="dark"
+                  color="success"
                   style={{ marginTop: "2rem" }}
                   block
                 >

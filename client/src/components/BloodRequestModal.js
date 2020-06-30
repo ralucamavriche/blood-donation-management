@@ -109,7 +109,7 @@ class BloodRequest extends Component {
                                 <Button
                                     color='dark'
                                     style={{ marginTop: '2rem' }}
-                                    block >Trimite
+                                    block >Send
                                 </Button>
                             </FormGroup>
                         </Form>

@@ -106,7 +106,7 @@ class Notification extends Component {
                             {title}
                             {viewedBy &&
                               viewedBy.includes(user._id) === false && (
-                                <span class="badge badge-secondary custom_bagde">
+                                <span className="  badge badge-secondary custom_bagde">
                                   New
                                 </span>
                               )}

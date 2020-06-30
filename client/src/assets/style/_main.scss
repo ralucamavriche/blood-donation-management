@@ -2497,8 +2497,8 @@ fieldset:disabled a.btn {
 }
 .btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active, .show > .btn-secondary.dropdown-toggle {
   color: #fff;
-  background-color: #545b62;
-  border-color: #4e555b;
+  background-color: #03A9F4;
+  border-color: #03A9F4;
 }
 .btn-secondary:not(:disabled):not(.disabled):active:focus, .btn-secondary:not(:disabled):not(.disabled).active:focus, .show > .btn-secondary.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
@@ -5446,6 +5446,8 @@ a.close.disabled {
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.3rem;
   outline: 0;
+  
+  opacity: 0.8;
 }
 
 .modal-backdrop {
@@ -9969,6 +9971,9 @@ hr.light {
 
 .page-section {
   padding: 8rem 0;
+}
+.page-section-notification {
+  padding: 1rem 0;
 }
 
 // // ------------------------------- Havbar-------------------------------

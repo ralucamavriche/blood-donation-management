@@ -5,16 +5,16 @@ import {
   ModalHeader,
   ModalBody,
   Form,
-  FormGroup
+  FormGroup,
 } from "reactstrap";
 import { connect } from "react-redux";
-import classNames from 'classnames'
+import classNames from "classnames";
 class FeedbackModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rating: '',
-      typeOfFeedback: '',
+      rating: "",
+      typeOfFeedback: "",
       description: "",
     };
   }
@@ -28,15 +28,19 @@ class FeedbackModal extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    if(this.state.rating !== '' && this.state.typeOfFeedback !== ''&& this.state.description !== ''){
+    if (
+      this.state.rating !== "" &&
+      this.state.typeOfFeedback !== "" &&
+      this.state.description !== ""
+    ) {
       const newRequest = {
-        rating:this.state.rating,
+        rating: this.state.rating,
         typeOfFeedback: this.state.typeOfFeedback,
         description: this.state.description,
-      }
-      this.props.addFeedback(newRequest)
+      };
+      this.props.addFeedback(newRequest);
     }
-    
+
     this.props.handleClose(false);
   };
   render() {
@@ -45,36 +49,82 @@ class FeedbackModal extends Component {
         <Modal isOpen={this.props.isOpen} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>Feedback</ModalHeader>
           <ModalBody>
-            <Form >
+            <Form>
               <FormGroup>
                 <h4>We would like your feedback to improve our website.</h4>
                 <h6>What is your opinion of this page?</h6>
                 <div className="customModalBody">
-                  <button className={classNames('btn',{'btn-danger':this.state.rating === '1'})} onClick={() => this.setState({rating:'1'})}>
-                    <i class="far fa-smile-wink"></i> {this.state.rating}
+                  <button
+                    className={classNames("btn", {
+                      "btn-danger": this.state.rating === "1",
+                    })}
+                    onClick={() => this.setState({ rating: "1" })}
+                  >
+                    <i className="far fa-smile-wink"></i> {this.state.rating}
                   </button>
-                  <button className={classNames('btn',{'btn-danger':this.state.rating === '2'})}  onClick={() => this.setState({rating:'2'})}>
-                    <i class="far fa-smile-wink"></i>
+                  <button
+                    className={classNames("btn", {
+                      "btn-danger": this.state.rating === "2",
+                    })}
+                    onClick={() => this.setState({ rating: "2" })}
+                  >
+                    <i className="far fa-smile-wink"></i>
                   </button>
-                  <button className={classNames('btn',{'btn-primary':this.state.rating === '3'})} onClick={() => this.setState({rating:'3'})}>
-                    <i class="far fa-smile-wink"></i>
+                  <button
+                    className={classNames("btn", {
+                      "btn-primary": this.state.rating === "3",
+                    })}
+                    onClick={() => this.setState({ rating: "3" })}
+                  >
+                    <i className="far fa-smile-wink"></i>
                   </button>
-                  <button className={classNames('btn',{'btn-info':this.state.rating === '4'})} onClick={() => this.setState({rating:'4'})}>
-                    <i class="far fa-smile-wink"></i>
+                  <button
+                    className={classNames("btn", {
+                      "btn-info": this.state.rating === "4",
+                    })}
+                    onClick={() => this.setState({ rating: "4" })}
+                  >
+                    <i className="far fa-smile-wink"></i>
                   </button>
-                  <button className={classNames('btn',{'btn-success':this.state.rating === '5'})} onClick={() => this.setState({rating:'5'})}>
-                    <i class="far fa-smile-wink"></i>
+                  <button
+                    className={classNames("btn", {
+                      "btn-success": this.state.rating === "5",
+                    })}
+                    onClick={() => this.setState({ rating: "5" })}
+                  >
+                    <i className="far fa-smile-wink"></i>
                   </button>
                 </div>
 
                 <hr />
                 <h6>Please select your feedback category below.</h6>
                 <div className="customModalBody">
-                  <button  className={classNames('btn',{'btn-primary':this.state.typeOfFeedback === 'suggestion'})} onClick={() => this.setState({typeOfFeedback:'suggestion'})}>
+                  <button
+                    className={classNames("btn", {
+                      "btn-primary": this.state.typeOfFeedback === "suggestion",
+                    })}
+                    onClick={() =>
+                      this.setState({ typeOfFeedback: "suggestion" })
+                    }
+                  >
                     Suggestion
                   </button>
-                  <button  className={classNames('btn',{'btn-danger':this.state.typeOfFeedback === 'bug'})} onClick={() => this.setState({typeOfFeedback:'bug'})}>Bug</button>
-                  <button  className={classNames('btn',{'btn-success':this.state.typeOfFeedback === 'compliment'})} onClick={() => this.setState({typeOfFeedback:'compliment'})}>
+                  <button
+                    className={classNames("btn", {
+                      "btn-danger": this.state.typeOfFeedback === "bug",
+                    })}
+                    onClick={() => this.setState({ typeOfFeedback: "bug" })}
+                  >
+                    Bug
+                  </button>
+                  <button
+                    className={classNames("btn", {
+                      "btn-success": this.state.typeOfFeedback === "compliment",
+                    })}
+                    onClick={() =>
+                      this.setState({ typeOfFeedback: "compliment" })
+                    }
+                  >
                     Compliment
                   </button>
                 </div>
@@ -86,18 +136,30 @@ class FeedbackModal extends Component {
                     Please tell us something.
                   </label>
                   <textarea
-                  value={this.state.description}
-                  onChange={(e) => this.setState({description:e.target.value})}
-                    class="form-control"
+                    value={this.state.description}
+                    onChange={(e) =>
+                      this.setState({ description: e.target.value })
+                    }
+                    className="form-control"
                     id="exampleFormControlTextarea1"
                     rows="3"
                   ></textarea>
                 </div>
-                <Button onClick={() =>this.props.handleClose(false)} color="dark" style={{ marginTop: "2rem" }} block>
-                  Cancel
-                </Button>
-                <Button onClick={this.onSubmit} color="dark" style={{ marginTop: "2rem" }} block>
+                <Button
+                  onClick={this.onSubmit}
+                  color="success"
+                  style={{ marginTop: "2rem" }}
+                  block
+                >
                   Send Feedback
+                </Button>
+                <Button
+                  onClick={() => this.props.handleClose(false)}
+                  color="dark"
+                  style={{ marginTop: "2rem" }}
+                  block
+                >
+                  Cancel
                 </Button>
               </FormGroup>
             </Form>

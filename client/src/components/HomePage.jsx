@@ -3,21 +3,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGem,
   faLaptopCode,
-  faGlobe,
+  faUserCircle,
   faHeart,
   faPhone,
   faEnvelope,
+  faMapMarked
 } from "@fortawesome/free-solid-svg-icons";
 
 import { Container, ListGroup, ListGroupItem, Button } from "reactstrap";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import Spinner from './shared/Spinner';
-import Alert from './shared/Alert/Alert';
+import Spinner from "./shared/Spinner";
+import Alert from "./shared/Alert/Alert";
 
 function HomePage(props) {
-  if (props.main.feedbacks.length === 0) return <Spinner/>
+  if (props.main.feedbacks.length === 0) return <Spinner />;
   else
     return (
       <>
@@ -26,13 +27,15 @@ function HomePage(props) {
             <div className="row h-100 align-items-center justify-content-center text-center">
               <div className="col-lg-10 align-self-end">
                 <h1 className="text-uppercase text-white font-weight-bold">
-                  This app is for Blood Donation Management.
+                  Blood donation has never been easier.
                 </h1>
                 <hr className="divider my-4" />
               </div>
               <div className="col-lg-8 align-self-baseline">
                 <p className="text-white-75 font-weight-light mb-5">
-                  This app is for Blood Donation Management.
+                  We believe that this is the only way we will succeed. And as a
+                  team, and as a country. We trust each other and welcome them
+                  with open arms on each of those who want to get involved.
                 </p>
                 <a
                   className="btn btn-primary btn-xl js-scroll-trigger"
@@ -53,8 +56,8 @@ function HomePage(props) {
                 <h2 className="text-white mt-0">We've got what you need!</h2>
                 <hr className="divider light my-4" />
                 <p className="text-white-50 mb-4">
-                  Blood Donation has everything you need to management
-                  hospitals!
+                  We will ensure transparency at all times, honesty and respect
+                  for the beneficiaries of our design, our partners and support.
                 </p>
                 <a
                   className="btn btn-light btn-xl js-scroll-trigger"
@@ -75,10 +78,10 @@ function HomePage(props) {
             <div className="row">
               <div className="col-lg-3 col-md-6 text-center">
                 <div className="mt-5">
-                  <FontAwesomeIcon icon={faGem} color="#03A9F4" size="5x" />
+                  <FontAwesomeIcon icon={faUserCircle} color="#03A9F4" size="5x" />
                   <h3 className="h4 mb-2">Free Account</h3>
                   <p className="text-muted mb-0">
-                    This app is for Blood Donation Management.
+                    We offer you the information you need.
                   </p>
                 </div>
               </div>
@@ -91,16 +94,17 @@ function HomePage(props) {
                   />
                   <h3 className="h4 mb-2">Up to Date</h3>
                   <p className="text-muted mb-0">
-                    This app is for Blood Donation Management.
+                    Every moment, at least one man needs blood.
                   </p>
                 </div>
               </div>
               <div className="col-lg-3 col-md-6 text-center">
                 <div className="mt-5">
-                  <FontAwesomeIcon icon={faGlobe} color="#03A9F4" size="5x" />
-                  <h3 className="h4 mb-2">Ready to Publish</h3>
+                  <FontAwesomeIcon icon={faMapMarked} color="#03A9F4" size="5x" />
+                  <h3 className="h4 mb-2">You can Donate Blood</h3>
                   <p className="text-muted mb-0">
-                    This app is for Blood Donation Management.
+                    Make an appointment at one of the partner centers and donate
+                    blood.
                   </p>
                 </div>
               </div>
@@ -109,7 +113,7 @@ function HomePage(props) {
                   <FontAwesomeIcon icon={faHeart} color="#03A9F4" size="5x" />
                   <h3 className="h4 mb-2">Made with Love</h3>
                   <p className="text-muted mb-0">
-                    This app is for Blood Donation Management.
+                    The project was based on your support.
                   </p>
                 </div>
               </div>
@@ -130,29 +134,23 @@ function HomePage(props) {
                     return (
                       <div className="col-lg-3 col-md-6 text-center">
                         <div className="mt-5">
-                         
-                          {
-                              feedback.rating === '5' && (
-                                  <>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                </>
-                              )
-                          }
-                           {
-                              feedback.rating === '4' && (
-                                <FontAwesomeIcon
-                                icon={ faGem}
-                                color="#03A9F4"
-                                size="5x"
-                              />
-                              )
-                          }
+                          {feedback.rating === "5" && (
+                            <>
+                              <i className="far fa-star"></i>
+                              <i className="far fa-star"></i>
+                              <i className="far fa-star"></i>
+                              <i className="far fa-star"></i>
+                              <i className="far fa-star"></i>
+                            </>
+                          )}
+                          {feedback.rating === "4" && (
+                            <FontAwesomeIcon
+                              icon={faGem}
+                              color="#03A9F4"
+                              size="5x"
+                            />
+                          )}
                           <h3 className="h4 mb-2">
-                              
                             {feedback.typeOfFeedback.toUpperCase()}
                           </h3>
                           <p className="text-muted mb-0">
@@ -313,15 +311,15 @@ function HomePage(props) {
               </div>
               <div className="col-lg-4 mr-auto text-center">
                 <FontAwesomeIcon icon={faEnvelope} size="3x" />
-                <a className="d-block" href="mailto:contact@blood.com">
-                  contact@blood.com
+                <a className="d-block" href="mailto:blood.donation.free@gmail.com">
+                  blood.donation.free@gmail.com
                 </a>
               </div>
             </div>
           </div>
         </section>
 
-        <Alert data={"Mesaj din home page"}/>
+        <Alert data={"Mesaj din home page"} />
       </>
     );
 }
