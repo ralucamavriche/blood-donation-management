@@ -2,17 +2,12 @@ import axios from "axios";
 import {
   GET_REQUESTS,
   ADD_REQUESTS,
-  ADD_COMMENT,
   GET_APPOINTMENTS,
-  OPEN_ALERT,
-  CLOSE_ALERT,
 } from "./types";
-import { tokenConfig } from "./authActions";
 import { returnAlert } from "./errorActions";
 // import { mainAPI } from '../config';
 
 export const updateViewField = (id_notification, viewedBy) => (dispatch) => {
-  console.log(id_notification, viewedBy);
   axios
     .patch(`/api/request/${id_notification}`, { viewedBy })
     .then((res) => {
@@ -30,7 +25,7 @@ export const updateViewField = (id_notification, viewedBy) => (dispatch) => {
     )
     );
 };
-export const updateAppointment = (id_app, status) => (dispatch) => {
+export const updateAppointment = (id_app, status,name='Gliga Dumitru',email='gliga_dumitru@yahoo.com',linkTo='',hospitalName='Hospital Nr.5', appointmentDate='12.12.202 12:15AM') => (dispatch) => {
   axios
     .patch(`/api/appointment/${id_app}`, { status })
     .then((res) => {
@@ -147,7 +142,6 @@ export const addAppointment = (request) => (dispatch) => {
   axios
     .post("/api/appointment", request)
     .then((res) => {
-      console.log(res);
       if (res.data.errors) {
         return console.log(res.data);
       } else {

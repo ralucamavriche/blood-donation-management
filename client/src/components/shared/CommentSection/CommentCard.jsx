@@ -2,10 +2,11 @@ import React from "react";
 import Moment from "react-moment";
 
 export default function CommentCard(props) {
+   const authorTemp = props.data.author.length > 0 ? (props.data.author[0].toUpperCase() +  props.data.author.slice(1)):''
   return (
     props.data && (
       <>
-       <section class="comments">
+       <section className="comments">
        <article className="comment">
           <a className="comment-img" href="#non" >
               <img
@@ -20,8 +21,8 @@ export default function CommentCard(props) {
               <p>{props.data.description || "no"}</p>
             </div>
             <p className="attribution">
-              by <a href="#non">{props.data.author || "anonymus"}</a> at {" "}
-              <Moment>{ props.data.date }</Moment>
+              by <a href="#non">{ authorTemp || "anonymus"}</a> |
+               {" "}<Moment fromNow>{ props.data.date }</Moment>
             </p>
           </div>
         </article>

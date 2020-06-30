@@ -131,8 +131,8 @@ class FeedbackModal extends Component {
 
                 <hr />
 
-                <div class="form-group">
-                  <label for="exampleFormControlTextarea1">
+                <div className="form-group">
+                  <label htmlFor="exampleFormControlTextarea1">
                     Please tell us something.
                   </label>
                   <textarea

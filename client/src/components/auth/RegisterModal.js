@@ -15,6 +15,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { register } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
+import { withRouter } from 'react-router-dom';
 
 class RegisterModal extends Component {
     state = {
@@ -77,7 +78,10 @@ class RegisterModal extends Component {
         };
 
         //Attempt to register
-        this.props.register(newUser); 
+        this.props.register(newUser,this.props.history); 
+        this.setState({
+            modal: !this.state.modal
+        });
     };
 
     render() {
@@ -142,4 +146,4 @@ const mapStateToProps = (state) => ({
     error: state.error
 });
 
-export default connect(mapStateToProps, { register, clearErrors })(RegisterModal);
+export default withRouter(connect(mapStateToProps, { register, clearErrors })(RegisterModal));

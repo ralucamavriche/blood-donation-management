@@ -15,6 +15,8 @@ import Main from "./components/Main";
 import MyAppointments from "./components/DashboardComponents/MyAppointments";
 import { getFeedbacks } from "./actions/mainActions";
 import Questions from "./components/DashboardComponents/Questions";
+import MainPage from './components/DashboardComponents/MainPage';
+import Settings from './components/DashboardComponents/Settings';
 
 class App extends Component {
   componentDidMount() {
@@ -47,6 +49,11 @@ class App extends Component {
               </Dashboard>
             </Route>
             <Route exact path="/dashboard">
+              <Dashboard>
+                <MainPage />
+              </Dashboard>
+            </Route>
+            <Route exact path="/dashboard/feedback">
               <Dashboard>
                 <MainDashboard />
               </Dashboard>

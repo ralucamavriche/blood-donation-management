@@ -12,10 +12,10 @@ function MedicalHistory(props) {
       <>
         <BreadcrumsModel
           options={[{ to: "/", name: "Blood D" }]}
-          currentLink="Timetable"
+          currentLink="Timeline"
         />
-        <div class="container">
-          <div class="row">
+        <div className="container">
+          <div className="row">
             {props.auth && props.auth.user.role === "donor" &&
               props.donor.donors.map((don) => {
                 if (props.auth.user.email === don.email) {

@@ -22,11 +22,11 @@ export default function Alert(props) {
   const optionAlert = optionsAlert[props.style] 
   return props.text ? (
     <>
-          <div class="alert-group customAlertFixed">
+          <div className="alert-group customAlertFixed">
             <div className={optionAlert.className}>
               <button
                 type="button"
-                class="close"
+                className="close"
                 data-dismiss="alert"
                 aria-hidden="true"
                 onClick={props.handleClose}

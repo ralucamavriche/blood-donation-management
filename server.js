@@ -24,28 +24,13 @@ const db = config.get("mongooseURI");
 
 //Connect to Mongo
 mongoose
-     .connect(db,
-          {
-               useNewUrlParser: true,
-               useUnifiedTopology: true,
-               useCreateIndex: true
-
-          })
-     .then(() => console.log('MongoDB Connected...'))
-     .catch(err => console.log(err));
-
-//Use Routes
-// app.get('/', (req, res) => {
-//      return res.json({
-//           msg: "Blood Donation Management"
-//      });
-// });
-
-app.use('/api/donors', require('./routes/api/donors'));
-app.use('/api/users', require('./routes/api/users'));
-app.use('/api/auth', require('./routes/api/auth'));
-app.use('/api/request', require('./routes/api/request'));
-
+  .connect(db, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  })
+  .then(() => console.log("MongoDB Connected..."))
+  .catch((err) => console.log(err));
 
 // app.get("/api/tes2", (req, res) => {
 //      res.render("welcome", {

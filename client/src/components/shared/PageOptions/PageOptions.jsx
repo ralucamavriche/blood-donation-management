@@ -11,7 +11,7 @@ function PageOptions(props) {
   return (
     <>
       <div className="pageOptions">
-        <div class="btn-group dropleft">
+        <div className="btn-group dropleft">
           <button
             type="button"
             className="btn btn-info dropdown-toggle btn-lg btn-circle"

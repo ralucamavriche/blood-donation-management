@@ -30,6 +30,14 @@ const UserSchema = new Schema({
     idDonatorRole:{
         type:String,
         default:null
+    },
+    address:{
+        type:String,
+        default:""
+    },
+    phone:{
+        type:String,
+        default:""
     }
 });
 // hospital account collection

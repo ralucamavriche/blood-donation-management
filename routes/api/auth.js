@@ -27,7 +27,6 @@ router.post('/', (req, res) => {
     User.findOne({ email })
         .then(user => {
             if (!user) return res.status(400).json({ msg: 'User Does not exists ' });
-            console.log(user)
             //Validate password
             bcrypt.compare(password, user.password)
                 .then(isMatch => {
@@ -44,6 +43,8 @@ router.post('/', (req, res) => {
                                 user: {
                                     _id: user._id,
                                     name: user.name,
+                                    phone:user.phone,
+                                    address:user.address,
                                     email: user.email,
                                     donors_list: user.donors_list,
                                     role: user.role
@@ -59,7 +60,6 @@ router.post('/', (req, res) => {
 //@desc Get user data 
 //@acceSs Private
 router.get('/user/:id', (req, res) => {
-
     User.findById(req.params.id)
         .select('-password')
         .then(user => {

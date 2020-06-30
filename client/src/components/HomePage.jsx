@@ -9,8 +9,6 @@ import {
   faMapMarked
 } from "@fortawesome/free-solid-svg-icons";
 
-import { Container, ListGroup, ListGroupItem, Button } from "reactstrap";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Spinner from "./shared/Spinner";

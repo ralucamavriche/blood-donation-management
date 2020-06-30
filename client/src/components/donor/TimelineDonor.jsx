@@ -8,7 +8,7 @@ export default function TimelineDonor({ historyData }) {
         <h3 className="py-4">Timeline: </h3>
         <div className="row">
           <div className="col-md-12">
-            <div className="main-timeline8">
+            <div className="main-timeline">
               {historyData &&
                 historyData.map((e) => {
                   return (

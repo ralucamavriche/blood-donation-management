@@ -32,8 +32,8 @@ class Dashboard extends Component {
       return (
         <>
           <Navbar />
-          <div class="container-fluid">
-            <div class="row">
+          <div className="container-fluid">
+            <div className="row">
               <nav
                 id="sidebar"
                 className={classNames(
@@ -41,28 +41,28 @@ class Dashboard extends Component {
                   { isHide: this.state.isOpen === false }
                 )}
               >
-                <div class="sidebar-sticky">
+                <div className="sidebar-sticky">
                   <h6
                     onClick={(e) =>
                       this.setState({ isOpen: !this.state.isOpen })
                     }
-                    class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                    className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
                   >
-                    <i class="fas fa-bars anchor"></i>
+                    <i className="fas fa-bars anchor"></i>
                   </h6>
-                  <ul class="nav flex-column">
-                    <li class="nav-item">
+                  <ul className="nav flex-column">
+                    <li className="nav-item">
                       <Link
                         className={classNames("nav-link", {
                           active: window.location.pathname === "/dashboard",
                         })}
                         to="/dashboard"
                       >
-                        <i class="fab fa-mendeley"></i>{" "}
+                        <i className="fab fa-mendeley"></i>{" "}
                         <span className="title">Dashboard</span>
                       </Link>
                     </li>
-                    <li class="nav-item">
+                    <li className="nav-item">
                       <Link
                         className={classNames("nav-link", {
                           active:
@@ -71,7 +71,7 @@ class Dashboard extends Component {
                         })}
                         to="/dashboard/appointment"
                       >
-                        <i class="fas fa-folder-minus"></i>{" "}
+                        <i className="fas fa-folder-minus"></i>{" "}
                         <span className="title">My appointments</span>
                       </Link>
                     </li>
@@ -95,7 +95,7 @@ class Dashboard extends Component {
                     {this.props.auth.user &&
                       this.props.auth.user.role === "admin" && (
                         <>
-                          <li class="nav-item">
+                          <li className="nav-item">
                             <Link
                               className={classNames("nav-link", {
                                 active:
@@ -104,12 +104,12 @@ class Dashboard extends Component {
                               })}
                               to="/dashboard/questions"
                             >
-                              <i class="fas fa-folder-minus"></i>{" "}
+                              <i className="fas fa-folder-minus"></i>{" "}
                               <span className="title">Questions</span>
                             </Link>
                           </li>
 
-                          <li class="nav-item">
+                          <li className="nav-item">
                             <Link
                               className={classNames("nav-link", {
                                 active:
@@ -118,16 +118,29 @@ class Dashboard extends Component {
                               })}
                               to="/dashboard/donors"
                             >
-                              <i class="fas fa-users"></i>{" "}
+                              <i className="fas fa-users"></i>{" "}
                               <span className="title">Donors Lists</span>
+                            </Link>
+                          </li>
+                          <li className="nav-item">
+                            <Link
+                              className={classNames("nav-link", {
+                                active:
+                                  window.location.pathname ===
+                                  "/dashboard/feedback",
+                              })}
+                              to="/dashboard/feedback"
+                            >
+                              <i className="fas fa-users"></i>{" "}
+                              <span className="title">Feedbacks</span>
                             </Link>
                           </li>
                         </>
                       )}
                   </ul>
 
-                  <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <i class="fas fa-question-circle"></i>
+                  <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <i className="fas fa-question-circle"></i>
                   </h6>
                 </div>
               </nav>
@@ -135,7 +148,7 @@ class Dashboard extends Component {
               <main
                 role="main"
                 id="main"
-                class="custom_main col-xs-2 col-sm-9 col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"
+                className="custom_main col-xs-2 col-sm-9 col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"
               >
                 {this.props.children}
               </main>

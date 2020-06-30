@@ -9,7 +9,7 @@ export default class CommentSection extends Component {
           <div className="row">
             <div className="card" style={{width:"100%"}}>
               <div className="card-header" style={{background: '#03A9F4'}}>
-              <h4 class="mb-0">Comments:</h4>
+              <h4 className="mb-0">Comments:</h4>
               </div>
               <div className="card-body">
                 <div className="text">

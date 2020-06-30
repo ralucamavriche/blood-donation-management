@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   Button,
   Modal,
@@ -15,7 +15,7 @@ export default function ConfirmModal(props) {
         <ModalHeader toggle={props.toggle}>Confirm Modal</ModalHeader>
         <ModalBody>
           <FormGroup>
-            <Label for="name">{props.question}</Label>
+            <Label htmlFor="name">{props.question}</Label>
 
             <Button
               onClick={() => {

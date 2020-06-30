@@ -49,18 +49,17 @@ router.post('/', (req, res) => {
         phone_number,
         createdBy: currentUser
     });
+
     newDonor.save().then(donor => {
         const { _id } = donor;
-        console.log(currentUser)
+        
         User.findOne({ _id: currentUser }).then(user => {
             if (user) {
-                console.log(user)
                 user.donors_list.push(_id);
                 user.save().then(user => {
                     res.json(user);
                 }).catch(err => res.json(err))
             } else {
-                console.log()
                 res.json({err:"User not found!"})
             }
 
@@ -83,8 +82,6 @@ router.delete('/:id', (req, res) => {
 router.patch('/:id', (req, res) => {
     Donor.findOneAndUpdate({ _id: req.params.id }, req.body)
         .then((donor) =>{
-            
-            console.log(donor)
             return res.json({ donor, success: true })
         })
         .catch(err => res.status(404).json({ err, success: false }));

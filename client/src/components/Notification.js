@@ -16,6 +16,7 @@ const checkNewStuff = (notifications, user_id) => {
   notifications &&
     notifications.map(({ viewedBy }) => {
       if (viewedBy.includes(user_id) === false) res++;
+      return null;
     });
 
   return res;
@@ -53,7 +54,7 @@ class Notification extends Component {
     if(this.props.auth.user !==null)
     return (
       <>
-          <li className="nav-item dropdown">
+        <li className="nav-item dropdown">
           <Link
             className="nav-link"
             to="#"
@@ -69,7 +70,6 @@ class Notification extends Component {
               float="left"
               color="white"
             />
-            
           </Link>
 
           {countOfNotifications > 0 && (

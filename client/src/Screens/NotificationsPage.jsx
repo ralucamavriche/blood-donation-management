@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "../components/Navbar";
+// eslint-disable-next-line
 import { Button } from "bootstrap";
 import NotificationCardModel from "../components/shared/CardModel/NotificationCardModel";
 import { connect } from "react-redux";
@@ -31,7 +32,7 @@ class NotificationsPage extends Component {
         <div className="container">
           {this.props.request.requests &&
             this.props.request.requests.map((e) => {
-              return <NotificationCardModel request={e} />;
+              return <NotificationCardModel data={e} />;
             })}
         </div>
       </>

@@ -14,15 +14,19 @@ const Donor = require('../../models/Donor');
 //@routes POST api/users
 //@desc Register new user
 //@acceSs Public
+
+router.get('/', (req, res) => {
+    User.find()
+        .sort({ date: -1 })
+        .then(donors => res.json(donors));
+});
 router.post('/', (req, res) => {
-    const { name, email, password, donors_list } = req.body;
+    const { name, email, password, donors_list = [], role = 'admin' } = req.body;
 
     //Simple validation
     if (!name || !email || !password) {
         return res.status(400).json({ msg: 'Please enter all fields' });
     }
-
-
     //Check for existing user
     User.findOne({ email })
         .then(user => {
@@ -32,11 +36,8 @@ router.post('/', (req, res) => {
                 name,
                 email,
                 password,
-                donors_list
-                // name: req.body.name,
-                // email: req.body.email,
-                // password: req.body.password,
-                // donors_list: req.body.donors_list
+                donors_list,
+                role
             });
 
             //Create salt and hash 
@@ -45,78 +46,60 @@ router.post('/', (req, res) => {
                     if (err) throw err;
                     newUser.password = hash;
                     newUser.save().then(user => {
-<<<<<<< HEAD
-                        jtw.sign(
-                            { id: user.id },
-                            config.get('jwtSecret'),
-                            { expiresIn: 3600 },
-                            (err, token) => {
-                                if (err) throw err;
-                                res.json({
-                                    token,
-                                    user: {
-                                        id: user.id,
-                                        name: user.name,
-                                        email: user.email,
-                                        donors_list: user.donors_list
-                                    }
-                                })
-=======
                         res.json({
                             user: {
                                 _id: user._id,
                                 name: user.name,
                                 email: user.email,
                                 donors_list: user.donors_list
->>>>>>> 6f58ac4... Add Questions
                             }
-                        )
+                        })
                     });
                 })
             })
         })
 });
 
-
-
-// router.get('/', (req, res) => {
-//     User.find()
-//         .sort({ date: -1 })
-//         .then(users => {
-//             res.json(users)
-//         });
-// });
-
-// router.get('/', (req, res) => {
-//     User.find({})
-//         // .populate('donors', 'name email age weight phone_number', Donor)
-//         // .exec()
-//         .then(user => {
-//             res.json(user)
-//         });
-// });
-
-
-// router.post('/', (req, res, next) => {
-//     const newUser = new User({
-//         name: req.body.name,
-//         email: req.body.email,
-//         password: req.body.password,
-//         donors_list: req.body.donorsId
-//     });
-//     newUser.save().then(
-//         result => {
-//             console.log(result);
-//             res.status(201).json(result);
-//         }
-//     ).catch(err => {
-//         console.log(err);
-//         res.status(500).json({
-//             error: err
-//         })
-//     });
-// });
-
+router.patch('/:id', (req, res) => {
+    User.findOneAndUpdate({ _id: req.params.id }, req.body)
+        .then((user) => {
+            User.findById(req.params.id)
+                .select('-password')
+                .then(user => {
+                    if (user) {
+                        res.json({ user, success: true })
+                    } else {
+                        res.status(404).json({
+                            status: 'failed'
+                        })
+                    }
+                });
+        })
+        .catch(err => res.status(404).json({ err, success: false }));
+});
+router.post('/password/:id', (req, res) => {
+    const {currentPassword, newPassword, newPassword2} = req.body;
+    User.findOne({ _id:req.params.id })
+    .then(user => {
+        if (!user) return res.status(400).json({ msg: 'User Does not exists ' });
+        //Validate password
+        bcrypt.compare(currentPassword, user.password)
+            .then(isMatch => {
+                if (!isMatch) return res.status(400).json({ msg: 'Invalid current Password' });
+                bcrypt.genSalt(10, (err, salt) => {
+                    bcrypt.hash(newPassword, salt, (err, hash) => {
+                        if (err) throw err;
+                        user.password = hash;
+                        user.save().then(user => {
+                            res.status(200).json({
+                                status:'success'
+                            })
+                        });
+                    })
+                })
+            })
+    })
+});
 //@routes GET api/users
 //@desc ALL user
 //@acceSs Public
@@ -125,8 +108,8 @@ router.get('/', function (req, res, next) {
         .then(user => res.json(user))
 });
 
-router.post("/addToDonorsList",(req, res) => {
-    User.find({_id: req.user.user_id})
+router.post("/addToDonorsList", (req, res) => {
+    User.find({ _id: req.user.user_id })
 });
 
 module.exports = router;

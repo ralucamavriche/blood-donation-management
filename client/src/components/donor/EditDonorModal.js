@@ -11,8 +11,6 @@ import History from "./History";
 import TimelineDonor from "./TimelineDonor";
 import Alert from './../shared/Alert/Alert';
 
-import TimelineDonor2 from "./TimelineDonor2";
-
 import {
   Button,
   Form,
@@ -75,7 +73,6 @@ class EditDonor extends Component {
   }
 
   render() {
-    const { isSuccessUpdate } = this.props.donor.currentDonor;
     return (
       <>
         <div>
@@ -90,7 +87,7 @@ class EditDonor extends Component {
             <h3 style={{ marginTop: "30px" }}>Edit Donors Log</h3>
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
-                <Label for="donor">Donor</Label>
+                <Label htmlFor="donor">Donor</Label>
                 <Input
                   required
                   input="text"
@@ -104,7 +101,7 @@ class EditDonor extends Component {
                   placeholder="Add Name donor"
                   onChange={this.handleInputChange}
                 />
-                <Label for="email">Email</Label>
+                <Label htmlFor="email">Email</Label>
                 <Input
                   required
                   input="email"
@@ -114,7 +111,7 @@ class EditDonor extends Component {
                   placeholder="Add Email"
                   onChange={this.handleInputChange}
                 />
-                <Label for="age">Age</Label>
+                <Label htmlFor="age">Age</Label>
                 <Input
                   required
                   input="text"
@@ -124,7 +121,7 @@ class EditDonor extends Component {
                   placeholder="Add Age"
                   onChange={this.handleInputChange}
                 />
-                <Label for="weight">Weight</Label>
+                <Label htmlFor="weight">Weight</Label>
                 <Input
                   required
                   input="text"
@@ -134,7 +131,7 @@ class EditDonor extends Component {
                   placeholder="Add weight"
                   onChange={this.handleInputChange}
                 />
-                <Label for="phone_number">Phone number</Label>
+                <Label htmlFor="phone_number">Phone number</Label>
                 <Input
                   required
                   input="text"

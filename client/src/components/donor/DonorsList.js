@@ -74,6 +74,7 @@ class DonorsList extends Component {
                       </>
                     </ListGroupItem>
                   );
+                  return null;
               })}
           </ListGroup>
           {this.props.main.isOpenAlert === true && (

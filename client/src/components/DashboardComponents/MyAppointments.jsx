@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import ConfirmModal from "./ConfirmModal";
 import Moment from "react-moment";
+import BreadcrumsModel from './../shared/Breadcrum/BreadcrumsModel';
 
 class MyAppointments extends Component {
   constructor(props) {
@@ -18,11 +19,15 @@ class MyAppointments extends Component {
       isOpenConfirm: false,
       questionConfirm: "",
       idAppointment: "",
+      nameOfDonor: '',
+      emailOfDonor: '',
+      dateOfDonor: "",
       searchText: "",
       status: "",
       checkboxDenied: true,
       checkboxAccepted: true,
       checkboxPending: true,
+      showAddBtn:false
     };
   }
 
@@ -51,7 +56,7 @@ class MyAppointments extends Component {
         questionConfirm: "",
       });
     } else if (answer === "continue") {
-      this.props.updateAppointment(this.state.idAppointment, this.state.status);
+      this.props.updateAppointment(this.state.idAppointment, this.state.status, this.state.nameOfDonor, this.state.emailOfDonor, '', this.props.auth.user.name.toUpperCase(), this.state.dateOfDonor.toString());
       await this.props.getAppointment();
     }
   };
@@ -83,10 +88,30 @@ class MyAppointments extends Component {
     return false;
   };
 
+  handleAppointmentsView = async (appointments,id) => {
+    let ok = true
+    // eslint-disable-next-line
+    await appointments.map(({ name, date, idDonor, status }) => {
+      if (id === idDonor) {
+        if (status === 'pending' || status === 'Accepted') {
+          ok = false
+        }
+      }
+    })
+    if(this.state.showAddBtn !== ok)
+    this.setState({
+      showAddBtn:ok
+    })
+  }
+
   render() {
     const { user } = this.props.auth;
     return (
       <div>
+         <BreadcrumsModel
+                options={[{ to: "/", name: "Blood Donation" }]}
+                currentLink="Appointments"
+            />
         {user && user.role === "donor" && (
           <div className="row">
             <div className="col p-4">
@@ -98,7 +123,7 @@ class MyAppointments extends Component {
         <ListGroup>
           <ListGroupItem active>
             My Appointments
-            {user && user.role === "donor" && (
+            {user && user.role === "donor" && this.handleAppointmentsView(this.props.request.appointments,user._id) && this.state.showAddBtn === true && (
               <Button
                 className="appointment-btn float-right "
                 color="warning"
@@ -112,24 +137,25 @@ class MyAppointments extends Component {
           {user &&
             user.role === "donor" &&
             this.props.request.appointments &&
-            this.props.request.appointments.map(({ name, date, idDonor }) => {
+            this.props.request.appointments.map(({ name, date, idDonor, status }) => {
               if (user._id === idDonor)
                 return (
                   <ListGroupItem>
                     <>
-                      {name} - <Moment format="DD/MM/YYYY">{date}</Moment>
+                      {name} - <Moment format="DD/MM/YYYY">{date}</Moment> | Status : {status}
                     </>
                   </ListGroupItem>
                 );
+                return null;
             })}
         </ListGroup>
 
         {user && user.role === "admin" && (
           <>
-            <div class="input-group mb-3 mt-3">
+            <div className="input-group mb-3 mt-3">
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 placeholder="Search"
                 value={this.state.searchText}
                 onChange={(e) => this.setState({ searchText: e.target.value })}
@@ -138,10 +164,10 @@ class MyAppointments extends Component {
               />
             </div>
             <div className="input-group mb-3 mt-3">
-              <div class="custom-control custom-checkbox custom-control-inline">
+              <div className="custom-control custom-checkbox custom-control-inline">
                 <input
                   type="checkbox"
-                  class="custom-control-input"
+                  className="custom-control-input"
                   checked={this.state.checkboxPending}
                   onChange={() =>
                     this.setState({
@@ -150,15 +176,15 @@ class MyAppointments extends Component {
                   }
                   id="checkboxPending"
                 />
-                <label class="custom-control-label" for="checkboxPending">
+                <label className="custom-control-label" htmlFor="checkboxPending">
                   Pending
                 </label>
               </div>
 
-              <div class="custom-control custom-checkbox custom-control-inline">
+              <div className="custom-control custom-checkbox custom-control-inline">
                 <input
                   type="checkbox"
-                  class="custom-control-input"
+                  className="custom-control-input"
                   checked={this.state.checkboxAccepted}
                   onChange={() =>
                     this.setState({
@@ -167,14 +193,14 @@ class MyAppointments extends Component {
                   }
                   id="checkboxAccepted"
                 />
-                <label class="custom-control-label" for="checkboxAccepted">
+                <label className="custom-control-label" htmlFor="checkboxAccepted">
                   Accepted
                 </label>
               </div>
-              <div class="custom-control custom-checkbox custom-control-inline">
+              <div className="custom-control custom-checkbox custom-control-inline">
                 <input
                   type="checkbox"
-                  class="custom-control-input"
+                  className="custom-control-input"
                   checked={this.state.checkboxDenied}
                   onChange={() =>
                     this.setState({
@@ -183,12 +209,12 @@ class MyAppointments extends Component {
                   }
                   id="checkboxDenied"
                 />
-                <label class="custom-control-label" for="checkboxDenied">
+                <label className="custom-control-label" htmlFor="checkboxDenied">
                   Denied
                 </label>
               </div>
             </div>
-            <table class="table table-hover">
+            <table className="table table-hover">
               <thead>
                 <tr>
                   <th scope="col">#</th>
@@ -222,7 +248,6 @@ class MyAppointments extends Component {
                             <td className="text-center">
                               <button
                                 title="Accepted"
-                                // onClick={(e) => this.handleStatus(_id, "Accepted")}
                                 onClick={() =>
                                   this.setState({
                                     isOpenConfirm: true,
@@ -230,6 +255,9 @@ class MyAppointments extends Component {
                                       "Are you sure you wanna accept this appointment?",
                                     idAppointment: _id,
                                     status: "Accepted",
+                                    nameOfDonor: name,
+                                    emailOfDonor: email,
+                                    dateOfDonor: date,
                                   })
                                 }
                                 className="btn btn-success mx-2"
@@ -238,7 +266,6 @@ class MyAppointments extends Component {
                               </button>
                               <button
                                 title="Denied"
-                                // onClick={(e) => this.handleStatus(_id, "Denied")}
                                 onClick={() =>
                                   this.setState({
                                     isOpenConfirm: true,
@@ -246,6 +273,9 @@ class MyAppointments extends Component {
                                       "Are you sure you wanna denie this appointment?",
                                     idAppointment: _id,
                                     status: "Denied",
+                                    nameOfDonor: name,
+                                    emailOfDonor: email,
+                                    dateOfDonor: date,
                                   })
                                 }
                                 className="btn btn-danger"
@@ -255,6 +285,7 @@ class MyAppointments extends Component {
                             </td>
                           </tr>
                         );
+                        return null;
                     }
                   )}
               </tbody>

@@ -15,6 +15,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
+import { withRouter } from 'react-router-dom';
 
 class LoginModal extends Component {
   state = {
@@ -74,6 +75,10 @@ class LoginModal extends Component {
 
     // Attempt to login
     this.props.login(user);
+    this.setState({
+      modal: !this.state.modal
+    });
+    this.props.history.push('/')
   };
 
   render() {
@@ -83,7 +88,7 @@ class LoginModal extends Component {
           Login
         </NavLink>
 
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
+        <Modal isOpen={this.state.modal || window.location.pathname==='/login'} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>Login</ModalHeader>
           <ModalBody>
             {this.state.msg ? (
@@ -129,7 +134,7 @@ const mapStateToProps = state => ({
   error: state.error
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   { login, clearErrors }
-)(LoginModal);
+)(LoginModal));

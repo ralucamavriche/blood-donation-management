@@ -8,7 +8,6 @@ import {
   FormGroup,
   Label,
   Input,
-  NavLink,
 } from "reactstrap";
 import { connect } from "react-redux";
 
@@ -52,7 +51,7 @@ class QuestionModal extends Component {
               <FormGroup>
                 <h3>Ask a question.</h3>
                 <h6>Please contact us for specific reasons</h6>
-                <Label for="author">Name</Label>
+                <Label htmlFor="author">Name</Label>
                 <Input
                   required
                   input="text"
@@ -63,7 +62,7 @@ class QuestionModal extends Component {
                   placeholder="Add Your Name"
                   onChange={this.onChange}
                 />
-                <Label for="email">Email:</Label>
+                <Label htmlFor="email">Email:</Label>
                 <Input
                   required
                   type="email"
@@ -73,7 +72,7 @@ class QuestionModal extends Component {
                   placeholder="Add email"
                   onChange={this.onChange}
                 />
-                <Label for="question">Question:</Label>
+                <Label htmlFor="question">Question:</Label>
                 <Input
                   required
                   type="text"

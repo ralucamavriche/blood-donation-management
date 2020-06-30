@@ -7,9 +7,9 @@ export default function BreadcrumsModel(props) {
   
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
-          {props.options.map((option) => {
+          {props.options.map((option,index) => {
             return (
-              <li className="breadcrumb-item">
+              <li key={index} className="breadcrumb-item">
                 <Link to={option.to}>{option.name}</Link>
               </li>
             );

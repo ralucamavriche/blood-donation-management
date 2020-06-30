@@ -5,10 +5,8 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 function NotificationCardModel(props) {
-  // const date = new Date(props.date);
   const { data } = props;
   const date = data.title ? new Date(data.date) : new Date();
-  console.log(props);
   return true ? (
     <div className="row mb-4 ">
       <div className=" col  card text-center" style={{padding:"0"}}>
@@ -32,11 +30,11 @@ function NotificationCardModel(props) {
         </div>
 
         <div className="card-footer text-muted">
-            <Moment fromNow>{date}</Moment>
+          <Moment fromNow>{date}</Moment>
         </div>
       </div>
     </div>
-  ):null;
+  ) : null;
 }
 
 const mapStateToProps = (state) => ({

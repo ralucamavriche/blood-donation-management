@@ -5,7 +5,6 @@ import jwt from "jwt-decode";
 import {
   USER_LOADED,
   USER_LOADING,
-  AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
@@ -61,7 +60,9 @@ export const register = ({ name, email, password, role }, history) => (
   };
 
   // Request body
-  const body = JSON.stringify({ name, email, password });
+  const body = JSON.stringify({ name, email, password, role });
+
+  const linkTo = window.location;
 
   axios
     .post("/api/users", body, config)

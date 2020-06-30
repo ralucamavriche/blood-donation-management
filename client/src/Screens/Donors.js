@@ -1,27 +1,15 @@
 import React, { Component } from 'react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-
 import DonorsList from '../components/donor/DonorsList';
-import DonorModal from '../components/donor/DonorModal';
 
 class Donors extends Component {
-  // componentDidMount() {
-  //   store.dispatch(loadUser());
-  // }
-
   render() {
     return (
-      
-        <div className="Donors">
-          {/* <Navbar/> */}
-          <div className="donorsList">
-          <DonorModal />
+
+      <div className="Donors">
+        <div className="donorsList">
           <DonorsList />
-          {/* <DonorListForHospital /> */}
-          </div>
-          {/* <Footer /> */}
         </div>
+      </div>
     );
   }
 }

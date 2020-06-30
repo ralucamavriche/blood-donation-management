@@ -8,7 +8,6 @@ import {
     FormGroup,
     Label,
     Input,
-    NavLink,
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { addRequest } from '../actions/requestActions';
@@ -44,7 +43,6 @@ class BloodRequest extends Component {
             description: this.state.description,
             blood_type: this.state.blood_type
         };
-        console.log(this.props)
 
         //Add request via addRequest action
         this.props.addRequest(newRequest); 

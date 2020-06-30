@@ -1,9 +1,6 @@
 import axios from "axios";
 import {
   GET_DONORS,
-  ADD_DONORS,
-  OPEN_ALERT,
-  CLOSE_ALERT,
   DELETE_DONORS,
   DONORS_LOADING,
   SET_CURRENT_DONOR,
@@ -56,60 +53,15 @@ export const updateDonorInfo = (id, currentDonor) => (dispatch) => {
         });
       }, 2000);
     })
-}
-export const updateDonorInfo = (id, currentDonor) => dispatch => {
-    axios
-        .patch(`/api/donors/${id}`, currentDonor)
-        .then(res => {
-            
-            dispatch({
-                type: CHANGE_CURRENT_DONOR_INFO,
-                payload: { name: "isSuccessUpdate", value: true }
-            })
-            window.setTimeout(() => {
-                dispatch({
-                    type: CHANGE_CURRENT_DONOR_INFO,
-                    payload: { name: "isSuccessUpdate", value: false }
-                })
-            }, 2000)
-        })
-        .catch(err =>
-            dispatch(returnErrors(err.response.data, err.response.status)));
-}
-
-export const getCurrentDonorById = id => dispatch => {
-    axios
-        .get(`/api/donors/${id}`)
-        .then(res => {
-            dispatch({
-                type: SET_CURRENT_DONOR,
-                payload: res.data
-            })
-        })
-        .catch(err =>
-            dispatch(returnErrors(err.response.data, err.response.status)));
-}
-
-
-export const addDonor = donor => (dispatch, getState) => {
-    axios
-        .post('/api/donors', donor, tokenConfig(getState))
-        .then(res => {
-            console.log(res)
-            if (res.data.errors) {
-                console.log(res.data)
-                // dispatch(returnErrors(err.response.data, err.response.status))
-            } else
-            {
-                console.log(res.data)
-                return dispatch({
-                    type: ADD_DONORS,
-                    payload: res.data
-                })
-            }
-                
-        }
-        
+    .catch((err) =>
+      dispatch(
+        returnAlert(
+          `[${err.response.status}] : ${
+            err.response.data + ":Donor Update  Failed"
+          }`,
+          "danger"
+        )
+      )
     );
 };
 

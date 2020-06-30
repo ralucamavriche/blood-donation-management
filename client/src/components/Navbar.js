@@ -10,7 +10,6 @@ import PropTypes from "prop-types";
 import BloodRequest from "./BloodRequestModal";
 
 import { Link } from "react-router-dom";
-import Dashboard from "./Dashboard";
 class Navbar extends Component {
   state = {
     isOpen: false,
@@ -59,7 +58,7 @@ class Navbar extends Component {
               : ""}
           </Link>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <Link className="dropdown-item" to="#">
+            <Link className="dropdown-item" to="/dashboard/settings">
               <i className="fas fa-sliders-h"></i> Settings
             </Link>
             <Link className="dropdown-item" to="/dashboard">
@@ -107,25 +106,22 @@ class Navbar extends Component {
             <Collapse isOpen={this.state.isOpen} className="somesome" navbar>
               <Nav className="ml-auto" navbar>
                 <li className="nav-item">
-                  <Link
+                  <a
                     className="nav-link js-scroll-trigger"
-                    to={{
-                      pathname: "/",
-                      hash: "#about",
-                    }}
+                    href="/#about"
                   >
                     About
-                  </Link>
+                  </a>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link js-scroll-trigger" to="/#services">
+                  <a className="nav-link js-scroll-trigger" href="/#services">
                     Services
-                  </Link>
+                  </a>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link js-scroll-trigger" to="/#contact">
+                  <a className="nav-link js-scroll-trigger" href="#contact">
                     Contact
-                  </Link>
+                  </a>
                 </li>
 
                 {isAuthenticated ? authLinks : guestLink}

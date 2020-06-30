@@ -1,9 +1,8 @@
 import axios from "axios";
 import { returnAlert } from "./errorActions";
-import { GET_FEEDBACKS, CLOSE_ALERT, OPEN_ALERT,GET_QUESTIONS } from "./types";
+import { GET_FEEDBACKS, CLOSE_ALERT,GET_QUESTIONS,LOGIN_SUCCESS } from "./types";
 
 export const addFeedback = (feedback) => (dispatch) => {
-  console.log(feedback);
   return axios
     .post(`/api/feedback`, feedback)
     .then((res) => {
@@ -22,7 +21,6 @@ export const addFeedback = (feedback) => (dispatch) => {
 };
 
 export const addQuestion = (question) => (dispatch) => {
-  console.log(question);
   return axios
     .post(`/api/question`, question)
     .then((res) => {
@@ -79,6 +77,48 @@ export const updateFeedback = (id_app, status) => (dispatch) => {
         returnAlert(
           `[${err.response.status}] : ${
             err.response.data + ": :Update Feedback Failed"
+          }`,
+          "danger"
+        )
+      )
+    );
+};
+export const updateUser = (id_app, data) => (dispatch) => {
+  axios
+    .patch(`/api/users/${id_app}`, data)
+    .then((res) => {
+      dispatch(returnAlert("Update User Successfully", "success"));
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(
+        returnAlert(
+          `[${err.response.status}] : ${
+            err.response.data + ": :Update User Failed"
+          }`,
+          "danger"
+        )
+      )
+    );
+};
+export const updateUserPassword = (id_app, data) => (dispatch) => {
+  axios
+    .post(`/api/users/password/${id_app}`, data)
+    .then((res) => {
+      dispatch(returnAlert("Update User Password Successfully", "success"));
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(
+        returnAlert(
+          `[${err.response.status}] : ${
+            err.response.data + err.response.data.msg || ": :Update User Failed"
           }`,
           "danger"
         )

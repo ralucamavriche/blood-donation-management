@@ -8,7 +8,6 @@ import {
   FormGroup,
   Label,
   Input,
-  NavLink,
 } from "reactstrap";
 import { connect } from "react-redux";
 import { addAppointment } from "../actions/requestActions";
@@ -54,7 +53,7 @@ class AppointmentModal extends Component {
           <ModalBody>
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
-                <Label for="name">Name</Label>
+                <Label htmlFor="name">Name</Label>
                 <Input
                   type="text"
                   name="name"
@@ -65,7 +64,7 @@ class AppointmentModal extends Component {
                   onChange={this.onChange}
                 />
 
-                <Label for="email">Email</Label>
+                <Label htmlFor="email">Email</Label>
                 <Input
                   type="text"
                   name="email"
@@ -75,7 +74,7 @@ class AppointmentModal extends Component {
                   className="mb-3"
                   onChange={this.onChange}
                 />
-                <Label for="exampleDate">Date</Label>
+                <Label htmlFor="exampleDate">Date</Label>
                 <Input
                   type="date"
                   name="date"

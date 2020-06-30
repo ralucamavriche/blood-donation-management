@@ -50,12 +50,12 @@ class History extends Component {
           <Row>
             <Card style={{ width: "100%" }}>
               <CardHeader>
-                <h4 class="mb-0">Add medical history:</h4>
+                <h4 className="mb-0">Add medical history:</h4>
               </CardHeader>
               <CardBody>
                 <Form onSubmit={this.onSubmit}>
                   <FormGroup>
-                    <Label for="exampleDate">Date</Label>
+                    <Label htmlFor="exampleDate">Date</Label>
                     <Input
                       type="date"
                       name="date"
@@ -66,7 +66,7 @@ class History extends Component {
                     />
                   </FormGroup>
                   <FormGroup>
-                    <Label for="exampleUrl">Uploading medical file</Label>
+                    <Label htmlFor="exampleUrl">Uploading medical file</Label>
                     <Input
                       type="url"
                       name="url"
@@ -77,7 +77,7 @@ class History extends Component {
                     />
                   </FormGroup>
                   <FormGroup>
-                    <Label for="specifications">Other specifications</Label>
+                    <Label htmlFor="specifications">Other specifications</Label>
                     <Input
                       value={this.state.specifications}
                       onChange={this.onChange}

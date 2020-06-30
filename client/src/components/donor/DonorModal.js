@@ -10,8 +10,11 @@ import {
     Input
 } from 'reactstrap';
 import { connect } from 'react-redux';
-import { addDonor } from '../../actions/donorActions';
+import { addDonor,getDonors } from '../../actions/donorActions';
+import {register} from '../../actions/authActions'
 import PropTypes from 'prop-types';
+import BreadcrumsModel from './../shared/Breadcrum/BreadcrumsModel';
+import { withRouter } from 'react-router-dom';
 
 
 class DonorModal extends Component {
@@ -50,13 +53,12 @@ class DonorModal extends Component {
             age: this.state.age,
             weight: this.state.weight,
             phone_number: this.state.phone_number,
-            currentUser:this.props.auth.user._id
+            currentUser: this.props.auth.user._id,
+            cnp:this.state.cnp
         }
-        console.log(this.props)
 
         const tempPass = 'name-123';
         this.props.addDonor(newDonor);
-
         const readyForAccount = {...newDonor,password:tempPass,role:'donor'};
         this.props.register(readyForAccount,null); 
         this.setState({
@@ -72,23 +74,31 @@ class DonorModal extends Component {
         
         //Close modal
         this.toggle();
+
     }
 
     render() {
         return (
             <div>
+                <BreadcrumsModel
+          options={[{ to: "/", name: "Blood D" }]}
+          currentLink="Donors List"
+        />
+                
                 {this.props.isAuthenticated ? (
                     <Button
                         color="dark"
                         style={{ marginBottom: '2rem' }}
                         onClick={this.toggle}
-                    >Add Donor
-                </Button>
+                    ><i className="fas fa-plus-circle"></i> Add Donor
+                    </Button>
                 ) : (
                         <h5
                             className="mb-3 ml-4 text-center"
                             style={{ marginBottom: '2rem' }}> Please log in to manage donors</h5>
                     )}
+                
+                
                 <Modal
                     isOpen={this.state.modal}
                     toggle={this.toggle}
@@ -97,7 +107,8 @@ class DonorModal extends Component {
                     <ModalBody>
                         <Form onSubmit={this.onSubmit}>
                             <FormGroup>
-                                <Label for="donor">Donor</Label>
+                                <h4>Will create an account for the donor.</h4>
+                                <Label htmlFor="donor">Donor</Label>
                                 <Input
                                     required
                                     input="text"
@@ -110,7 +121,7 @@ class DonorModal extends Component {
                                 <Label for='email'>Email</Label>
                                 <Input
                                     required
-                                    input="email"
+                                    type="email"
                                     name="email"
                                     id="email"
                                     value={this.state.email}
@@ -120,8 +131,9 @@ class DonorModal extends Component {
                                 <Label for='age'>Age</Label>
                                 <Input
                                     required
-                                    input="text"
+                                    type="number"
                                     name="age"
+                                    min={18}
                                     id="age"
                                     value={this.state.age}
                                     placeholder="Add Age"
@@ -130,8 +142,9 @@ class DonorModal extends Component {
                                 <Label for='weight'>Weight</Label>
                                 <Input
                                     required
-                                    input="text"
+                                    type="number"
                                     name="weight"
+                                    min={50}
                                     id="weight"
                                     value={this.state.weight}
                                     placeholder="Add weight"
@@ -140,11 +153,23 @@ class DonorModal extends Component {
                                 <Label for='phone_number'>Phone number</Label>
                                 <Input
                                     required
-                                    input="text"
+                                    input="number"
                                     name="phone_number"
+                                    min={10}
                                     id="phone_number"
                                     value={this.state.phone_number}
                                     placeholder="Add Phone Number"
+                                    onChange={this.onChange}
+                                />
+                                <Label for='phone_number'>CNP</Label>
+                                <Input
+                                    required
+                                    type="number"
+                                    name="cnp"
+                                    min={13}
+                                    id="cnp"
+                                    value={this.state.cnp || ''}
+                                    placeholder="Add CNP"
                                     onChange={this.onChange}
                                 />
                                 <Button
@@ -162,9 +187,9 @@ class DonorModal extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    auth:state.auth,
+    auth: state.auth,
     donor: state.donor,
     isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, { addDonor })(DonorModal);
+export default withRouter(connect(mapStateToProps, { addDonor,getDonors,register })(DonorModal));

@@ -4,6 +4,7 @@ import { getQuestions, updateQuestions } from "../../actions/mainActions";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import ConfirmModal from "./ConfirmModal";
+import BreadcrumsModel from './../shared/Breadcrum/BreadcrumsModel';
 
 class Questions extends Component {
   constructor(props) {
@@ -90,12 +91,16 @@ class Questions extends Component {
     const { user } = this.props.auth;
     return (
       <div>
+         <BreadcrumsModel
+                options={[{ to: "/", name: "Blood Donation" }]}
+                currentLink="Questions"
+            />
         {user && user.role === "admin" && (
           <>
-            <div class="input-group mb-3 mt-3">
+            <div className="input-group mb-3 mt-3">
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 placeholder="Search"
                 value={this.state.searchText}
                 onChange={(e) => this.setState({ searchText: e.target.value })}
@@ -104,10 +109,10 @@ class Questions extends Component {
               />
             </div>
             <div className="input-group mb-3 mt-3">
-              <div class="custom-control custom-checkbox custom-control-inline">
+              <div className="custom-control custom-checkbox custom-control-inline">
                 <input
                   type="checkbox"
-                  class="custom-control-input"
+                  className="custom-control-input"
                   checked={this.state.checkboxPending}
                   onChange={() =>
                     this.setState({
@@ -116,15 +121,15 @@ class Questions extends Component {
                   }
                   id="checkboxPending"
                 />
-                <label class="custom-control-label" for="checkboxPending">
+                <label className="custom-control-label" htmlFor="checkboxPending">
                   Pending
                 </label>
               </div>
 
-              <div class="custom-control custom-checkbox custom-control-inline">
+              <div className="custom-control custom-checkbox custom-control-inline">
                 <input
                   type="checkbox"
-                  class="custom-control-input"
+                  className="custom-control-input"
                   checked={this.state.checkboxAccepted}
                   onChange={() =>
                     this.setState({
@@ -133,14 +138,14 @@ class Questions extends Component {
                   }
                   id="checkboxAccepted"
                 />
-                <label class="custom-control-label" for="checkboxAccepted">
+                <label className="custom-control-label" htmlFor="checkboxAccepted">
                   Accepted
                 </label>
               </div>
-              <div class="custom-control custom-checkbox custom-control-inline">
+              <div className="custom-control custom-checkbox custom-control-inline">
                 <input
                   type="checkbox"
-                  class="custom-control-input"
+                  className="custom-control-input"
                   checked={this.state.checkboxDenied}
                   onChange={() =>
                     this.setState({
@@ -149,12 +154,12 @@ class Questions extends Component {
                   }
                   id="checkboxDenied"
                 />
-                <label class="custom-control-label" for="checkboxDenied">
+                <label className="custom-control-label" htmlFor="checkboxDenied">
                   Denied
                 </label>
               </div>
             </div>
-            <table class="table table-hover">
+            <table className="table table-hover">
               <thead>
                 <tr>
                   <th scope="col">#</th>

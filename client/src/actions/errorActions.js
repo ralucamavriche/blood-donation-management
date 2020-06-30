@@ -1,4 +1,4 @@
-import { GET_ERRORS, CLEAR_ERRORS,OPEN_ALERT,CLOSE_ALERT } from "./types";
+import {  CLEAR_ERRORS,OPEN_ALERT,CLOSE_ALERT } from "./types";
 
 export const returnAlert = (text, style) => dispatch => {
     dispatch({
