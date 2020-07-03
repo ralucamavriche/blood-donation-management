@@ -41,7 +41,7 @@ export const updateAppointment = (id_app, status,name='Gliga Dumitru',email='gli
       }
       message = status === 'Accepted' ? messageAccept : messageDenied
       axios
-        .post("/api/email", { name, email,message, linkTo })
+        .post("/api/email", { name, email, linkTo,title:message.title,details:message.details })
         .then((res) => {
           if (res.data.status !== "failed")
             return dispatch(returnAlert("Email sent Successfully!", "info"));

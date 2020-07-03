@@ -100,10 +100,7 @@ export const register = ({ name, email, password, role }, history) => (
       console.log('Email already exist')
       }else{
         dispatch(
-          returnAlert(
-            `[${err.response.status}] : ${
-              err.response.data + ": Error Register User"
-            }`,
+          returnAlert("Email or password  already exist",
             "danger"
           )
         );

@@ -200,8 +200,8 @@ function HomePage(props) {
               </div>
               <div className="col-lg-4 mr-auto text-center">
                 <FontAwesomeIcon icon={faEnvelope} size="3x" />
-                <a className="d-block" href="mailto:blood.donation.free@gmail.com">
-                  blood.donation.free@gmail.com
+                <a className="d-block" href="mailto:blood.donation.management.free@gmail.com">
+                blood.donation.management.free@gmail.com
                 </a>
               </div>
             </div>
