@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+You can see the app : [LIVE DEMO](https://blooddonationmanagement.herokuapp.com/).
 
 ## Available Scripts
 
