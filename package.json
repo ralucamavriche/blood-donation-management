@@ -4,7 +4,6 @@
   "description": "Blood Donation Management build with the MERN stack",
   "main": "server.js",
   "scripts": {
-    "prestart":"cd ./client && npm run build",
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
