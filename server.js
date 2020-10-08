@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const config = require("config");
 const expressHbs = require("express-handlebars");
 const path = require("path");
-//Initializam expressul intr o variabila
 const app = express();
+const port = process.env.PORT || 5000;
 
 //Bodyparser Middleware
 app.use(express.json());
@@ -32,19 +32,8 @@ mongoose
   .then(() => console.log("MongoDB Connected..."))
   .catch((err) => console.log(err));
 
-// app.get("/api/tes2", (req, res) => {
-//      res.render("welcome", {
-//        title: "Hi, Raluca",
-//        message:
-//          "Aveti notificari noi. Bla bla bla.",
-//        secondMessage: "Bla bla",
-//        linkName: "Activate Account",
-//        linkTo: "http://localhost:3000/",
-//      });
-//      //   res.status(200).json({
-//      //     msg: "Welcome",
-//      //   });
-//    });
+app.use(express.static('client/build'));
+
 app.use("/api/email", require("./routes/api/email"));
 app.use("/api/donors", require("./routes/api/donors"));
 app.use("/api/users", require("./routes/api/users"));
@@ -54,7 +43,9 @@ app.use("/api/appointment", require("./routes/api/appointment"));
 app.use("/api/feedback", require("./routes/api/feedback"));
 app.use("/api/question", require("./routes/api/question"));
 
-
-const port = process.env.PORT || 5000;
+app.use(function(req, res) {
+	res.sendFile(path.join(__dirname, './client/build/index.html'));
+});
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
+
