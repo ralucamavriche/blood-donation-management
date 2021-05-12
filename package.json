@@ -27,7 +27,7 @@
     "lodash": "^4.17.15",
     "mdbreact": "^4.27.0",
     "mongoose": "^5.9.10",
-    "nodemailer": "^6.4.8",
+    "nodemailer": "^6.4.16",
     "nodemon": "^2.0.3",
     "reactstrap-date-picker": "0.0.7",
     "simple-encryptor": "^4.0.0"
